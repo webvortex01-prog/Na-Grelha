@@ -8,22 +8,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
    <style>
-    /* 1. RESET DEFINITIVO */
+    /* MANTIVE SEU RESET */
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
 
+    /* MATANDO O ZOOM E A BORDA PRETA */
     html, body {
         width: 100%;
         max-width: 100%;
-        overflow-x: hidden; /* Isso mata a borda preta lateral */
+        overflow-x: hidden; 
         position: relative;
-        background-color: #0f0f0f; /* Cor dark padrão */
-        color: white;
-        font-family: 'Inter', sans-serif;
-        scroll-behavior: smooth;
     }
 
     @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;700;900&display=swap');
@@ -32,6 +29,13 @@
         --primary: #f97316;
         --dark: #0f0f0f;
         --accent: #ffcc00;
+    }
+
+    body {
+        background-color: var(--dark);
+        color: white;
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;
     }
 
     .font-header {
@@ -52,12 +56,12 @@
         border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    /* 2. O AJUSTE DA LOGO (Aqui estava o erro!) */
+    /* AQUI ESTAVA O ERRO - ARRUMADO SEM MUDAR O ESTILO */
     .logo {
-        width: 100%; /* No PC ela ocupa o espaço dela */
-        max-width: 500px; /* Mas nunca passa de 500px */
+        width: 100%; 
+        max-width: 500px; /* Mantive seus 500px, mas como limite máximo */
         display: block;
-        margin: 0 auto; /* Centraliza a logo sem empurrar a tela */
+        margin: 0 auto; /* Tirei o 30% que jogava pra fora e centralizei */
     }
 
     .btn-glow:hover {
@@ -80,31 +84,13 @@
         animation: fadeIn 0.8s ease-out forwards;
     }
 
-    /* 3. MEDIA QUERY TURBINADA */
-    @media screen and (max-width: 768px) {
+    /* SÓ PARA O CELULAR NÃO DAR ZOOM NO TEXTO */
+    @media screen and (max-width: 480px) {
         .logo {
-            max-width: 80%; /* No celular a logo diminui para caber */
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 90%; /* Ajusta a logo pra caber na tela do celular */
         }
-
         h1 {
-            font-size: 2rem !important;
-            text-align: center;
-        }
-
-        /* Garante que nada saia da tela */
-        section, div, header, footer {
-            max-width: 100% !important;
-            padding-left: 15px !important;
-            padding-right: 15px !important;
-        }
-
-        .button, button, a.btn {
-            display: flex !important;
-            justify-content: center;
-            width: 100% !important;
-            margin: 10px 0 !important;
+            word-wrap: break-word; /* Pro título não esticar a tela */
         }
     }
 </style>
