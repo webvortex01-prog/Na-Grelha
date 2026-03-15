@@ -7,127 +7,107 @@
     <title>Na grelha / O verdadeiro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            /* Impede que bordas e paddings estiquem a tela */
-        }
+   <style>
+    /* 1. RESET DEFINITIVO */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        html,
-        body {
-            width: 100%;
-            overflow-x: hidden;
-            /* Mata a barra de rolagem lateral e a borda preta */
-            position: relative;
-        }
+    html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden; /* Isso mata a borda preta lateral */
+        position: relative;
+        background-color: #0f0f0f; /* Cor dark padrão */
+        color: white;
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;
+    }
 
-        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;700;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;700;900&display=swap');
 
-        :root {
-            --primary: #f97316;
-            --dark: #0f0f0f;
-            --accent: #ffcc00;
-        }
+    :root {
+        --primary: #f97316;
+        --dark: #0f0f0f;
+        --accent: #ffcc00;
+    }
 
-        body {
-            background-color: var(--dark);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
+    .font-header {
+        font-family: 'Bangers', cursive;
+        letter-spacing: 2px;
+    }
 
-        .font-header {
-            font-family: 'Bangers', cursive;
-            letter-spacing: 2px;
-        }
+    .hero-gradient {
+        background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0.4) 100%),
+                    url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2071');
+        background-size: cover;
+        background-position: center;
+    }
 
-        .hero-gradient {
-            background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0.4) 100%),
-                url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2071');
-            background-size: cover;
-            background-position: center;
-        }
+    .glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+    /* 2. O AJUSTE DA LOGO (Aqui estava o erro!) */
+    .logo {
+        width: 100%; /* No PC ela ocupa o espaço dela */
+        max-width: 500px; /* Mas nunca passa de 500px */
+        display: block;
+        margin: 0 auto; /* Centraliza a logo sem empurrar a tela */
+    }
 
+    .btn-glow:hover {
+        box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+        transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+        background-color: #f97316;
+        color: white;
+        border-color: #f97316;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+        animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    /* 3. MEDIA QUERY TURBINADA */
+    @media screen and (max-width: 768px) {
         .logo {
-            width: 500px;
-            margin-left: 30%;
-
+            max-width: 80%; /* No celular a logo diminui para caber */
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .btn-glow:hover {
-            box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
-            transform: translateY(-2px);
+        h1 {
+            font-size: 2rem !important;
+            text-align: center;
         }
 
-        /* Botões de Filtro Ativos */
-        .filter-btn.active {
-            background-color: #f97316;
-            color: white;
-            border-color: #f97316;
+        /* Garante que nada saia da tela */
+        section, div, header, footer {
+            max-width: 100% !important;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .button, button, a.btn {
+            display: flex !important;
+            justify-content: center;
+            width: 100% !important;
+            margin: 10px 0 !important;
         }
-
-        .reveal {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        /* Media query para Celulares */
-        @media screen and (max-width: 480px) {
-
-            /* Garante que imagens não sejam maiores que a tela */
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-
-            /* Ajusta o container principal para não vazar */
-            section,
-            div,
-            header,
-            footer {
-                width: 100% !important;
-                max-width: 100vw !important;
-                padding-left: 10px !important;
-                padding-right: 10px !important;
-            }
-
-            /* Ajuste de fontes para o título não empurrar a tela */
-            h1 {
-                font-size: 1.8rem !important;
-                /* Diminui o título principal */
-                word-wrap: break-word;
-            }
-
-            /* Seus botões agora ficam centralizados e ajustados */
-            .button,
-            button,
-            a.btn {
-                display: block !important;
-                width: 90% !important;
-                margin: 10px auto !important;
-                font-size: 1rem !important;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 
 <body class="overflow-x-hidden">
