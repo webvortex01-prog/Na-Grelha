@@ -7,93 +7,101 @@
     <title>Na grelha / O verdadeiro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-   <style>
-    /* MANTIVE SEU RESET */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;700;900&display=swap');
 
-    /* MATANDO O ZOOM E A BORDA PRETA */
-    html, body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden; 
-        position: relative;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;700;900&display=swap');
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            /* Isso aqui é o que mata a borda preta lateral */
+            position: relative;
+        }
 
-    :root {
-        --primary: #f97316;
-        --dark: #0f0f0f;
-        --accent: #ffcc00;
-    }
+        :root {
+            --primary: #f97316;
+            --dark: #0f0f0f;
+            --accent: #ffcc00;
+        }
 
-    body {
-        background-color: var(--dark);
-        color: white;
-        font-family: 'Inter', sans-serif;
-        scroll-behavior: smooth;
-    }
+        body {
+            background-color: var(--dark);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-    .font-header {
-        font-family: 'Bangers', cursive;
-        letter-spacing: 2px;
-    }
+        .font-header {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+        }
 
-    .hero-gradient {
-        background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0.4) 100%),
-                    url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2071');
-        background-size: cover;
-        background-position: center;
-    }
+        .hero-gradient {
+            background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0.4) 100%),
+                url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2071');
+            background-size: cover;
+            background-position: center;
+        }
 
-    .glass {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    /* AQUI ESTAVA O ERRO - ARRUMADO SEM MUDAR O ESTILO */
-    .logo {
-        width: 100%; 
-        max-width: 500px; /* Mantive seus 500px, mas como limite máximo */
-        display: block;
-        margin: 0 auto; /* Tirei o 30% que jogava pra fora e centralizei */
-    }
-
-    .btn-glow:hover {
-        box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
-        transform: translateY(-2px);
-    }
-
-    .filter-btn.active {
-        background-color: #f97316;
-        color: white;
-        border-color: #f97316;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-        animation: fadeIn 0.8s ease-out forwards;
-    }
-
-    /* SÓ PARA O CELULAR NÃO DAR ZOOM NO TEXTO */
-    @media screen and (max-width: 480px) {
         .logo {
-            max-width: 90%; /* Ajusta a logo pra caber na tela do celular */
+            width: 500px;
+            margin-left: 30%;
+
         }
-        h1 {
-            word-wrap: break-word; /* Pro título não esticar a tela */
+
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+            transform: translateY(-2px);
         }
-    }
-</style>
+
+        /* Botões de Filtro Ativos */
+        .filter-btn.active {
+            background-color: #f97316;
+            color: white;
+            border-color: #f97316;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @media screen and (max-width: 768px) {
+            .logo {
+                width: 90% !important;
+                /* Faz a logo caber na tela do celular */
+                max-width: 500px;
+                margin-left: auto !important;
+                /* Centraliza no celular */
+                margin-right: auto !important;
+                display: block;
+            }
+        }
+    </style>
 </head>
 
 <body class="overflow-x-hidden">
