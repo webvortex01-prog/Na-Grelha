@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,44 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Impede que bordas e paddings estiquem a tela */
+        }
+
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+            /* Mata a barra de rolagem lateral e a borda preta */
+            position: relative;
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;700;900&display=swap');
-        
+
         :root {
             --primary: #f97316;
             --dark: #0f0f0f;
             --accent: #ffcc00;
         }
 
-        body { 
-            background-color: var(--dark); 
-            color: white; 
+        body {
+            background-color: var(--dark);
+            color: white;
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
 
-        .font-header { font-family: 'Bangers', cursive; letter-spacing: 2px; }
-        
+        .font-header {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+        }
+
         .hero-gradient {
-            background: linear-gradient(0deg, rgba(15,15,15,1) 0%, rgba(15,15,15,0.4) 100%), 
-                        url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2071');
+            background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0.4) 100%),
+                url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2071');
             background-size: cover;
             background-position: center;
         }
@@ -40,7 +59,7 @@
         .logo {
             width: 500px;
             margin-left: 30%;
-            
+
         }
 
         .btn-glow:hover {
@@ -56,24 +75,61 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .reveal { animation: fadeIn 0.8s ease-out forwards; }
-    
-    @media (max-width: 768px) {
-    /* Tudo o que você colocar aqui SÓ vale para celular */
-    .sua-classe-do-texto {
-        font-size: 1.2rem; /* Diminui o texto explicativo */
-    }
-    
-    .seus-botoes {
-        width: 100%; /* Faz os botões ficarem um embaixo do outro se precisar */
-        max-width: 300px;
-    }
-}
+
+        .reveal {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Media query para Celulares */
+        @media screen and (max-width: 480px) {
+
+            /* Garante que imagens não sejam maiores que a tela */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Ajusta o container principal para não vazar */
+            section,
+            div,
+            header,
+            footer {
+                width: 100% !important;
+                max-width: 100vw !important;
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+            }
+
+            /* Ajuste de fontes para o título não empurrar a tela */
+            h1 {
+                font-size: 1.8rem !important;
+                /* Diminui o título principal */
+                word-wrap: break-word;
+            }
+
+            /* Seus botões agora ficam centralizados e ajustados */
+            .button,
+            button,
+            a.btn {
+                display: block !important;
+                width: 90% !important;
+                margin: 10px auto !important;
+                font-size: 1rem !important;
+            }
+        }
     </style>
 </head>
+
 <body class="overflow-x-hidden">
 
     <!-- Promo Top Bar -->
@@ -85,11 +141,17 @@
     <section class="hero-gradient min-h-screen flex items-center justify-center text-center px-4 relative">
         <div class="max-w-4xl reveal">
             <span class="text-orange-500 font-bold tracking-widest uppercase mb-4 block">Artesanal & Suculento</span>
-            <h1 class="font-header text-7xl md:text-9xl mb-6 leading-tight">AQUI É <br><span class="text-orange-500">NA GRELHA</span></h1>
-            <p class="text-zinc-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Esqueça o fast-food genérico. Aqui o blend é NA GRELHA, o pão é brioche de verdade e a experiência é de outro mundo.</p>
+            <h1 class="font-header text-7xl md:text-9xl mb-6 leading-tight">AQUI É <br><span class="text-orange-500">NA
+                    GRELHA</span></h1>
+            <p class="text-zinc-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Esqueça o fast-food genérico. Aqui o
+                blend é NA GRELHA, o pão é brioche de verdade e a experiência é de outro mundo.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#cardapio" class="bg-orange-600 btn-glow text-white px-10 py-5 rounded-full font-black uppercase transition-all">Ver Cardápio</a>
-                <a href="#avaliacoes" class="bg-white/10 hover:bg-white/20 text-white px-10 py-5 rounded-full font-black uppercase backdrop-blur-md transition-all">Quem provou amou</a>
+                <a href="#cardapio"
+                    class="bg-orange-600 btn-glow text-white px-10 py-5 rounded-full font-black uppercase transition-all">Ver
+                    Cardápio</a>
+                <a href="#avaliacoes"
+                    class="bg-white/10 hover:bg-white/20 text-white px-10 py-5 rounded-full font-black uppercase backdrop-blur-md transition-all">Quem
+                    provou amou</a>
             </div>
         </div>
     </section>
@@ -102,7 +164,8 @@
                     <i class="fa-solid fa-fire text-orange-500 text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-xl mb-3 uppercase">Carne no Fogo</h3>
-                <p class="text-zinc-500 text-sm">Nossos blends de 180g são grelhados na hora em fogo alto para manter a suculência.</p>
+                <p class="text-zinc-500 text-sm">Nossos blends de 180g são grelhados na hora em fogo alto para manter a
+                    suculência.</p>
             </div>
             <div class="p-8">
                 <div class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
@@ -116,7 +179,8 @@
                     <i class="fa-solid fa-leaf text-orange-500 text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-xl mb-3 uppercase">100% Fresco</h3>
-                <p class="text-zinc-500 text-sm">Zero congelados. Selecionamos os melhores ingredientes de produtores locais toda manhã.</p>
+                <p class="text-zinc-500 text-sm">Zero congelados. Selecionamos os melhores ingredientes de produtores
+                    locais toda manhã.</p>
             </div>
         </div>
     </section>
@@ -124,16 +188,22 @@
     <!-- Cardápio Dinâmico com Submenus -->
     <section id="cardapio" class="py-24 max-w-7xl mx-auto px-4">
         <div class="text-center mb-10">
-            <h2 class="font-header text-5xl mb-4 text-white uppercase italic">Cardápio <span class="text-orange-500">Na GRELHA</span></h2>
+            <h2 class="font-header text-5xl mb-4 text-white uppercase italic">Cardápio <span class="text-orange-500">Na
+                    GRELHA</span></h2>
             <div class="w-24 h-1 bg-orange-600 mx-auto mb-8"></div>
-            
+
             <!-- SUBMENUS (Filtros) -->
             <div class="flex flex-wrap justify-center gap-3 mb-12">
-                <button onclick="filterMenu('todos')" class="filter-btn active px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Todos</button>
-                <button onclick="filterMenu('burgers')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Burgers</button>
-                <button onclick="filterMenu('porcoes')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Porções</button>
-                <button onclick="filterMenu('combos')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Combos</button>
-                <button onclick="filterMenu('bebidas')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Bebidas</button>
+                <button onclick="filterMenu('todos')"
+                    class="filter-btn active px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Todos</button>
+                <button onclick="filterMenu('burgers')"
+                    class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Burgers</button>
+                <button onclick="filterMenu('porcoes')"
+                    class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Porções</button>
+                <button onclick="filterMenu('combos')"
+                    class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Combos</button>
+                <button onclick="filterMenu('bebidas')"
+                    class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Bebidas</button>
             </div>
         </div>
 
@@ -148,12 +218,15 @@
             <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-4">
                 <div class="max-w-xl">
                     <h2 class="font-header text-5xl mb-4 italic">QUEM PROVOU, VIROU FÃ</h2>
-                    <p class="text-zinc-400">Todos clientes satisfeitos em toda a região. Confira o que dizem sobre nós:</p>
+                    <p class="text-zinc-400">Todos clientes satisfeitos em toda a região. Confira o que dizem sobre nós:
+                    </p>
                 </div>
                 <div class="flex items-center gap-2 text-orange-500 font-bold">
                     <span class="text-4xl">4.9</span>
                     <div class="flex text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
                     </div>
                     <span class="text-zinc-500 text-xs">(Google Maps)</span>
                 </div>
@@ -163,11 +236,15 @@
                 <!-- Card Avaliação 1 -->
                 <div class="glass p-8 rounded-3xl">
                     <div class="flex gap-1 text-orange-500 text-xs mb-4">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-sm italic mb-6 text-zinc-300">"Melhor burger da cidade sem dúvidas! O ponto da carne vem perfeito e o molho da casa é viciante. Chegou em 25 minutos."</p>
+                    <p class="text-sm italic mb-6 text-zinc-300">"Melhor burger da cidade sem dúvidas! O ponto da carne
+                        vem perfeito e o molho da casa é viciante. Chegou em 25 minutos."</p>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center font-bold">R</div>
+                        <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center font-bold">R
+                        </div>
                         <div>
                             <p class="text-sm font-bold">Rodrigo Silva</p>
                             <p class="text-[10px] text-zinc-500 uppercase">Guia Local</p>
@@ -177,11 +254,15 @@
                 <!-- Card Avaliação 2 -->
                 <div class="glass p-8 rounded-3xl">
                     <div class="flex gap-1 text-orange-500 text-xs mb-4">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-sm italic mb-6 text-zinc-300">"O Cheese Monster é surreal de grande. Vale cada centavo. Atendimento pelo WhatsApp é muito rápido e prático."</p>
+                    <p class="text-sm italic mb-6 text-zinc-300">"O Cheese Monster é surreal de grande. Vale cada
+                        centavo. Atendimento pelo WhatsApp é muito rápido e prático."</p>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center font-bold">A</div>
+                        <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center font-bold">A
+                        </div>
                         <div>
                             <p class="text-sm font-bold">Amanda Costa</p>
                             <p class="text-[10px] text-zinc-500 uppercase">Cliente VIP</p>
@@ -194,29 +275,34 @@
     </section>
 
     <!-- Barra de Carrinho Flutuante -->
-    <div id="cart-bar" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl hidden transition-all duration-300">
+    <div id="cart-bar"
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl hidden transition-all duration-300">
         <div class="bg-orange-600 rounded-full p-2 flex items-center justify-between shadow-2xl shadow-orange-600/20">
             <div class="flex items-center gap-4 ml-6">
-                <span id="cart-count-bubble" class="bg-white text-orange-600 w-8 h-8 rounded-full flex items-center justify-center font-black text-sm">0</span>
+                <span id="cart-count-bubble"
+                    class="bg-white text-orange-600 w-8 h-8 rounded-full flex items-center justify-center font-black text-sm">0</span>
                 <div class="text-white">
                     <p class="text-[10px] font-bold uppercase leading-none opacity-80">Seu Pedido</p>
                     <p id="cart-total-value" class="font-black text-lg">R$ 0,00</p>
                 </div>
             </div>
-            <button onclick="openModal()" class="bg-black text-white px-8 py-3 rounded-full font-black uppercase text-sm tracking-wider hover:bg-zinc-800 transition-colors">
+            <button onclick="openModal()"
+                class="bg-black text-white px-8 py-3 rounded-full font-black uppercase text-sm tracking-wider hover:bg-zinc-800 transition-colors">
                 Finalizar
             </button>
         </div>
     </div>
 
     <!-- Modal de Checkout -->
-    <div id="checkout-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div id="checkout-modal"
+        class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
         <div class="bg-zinc-950 w-full max-w-xl rounded-[2rem] border border-white/10 overflow-hidden shadow-3xl">
             <div class="p-8 border-b border-white/5 flex justify-between items-center text-left">
                 <h3 class="font-header text-3xl italic">FINALIZAR PEDIDO</h3>
-                <button onclick="closeModal()" class="text-zinc-500 hover:text-white transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
+                <button onclick="closeModal()" class="text-zinc-500 hover:text-white transition"><i
+                        class="fa-solid fa-xmark text-2xl"></i></button>
             </div>
-            
+
             <div class="p-8 max-h-[40vh] overflow-y-auto text-left" id="modal-items-list">
                 <!-- Itens -->
             </div>
@@ -227,12 +313,16 @@
                     <span id="final-price" class="text-orange-500">R$ 0,00</span>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <input type="text" id="cust-name" placeholder="Como te chamamos?" class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
-                    <input type="text" id="cust-phone" placeholder="Observações" class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
+                    <input type="text" id="cust-name" placeholder="Como te chamamos?"
+                        class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
+                    <input type="text" id="cust-phone" placeholder="Observações"
+                        class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
                 </div>
-                <input type="text" id="cust-addr" placeholder="Endereço Completo (Rua, Nº, Bairro)" class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
-                
-                <button onclick="sendToWhatsApp()" class="w-full bg-green-600 hover:bg-green-500 py-5 rounded-2xl font-black uppercase text-sm flex items-center justify-center gap-3 transition-all active:scale-95 shadow-lg shadow-green-600/10">
+                <input type="text" id="cust-addr" placeholder="Endereço Completo (Rua, Nº, Bairro)"
+                    class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
+
+                <button onclick="sendToWhatsApp()"
+                    class="w-full bg-green-600 hover:bg-green-500 py-5 rounded-2xl font-black uppercase text-sm flex items-center justify-center gap-3 transition-all active:scale-95 shadow-lg shadow-green-600/10">
                     <i class="fa-brands fa-whatsapp text-2xl"></i> CONVOCAR ENTREGA
                 </button>
             </div>
@@ -242,10 +332,10 @@
     <footer class="py-20 bg-black text-center border-t border-zinc-900">
         <div class="max-w-7xl mx-auto px-4">
             <img src="img/logo.jpg" alt="Logo" class="logo">
-            
+
             <h2 class="font-header text-4xl text-orange-500 mb-6 uppercase italic">NA GRELHA</h2>
             <p class="text-zinc-600 text-xs">© 2026 NA GRELHA- Todos os direitos reservados.</p>
-            
+
         </div>
     </footer>
 
@@ -268,11 +358,11 @@
             { id: 12, cat: 'porcoes', name: "Batata com calabresa", price: 26.00, desc: "10 unidades de frango crocante com molho honey mustard.", img: "img/batata com calabresa.jpg" },
             { id: 13, cat: 'porcoes', name: "Onion Rings", price: 19.00, desc: "Anéis de cebola gigantes empanados na cerveja.", img: "https://images.unsplash.com/photo-1639024471283-03518883512d?q=80&w=400" },
             { id: 14, cat: 'porcoes', name: "Batata Cheddar/Bacon", price: 28.00, desc: "Batata palito com muito cheddar cremoso e farofa de bacon.", img: "https://images.unsplash.com/photo-1585109649139-366815a0d713?q=80&w=400" },
-           
+
 
             // BEBIDAS
-            
-           
+
+
             { id: 18, cat: 'bebidas', name: "Coca-Cola 350ml", price: 7.50, desc: "Lata geladíssima.", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=400" },
 
             // COMBOS
@@ -286,13 +376,13 @@
             // Atualiza botões
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if(btn.innerText.toLowerCase() === category) btn.classList.add('active');
-                if(category === 'todos' && btn.innerText.toLowerCase() === 'todos') btn.classList.add('active');
+                if (btn.innerText.toLowerCase() === category) btn.classList.add('active');
+                if (category === 'todos' && btn.innerText.toLowerCase() === 'todos') btn.classList.add('active');
             });
 
             const container = document.getElementById('menu-container');
             const filtered = category === 'todos' ? products : products.filter(p => p.cat === category);
-            
+
             container.innerHTML = filtered.map(p => `
                 <div class="glass p-4 rounded-[2.5rem] group reveal">
                     <div class="overflow-hidden rounded-[2rem] mb-6">
@@ -319,7 +409,7 @@
             const product = products.find(p => p.id === id);
             const exists = cart.find(i => i.id === id);
             if (exists) exists.qty++;
-            else cart.push({...product, qty: 1});
+            else cart.push({ ...product, qty: 1 });
             updateUI();
             const bar = document.getElementById('cart-bar');
             bar.classList.remove('hidden');
@@ -381,4 +471,5 @@
         filterMenu('todos');
     </script>
 </body>
+
 </html>
