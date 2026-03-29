@@ -1,0 +1,89 @@
+/* Configurações Gerais e Fontes */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;700;900&display=swap');
+
+:root {
+    --primary: #f97316;
+    --dark: #0f0f0f;
+    --accent: #ffcc00;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    background-color: var(--dark);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* Tipografia */
+.font-header {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 2px;
+}
+
+/* Seções e Backgrounds */
+.hero-gradient {
+    background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0.4) 100%),
+                url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2071');
+    background-size: cover;
+    background-position: center;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Componentes */
+.logo-rodape {
+    width: 500px;
+    margin-left: 30%;
+}
+
+.btn-glow:hover {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background-color: #f97316;
+    color: white;
+    border-color: #f97316;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .logo-rodape {
+        width: 90% !important;
+        max-width: 500px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block;
+    }
+}

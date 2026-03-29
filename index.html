@@ -7,130 +7,27 @@
     <title>Na grelha / O verdadeiro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;700;900&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            width: 100%;
-            max-width: 100%;
-            overflow-x: hidden;
-            /* Isso aqui é o que mata a borda preta lateral */
-            position: relative;
-        }
-
-        :root {
-            --primary: #f97316;
-            --dark: #0f0f0f;
-            --accent: #ffcc00;
-        }
-
-        body {
-            background-color: var(--dark);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        .font-header {
-            font-family: 'Bangers', cursive;
-            letter-spacing: 2px;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0.4) 100%),
-                url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2071');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo {
-            width: 500px;
-            margin-left: 30%;
-
-        }
-
-        .btn-glow:hover {
-            box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
-            transform: translateY(-2px);
-        }
-
-        /* Botões de Filtro Ativos */
-        .filter-btn.active {
-            background-color: #f97316;
-            color: white;
-            border-color: #f97316;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .reveal {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        @media screen and (max-width: 768px) {
-            .logo {
-                width: 90% !important;
-                /* Faz a logo caber na tela do celular */
-                max-width: 500px;
-                margin-left: auto !important;
-                /* Centraliza no celular */
-                margin-right: auto !important;
-                display: block;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="overflow-x-hidden">
 
-    <!-- Promo Top Bar -->
     <div class="bg-orange-600 text-center py-2 text-xs font-bold uppercase tracking-[0.2em]">
         🔥 Entrega Grátis nos primeiros 3 pedidos de hoje! 🔥
     </div>
 
-    <!-- Hero Section -->
     <section class="hero-gradient min-h-screen flex items-center justify-center text-center px-4 relative">
         <div class="max-w-4xl reveal">
             <span class="text-orange-500 font-bold tracking-widest uppercase mb-4 block">Artesanal & Suculento</span>
-            <h1 class="font-header text-7xl md:text-9xl mb-6 leading-tight">AQUI É <br><span class="text-orange-500">NA
-                    GRELHA</span></h1>
-            <p class="text-zinc-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Esqueça o fast-food genérico. Aqui o
-                blend é NA GRELHA, o pão é brioche de verdade e a experiência é de outro mundo.</p>
+            <h1 class="font-header text-7xl md:text-9xl mb-6 leading-tight">AQUI É <br><span class="text-orange-500">NA GRELHA</span></h1>
+            <p class="text-zinc-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Esqueça o fast-food genérico. Aqui o blend é NA GRELHA, o pão é brioche de verdade e a experiência é de outro mundo.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#cardapio"
-                    class="bg-orange-600 btn-glow text-white px-10 py-5 rounded-full font-black uppercase transition-all">Ver
-                    Cardápio</a>
-                <a href="#avaliacoes"
-                    class="bg-white/10 hover:bg-white/20 text-white px-10 py-5 rounded-full font-black uppercase backdrop-blur-md transition-all">Quem
-                    provou amou</a>
+                <a href="#cardapio" class="bg-orange-600 btn-glow text-white px-10 py-5 rounded-full font-black uppercase transition-all">Ver Cardápio</a>
+                <a href="#avaliacoes" class="bg-white/10 hover:bg-white/20 text-white px-10 py-5 rounded-full font-black uppercase backdrop-blur-md transition-all">Quem provou amou</a>
             </div>
         </div>
     </section>
 
-    <!-- Benefícios -->
     <section class="py-20 bg-zinc-950 border-y border-zinc-900">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div class="p-8">
@@ -138,8 +35,7 @@
                     <i class="fa-solid fa-fire text-orange-500 text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-xl mb-3 uppercase">Carne no Fogo</h3>
-                <p class="text-zinc-500 text-sm">Nossos blends de 180g são grelhados na hora em fogo alto para manter a
-                    suculência.</p>
+                <p class="text-zinc-500 text-sm">Nossos blends de 180g são grelhados na hora em fogo alto para manter a suculência.</p>
             </div>
             <div class="p-8">
                 <div class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
@@ -153,150 +49,143 @@
                     <i class="fa-solid fa-leaf text-orange-500 text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-xl mb-3 uppercase">100% Fresco</h3>
-                <p class="text-zinc-500 text-sm">Zero congelados. Selecionamos os melhores ingredientes de produtores
-                    locais toda manhã.</p>
+                <p class="text-zinc-500 text-sm">Zero congelados. Selecionamos os melhores ingredientes de produtores locais toda manhã.</p>
             </div>
         </div>
     </section>
 
-    <!-- Cardápio Dinâmico com Submenus -->
     <section id="cardapio" class="py-24 max-w-7xl mx-auto px-4">
         <div class="text-center mb-10">
-            <h2 class="font-header text-5xl mb-4 text-white uppercase italic">Cardápio <span class="text-orange-500">Na
-                    GRELHA</span></h2>
+            <h2 class="font-header text-5xl mb-4 text-white uppercase italic">Cardápio <span class="text-orange-500">Na GRELHA</span></h2>
             <div class="w-24 h-1 bg-orange-600 mx-auto mb-8"></div>
 
-            <!-- SUBMENUS (Filtros) -->
             <div class="flex flex-wrap justify-center gap-3 mb-12">
-                <button onclick="filterMenu('todos')"
-                    class="filter-btn active px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Todos</button>
-                <button onclick="filterMenu('burgers')"
-                    class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Burgers</button>
-                <button onclick="filterMenu('porcoes')"
-                    class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Porções</button>
-                <button onclick="filterMenu('combos')"
-                    class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Combos</button>
-                <button onclick="filterMenu('bebidas')"
-                    class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Bebidas</button>
+                <button onclick="filterMenu('todos')" class="filter-btn active px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Todos</button>
+                <button onclick="filterMenu('burgers')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Burgers</button>
+                <button onclick="filterMenu('porcoes')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Porções</button>
+                <button onclick="filterMenu('combos')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Combos</button>
+                <button onclick="filterMenu('bebidas')" class="filter-btn px-6 py-2 rounded-full border border-zinc-700 text-sm font-bold uppercase transition-all">Bebidas</button>
             </div>
         </div>
 
         <div id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Gerado por JS -->
-        </div>
+            </div>
     </section>
 
-    <!-- Avaliações -->
+<section id="upgrade-combo" class="py-16 bg-zinc-950 border-t border-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        
+        <h2 class="font-header text-2xl md:text-3xl mb-4 text-white uppercase tracking-wider">
+            A dupla dinâmica que você respeita: <br>
+            <span class="text-orange-500">Burger Artesanal + Acompanhamentos 🍟🥤</span>
+        </h2>
+        
+        <p class="text-zinc-400 text-lg mb-8">
+            Peça o combo e dê um upgrade no seu rolê!
+        </p>
+
+        <div class="inline-block bg-yellow-400 text-black font-bold text-3xl px-8 py-3 rounded-lg rotate-[-2deg] mb-10 shadow-lg">
+            POR APENAS + R$ 12,00
+        </div>
+
+        <p class="max-w-2xl mx-auto text-zinc-300 mb-10 leading-relaxed">
+            Escolha qualquer lanche do cardápio e por mais <span class="font-bold text-white text-xl">12,00 R$</span> transforme ele em um combo com batata frita e refrigerante lata de sua escolha. 😉
+        </p>
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+            <a href="AQUI_VAI_SEU_LINK" target="_blank" 
+               class="bg-gradient-to-r from-red-700 to-pink-500 text-white font-black text-2xl px-12 py-5 rounded-full hover:scale-105 transition-transform shadow-xl uppercase italic border-b-4 border-red-900">
+                FAZER PEDIDO!!!
+            </a>
+            
+            <a href="AQUI_VAI_SEU_LINK" target="_blank" class="text-green-500 hover:text-green-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                </svg>
+            </a>
+        </div>
+
+    </div>
+</section>
+
     <section id="avaliacoes" class="py-24 bg-zinc-900/50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-4">
                 <div class="max-w-xl">
                     <h2 class="font-header text-5xl mb-4 italic">QUEM PROVOU, VIROU FÃ</h2>
-                    <p class="text-zinc-400">Todos clientes satisfeitos em toda a região. Confira o que dizem sobre nós:
-                    </p>
+                    <p class="text-zinc-400">Todos clientes satisfeitos em toda a região. Confira o que dizem sobre nós:</p>
                 </div>
                 <div class="flex items-center gap-2 text-orange-500 font-bold">
                     <span class="text-4xl">4.9</span>
                     <div class="flex text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
                     <span class="text-zinc-500 text-xs">(Google Maps)</span>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-                <!-- Card Avaliação 1 -->
                 <div class="glass p-8 rounded-3xl">
                     <div class="flex gap-1 text-orange-500 text-xs mb-4">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-sm italic mb-6 text-zinc-300">"Melhor burger da cidade sem dúvidas! O ponto da carne
-                        vem perfeito e o molho da casa é viciante. Chegou em 25 minutos."</p>
+                    <p class="text-sm italic mb-6 text-zinc-300">"Melhor burger da cidade sem dúvidas! O ponto da carne vem perfeito e o molho da casa é viciante. Chegou em 25 minutos."</p>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center font-bold">R
-                        </div>
+                        <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center font-bold">R</div>
                         <div>
                             <p class="text-sm font-bold">Rodrigo Silva</p>
                             <p class="text-[10px] text-zinc-500 uppercase">Guia Local</p>
                         </div>
                     </div>
                 </div>
-                <!-- Card Avaliação 2 -->
                 <div class="glass p-8 rounded-3xl">
                     <div class="flex gap-1 text-orange-500 text-xs mb-4">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-sm italic mb-6 text-zinc-300">"O Cheese Monster é surreal de grande. Vale cada
-                        centavo. Atendimento pelo WhatsApp é muito rápido e prático."</p>
+                    <p class="text-sm italic mb-6 text-zinc-300">"O Cheese Monster é surreal de grande. Vale cada centavo. Atendimento pelo WhatsApp é muito rápido e prático."</p>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center font-bold">A
-                        </div>
+                        <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center font-bold">A</div>
                         <div>
                             <p class="text-sm font-bold">Amanda Costa</p>
                             <p class="text-[10px] text-zinc-500 uppercase">Cliente VIP</p>
                         </div>
                     </div>
                 </div>
-                <!-- Outros cards... -->
             </div>
         </div>
     </section>
 
-    <!-- Barra de Carrinho Flutuante -->
-    <div id="cart-bar"
-        class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl hidden transition-all duration-300">
+    <div id="cart-bar" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl hidden transition-all duration-300">
         <div class="bg-orange-600 rounded-full p-2 flex items-center justify-between shadow-2xl shadow-orange-600/20">
             <div class="flex items-center gap-4 ml-6">
-                <span id="cart-count-bubble"
-                    class="bg-white text-orange-600 w-8 h-8 rounded-full flex items-center justify-center font-black text-sm">0</span>
+                <span id="cart-count-bubble" class="bg-white text-orange-600 w-8 h-8 rounded-full flex items-center justify-center font-black text-sm">0</span>
                 <div class="text-white">
                     <p class="text-[10px] font-bold uppercase leading-none opacity-80">Seu Pedido</p>
                     <p id="cart-total-value" class="font-black text-lg">R$ 0,00</p>
                 </div>
             </div>
-            <button onclick="openModal()"
-                class="bg-black text-white px-8 py-3 rounded-full font-black uppercase text-sm tracking-wider hover:bg-zinc-800 transition-colors">
-                Finalizar
-            </button>
+            <button onclick="openModal()" class="bg-black text-white px-8 py-3 rounded-full font-black uppercase text-sm tracking-wider hover:bg-zinc-800 transition-colors">Finalizar</button>
         </div>
     </div>
 
-    <!-- Modal de Checkout -->
-    <div id="checkout-modal"
-        class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div id="checkout-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
         <div class="bg-zinc-950 w-full max-w-xl rounded-[2rem] border border-white/10 overflow-hidden shadow-3xl">
             <div class="p-8 border-b border-white/5 flex justify-between items-center text-left">
                 <h3 class="font-header text-3xl italic">FINALIZAR PEDIDO</h3>
-                <button onclick="closeModal()" class="text-zinc-500 hover:text-white transition"><i
-                        class="fa-solid fa-xmark text-2xl"></i></button>
+                <button onclick="closeModal()" class="text-zinc-500 hover:text-white transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
             </div>
-
-            <div class="p-8 max-h-[40vh] overflow-y-auto text-left" id="modal-items-list">
-                <!-- Itens -->
-            </div>
-
+            <div class="p-8 max-h-[40vh] overflow-y-auto text-left" id="modal-items-list"></div>
             <div class="p-8 bg-black/50 space-y-4 text-left">
                 <div class="flex justify-between text-2xl font-black mb-4">
                     <span>Total:</span>
                     <span id="final-price" class="text-orange-500">R$ 0,00</span>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <input type="text" id="cust-name" placeholder="Como te chamamos?"
-                        class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
-                    <input type="text" id="cust-phone" placeholder="Observações"
-                        class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
+                    <input type="text" id="cust-name" placeholder="Como te chamamos?" class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
+                    <input type="text" id="cust-phone" placeholder="Observações" class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
                 </div>
-                <input type="text" id="cust-addr" placeholder="Endereço Completo (Rua, Nº, Bairro)"
-                    class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
-
-                <button onclick="sendToWhatsApp()"
-                    class="w-full bg-green-600 hover:bg-green-500 py-5 rounded-2xl font-black uppercase text-sm flex items-center justify-center gap-3 transition-all active:scale-95 shadow-lg shadow-green-600/10">
+                <input type="text" id="cust-addr" placeholder="Endereço Completo (Rua, Nº, Bairro)" class="w-full bg-zinc-900 border border-white/5 rounded-2xl p-4 text-sm outline-none focus:border-orange-500">
+                <button onclick="sendToWhatsApp()" class="w-full bg-green-600 hover:bg-green-500 py-5 rounded-2xl font-black uppercase text-sm flex items-center justify-center gap-3 transition-all active:scale-95 shadow-lg shadow-green-600/10">
                     <i class="fa-brands fa-whatsapp text-2xl"></i> CONVOCAR ENTREGA
                 </button>
             </div>
@@ -305,145 +194,12 @@
 
     <footer class="py-20 bg-black text-center border-t border-zinc-900">
         <div class="max-w-7xl mx-auto px-4">
-            <img src="img/logo.jpg" alt="Logo" class="logo">
-
+            <img src="img/logo.jpg" alt="Logo" class="logo-rodape">
             <h2 class="font-header text-4xl text-orange-500 mb-6 uppercase italic">NA GRELHA</h2>
-            <p class="text-zinc-600 text-xs">© 2026 NA GRELHA- Todos os direitos reservados.</p>
-
+            <p class="text-zinc-600 text-xs">© 2026 NA GRELHA - Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <script>
-        const products = [
-            // BURGERS (10 OPÇÕES)
-            { id: 1, cat: 'burgers', name: "Mineirinho", price: 39.90, desc: "Blend 180g, 4 fatias de bacon crocante, cheddar duplo e maionese defumada.", img: "img/mineirinho.jpg" },
-            { id: 2, cat: 'burgers', name: "Clássico da Casa", price: 36.50, desc: "Blend 180g, piscina de cheddar cremoso e cebola caramelizada.", img: "img/classicodacasa.jpg" },
-            { id: 3, cat: 'burgers', name: "Bagunça da Casal", price: 32.00, desc: "Peito de frango empanado no panko, coleslaw e picles da casa.", img: "img/Bagunça da casa.jpg" },
-            { id: 4, cat: 'burgers', name: "BBQ BACON", price: 54.90, desc: "Dois blends de 180g, ovo frito, bacon, picles e molho especial.", img: "img/BBQ BACON.jpg" },
-            { id: 5, cat: 'burgers', name: "Burger Picante", price: 34.00, desc: "Hambúrguer de cogumelos, queijo prato, rúcula e tomate seco.", img: "img/Burger picante.jpg" },
-            { id: 6, cat: 'burgers', name: "Duplo Cheese", price: 24.90, desc: "Prensado com cebola, american cheese e pão com manteiga.", img: "img/Duplo Cheese.jpg" },
-            { id: 7, cat: 'burgers', name: "Egg Burger", price: 42.00, desc: "Blend 180g, queijo gorgonzola, mel silvestre e rúcula.", img: "img/EggBurger.jpg" },
-            { id: 8, cat: 'burgers', name: "Monster Burger", price: 38.00, desc: "Blend 180g, anéis de cebola, barbecue artesanal e muito bacon.", img: "img/Monster Burger.jpg" },
-            { id: 9, cat: 'burgers', name: "Nordestino", price: 41.00, desc: "Blend 180g, jalapeños, queijo pepper jack e maionese picante.", img: "img/Nordestino.jpg" },
-            { id: 10, cat: 'burgers', name: "Tropical", price: 37.00, desc: "Blend 180g, ovo com gema mole, queijo prato e tomate fresco.", img: "img/tropical.jpg" },
-
-            // PORÇÕES (5 OPÇÕES)
-            { id: 11, cat: 'porcoes', name: "Porção de Batatas", price: 22.00, desc: "Batatas rústicas fritas com alecrim e páprica defumada.", img: "img/porções.jpg" },
-            { id: 12, cat: 'porcoes', name: "Batata com calabresa", price: 26.00, desc: "10 unidades de frango crocante com molho honey mustard.", img: "img/batata com calabresa.jpg" },
-            { id: 13, cat: 'porcoes', name: "Onion Rings", price: 19.00, desc: "Anéis de cebola gigantes empanados na cerveja.", img: "https://images.unsplash.com/photo-1639024471283-03518883512d?q=80&w=400" },
-            { id: 14, cat: 'porcoes', name: "Batata Cheddar/Bacon", price: 28.00, desc: "Batata palito com muito cheddar cremoso e farofa de bacon.", img: "https://images.unsplash.com/photo-1585109649139-366815a0d713?q=80&w=400" },
-
-
-            // BEBIDAS
-
-
-            { id: 18, cat: 'bebidas', name: "Coca-Cola 350ml", price: 7.50, desc: "Lata geladíssima.", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=400" },
-
-            // COMBOS
-            { id: 19, cat: 'combos', name: "Combo casal", price: 55.00, desc: "1 Burger (até R$39) + Batata P + Refri Lata.", img: "img/lanche com batata.jpg" },
-            { id: 20, cat: 'combos', name: "Combo Familha  ", price: 98.00, desc: "2 Rei Bacon + Batata G + 2 Refri Lata.", img: "img/combo maior.jpg" }
-        ];
-
-        let cart = [];
-
-        function filterMenu(category) {
-            // Atualiza botões
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.innerText.toLowerCase() === category) btn.classList.add('active');
-                if (category === 'todos' && btn.innerText.toLowerCase() === 'todos') btn.classList.add('active');
-            });
-
-            const container = document.getElementById('menu-container');
-            const filtered = category === 'todos' ? products : products.filter(p => p.cat === category);
-
-            container.innerHTML = filtered.map(p => `
-                <div class="glass p-4 rounded-[2.5rem] group reveal">
-                    <div class="overflow-hidden rounded-[2rem] mb-6">
-                        <img src="${p.img}" class="w-full h-64 object-cover group-hover:scale-110 transition duration-700">
-                    </div>
-                    <div class="px-4 pb-4 flex flex-col h-[180px] text-left">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold uppercase italic">${p.name}</h3>
-                            ${p.id < 5 ? '<span class="bg-orange-600/20 text-orange-500 text-[10px] px-2 py-1 rounded-full font-bold uppercase">Popular</span>' : ''}
-                        </div>
-                        <p class="text-zinc-500 text-xs mb-4 flex-grow">${p.desc}</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-2xl font-black italic">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
-                            <button onclick="add(${p.id})" class="bg-orange-600 hover:bg-orange-500 w-12 h-12 rounded-2xl flex items-center justify-center transition-all shadow-lg shadow-orange-600/20">
-                                <i class="fa-solid fa-plus text-white"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function add(id) {
-            const product = products.find(p => p.id === id);
-            const exists = cart.find(i => i.id === id);
-            if (exists) exists.qty++;
-            else cart.push({ ...product, qty: 1 });
-            updateUI();
-            const bar = document.getElementById('cart-bar');
-            bar.classList.remove('hidden');
-        }
-
-        function updateUI() {
-            const count = cart.reduce((acc, i) => acc + i.qty, 0);
-            const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-            document.getElementById('cart-count-bubble').innerText = count;
-            document.getElementById('cart-total-value').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
-            document.getElementById('final-price').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
-            if (count === 0) document.getElementById('cart-bar').classList.add('hidden');
-        }
-
-        function openModal() {
-            const list = document.getElementById('modal-items-list');
-            if (cart.length === 0) return;
-            list.innerHTML = cart.map((item, idx) => `
-                <div class="flex justify-between items-center mb-4 bg-white/5 p-4 rounded-2xl">
-                    <div class="flex items-center gap-4">
-                        <img src="${item.img}" class="w-12 h-12 rounded-lg object-cover">
-                        <div>
-                            <p class="font-bold text-sm uppercase">${item.name}</p>
-                            <p class="text-xs text-orange-500">R$ ${item.price.toFixed(2)}</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <button onclick="change(${idx}, -1)" class="w-8 h-8 rounded-full border border-white/10 text-white">-</button>
-                        <span class="font-bold text-sm text-white">${item.qty}</span>
-                        <button onclick="change(${idx}, 1)" class="w-8 h-8 rounded-full bg-orange-600 text-white">+</button>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('checkout-modal').classList.remove('hidden');
-        }
-
-        function closeModal() { document.getElementById('checkout-modal').classList.add('hidden'); }
-
-        function change(idx, delta) {
-            cart[idx].qty += delta;
-            if (cart[idx].qty <= 0) cart.splice(idx, 1);
-            updateUI();
-            openModal();
-        }
-
-        function sendToWhatsApp() {
-            const name = document.getElementById('cust-name').value;
-            const addr = document.getElementById('cust-addr').value;
-            if (!name || !addr) return;
-            let msg = `*🤴 NOVO PEDIDO - NA GRELHA*%0A%0A`;
-            msg += `*Cliente:* ${name}%0A*Endereço:* ${addr}%0A%0A`;
-            cart.forEach(i => msg += `• ${i.qty}x ${i.name} (R$ ${(i.price * i.qty).toFixed(2)})%0A`);
-            const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-            msg += `%0A*TOTAL: R$ ${total.toFixed(2)}*`;
-            window.open(`https://wa.me/5566999373778?text=${msg}`, '_blank');
-        }
-
-        // Inicializa com todos
-        filterMenu('todos');
-    </script>
+    <script src="script.js"></script>
 </body>
-
 </html>
