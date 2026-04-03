@@ -12,34 +12,50 @@ const products = [
     { id: 10, cat: 'burgers', name: "Tropical", price: 36.00, desc: "Tropical: pão selado na manteiga, burger grelhado de 140g, mussarela, abacaxi caramelizada no mel e alface", img: "img/tropical.jpg" },
 
     // PORÇÕES
-    { id: 11, cat: 'porcoes', name: "Porção de Batatas", price: 22.00, desc: "Batatas rústicas fritas com alecrim e páprica defumada.", img: "img/porções.jpg" },
-    { id: 12, cat: 'porcoes', name: "Batata com calabresa", price: 26.00, desc: "Batata crocante com calabresa frita e molho da casa.", img: "img/batata com calabresa.jpg" },
-    { id: 13, cat: 'porcoes', name: "Onion Rings", price: 19.00, desc: "Anéis de cebola gigantes empanados na cerveja.", img: "https://images.unsplash.com/photo-1639024471283-03518883512d?q=80&w=400" },
-    { id: 14, cat: 'porcoes', name: "Batata Cheddar/Bacon", price: 28.00, desc: "Batata palito com muito cheddar cremoso e farofa de bacon.", img: "https://images.unsplash.com/photo-1585109649139-366815a0d713?q=80&w=400" },
-// NOVAS PORÇÕES (Baseadas na imagem)
-{ id: 21, cat: 'porcoes', name: "Batata Simples", price: 24.00, desc: "Porção de batata frita tradicional crocante." },
-{ id: 22, cat: 'porcoes', name: "Batata com Calabresa", price: 28.00, desc: "Batata frita acompanhada de calabresa acebolada." },
-{ id: 23, cat: 'porcoes', name: "Batata com Queijo", price: 26.00, desc: "Batata frita coberta com queijo derretido." },
-{ id: 24, cat: 'porcoes', name: "Batata com Bacon", price: 28.00, desc: "Batata frita crocante com cubos de bacon." },
-{ id: 25, cat: 'porcoes', name: "Batata com Cheddar", price: 26.00, desc: "Batata frita com o legítimo molho cheddar." },
-{ id: 26, cat: 'porcoes', name: "Batata com Queijo e Bacon", price: 32.00, desc: "A combinação perfeita de queijo e bacon crocante." },
-{ id: 27, cat: 'porcoes', name: "Batata com Queijo e Calabresa", price: 32.00, desc: "Batata frita com queijo e porção de calabresa." },
-{ id: 28, cat: 'porcoes', name: "Batata Completa", price: 34.00, desc: "Cheddar, creme de queijo, bacon e calabresa." },
-{ id: 29, cat: 'porcoes', name: "Batata Cheddar e Bacon (500g)", price: 30.00, desc: "Porção generosa de 500g com cheddar e bacon." },
-{ id: 30, cat: 'porcoes', name: "Batata Cheddar, Calabresa e Bacon (500g)", price: 32.00, desc: "Combo completo de 500g para compartilhar." },
 
+
+
+    // NOVAS PORÇÕES (Baseadas na imagem)
+// TODOS OS ITENS DA PASTA "image" CORRIGIDOS
+{ id: 21, cat: 'porcoes', name: "Batata Simples", price: 24.00, desc: "Porção de batata frita tradicional crocante.", img: "image/batatasimples.jpg" },
+
+{ id: 22, cat: 'porcoes', name: "Batata com Calabresa", price: 28.00, desc: "Batata frita acompanhada de calabresa acebolada.", img: "image/Batatafrita-acompanhada-calabresa-acebolada.jpg" },
+
+{ id: 23, cat: 'porcoes', name: "Batata Cheddar e Bacon", price: 30.00, desc: "Batata com muito cheddar e bacon crocante.", img: "image/Batata chedar e vacon.png" },
+
+{ id: 24, cat: 'porcoes', name: "Batata com Queijo e Bacon", price: 32.00, desc: "A combinação perfeita de queijo e bacon crocante.", img: "image/Batata-com-Queijo-Bacon.jpg" },
+
+{ id: 25, cat: 'porcoes', name: "Batata com Queijo e Calabresa", price: 32.00, desc: "Batata frita com queijo e porção de calabresa.", img: "image/Batata-Queijo-Calabresa.jpg" },
+
+{ id: 26, cat: 'porcoes', name: "Batata Completa", price: 34.00, desc: "Cheddar, creme de queijo, bacon e calabresa.", img: "image/Cheddar, creme de queijo, bacon e calabresa. BATATA COMPLETA.jpg" },
+
+{ id: 27, cat: 'porcoes', name: "Combo 500g Cheddar/Bacon/Calabresa", price: 32.00, desc: "Combo completo de Batatas.", img: "image/Batata-Cheddar-Calabresa-Bacon.jpg" },
+
+{ id: 28, cat: 'porcoes', name: "Batata com Cheddar", price: 28.00, desc: "Batata frita coberta com molho cheddar.", img: "image/batata-com-cheadar.jpg" },
+
+{ id: 29, cat: 'porcoes', name: "Batata com Queijo Derretido", price: 30.00, desc: "Batata frita coberta com queijo derretido.", img: "image/Batatafrita-cobertacom-queijo-derretido.jpg" },
+
+{ id: 30, cat: 'porcoes', name: "Batata com Cubos de Bacon", price: 31.00, desc: "Batata crocante com cubos de bacon frito.", img: "image/Batatafrita-crocante-com-cubosbacon.jpg" },
 
     // BEBIDAS
-    { id: 18, cat: 'bebidas', name: "Coca-Cola 350ml", price: 7.50, desc: "Lata geladíssima.", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=400" },
+    // BEBIDAS CORRIGIDAS
+{ id: 41, cat: 'bebidas', name: "Coca-Cola 350ml", price: 7.00, desc: "Lata geladíssima.", img: "image/cocalata.jpg" },
+{ id: 42, cat: 'bebidas', name: "Coca Cola zero 350ml", price: 7.00, desc: "Lata geladíssima.", img: "image/cocazerolata.jpg" },
+{ id: 43, cat: 'bebidas', name: "Fanta LATA 350ml", price: 7.00, desc: "Lata geladíssima.", img: "image/fantalata.jpg" },
+{ id: 44, cat: 'bebidas', name: "Guaraná antártica", price: 7.00, desc: "Lata geladíssima.", img: "image/guaranalata.jpg" },
+{ id: 45, cat: 'bebidas', name: "Coca Cola 1,5L", price: 13.00, desc: "Geladíssima.", img: "image/coca1,5.jpg" },
+{ id: 46, cat: 'bebidas', name: "Coca Cola 2L", price: 15.00, desc: "Geladíssima.", img: "image/coca2l.jpg" },
+{ id: 47, cat: 'bebidas', name: "Guaraná antártica 1L", price: 10.00, desc: "Geladíssimo.", img: "image/guarana1l.jpg" },
+{ id: 48, cat: 'bebidas', name: "Guaraná antártica 2L", price: 15.00, desc: "Lata geladíssima.", img: "image/guarana2l.jpg" },
 
 
     // COMBOS
     { id: 19, cat: 'combos', name: "Combo casal", price: 40.00, desc: "2 clássicos da casa + guaraná antártica de 1litro", img: "img/lanche com batata.jpg" },
-    { id: 20, cat: 'combos', name: "Combo Família", price: 60.00, desc: "4 clássicosdacasa+ batata + guaraná antártica de 2 litros", img: "img/combo maior.jpg" },
-    { id: 20, cat: 'combos', name: "Combo BBQ Casal", price: 60.00, desc: "2 BBQ Bacon + guaraná antártica de 1litro ", img: "img/lanche com batata.jpg" },
-    { id: 20, cat: 'combos', name: "Combo BBQ Família", price: 60.00, desc: "4 BBQ Bacon + batata + guaraná antártica de 2litros", img: "img/combo maior.jpg" },
-    { id: 20, cat: 'combos', name: "Combo Egg", price: 45.00, desc: "2 EGG BURGER+guaraná antártica de 1litro ", img: "img/lanche com batata.jpg" },
-    { id: 20, cat: 'combos', name: "Combo Egg Família", price: 100.00, desc: "4 EGG BURGER+batata+guaraná antártica de 2litros ", img: "img/combo maior.jpg" },
+    { id: 31, cat: 'combos', name: "Combo Família", price: 60.00, desc: "4 clássicosdacasa+ batata + guaraná antártica de 2 litros", img: "img/combo maior.jpg" },
+    { id: 32, cat: 'combos', name: "Combo BBQ Casal", price: 60.00, desc: "2 BBQ Bacon + guaraná antártica de 1litro ", img: "img/lanche com batata.jpg" },
+    { id: 33, cat: 'combos', name: "Combo BBQ Família", price: 60.00, desc: "4 BBQ Bacon + batata + guaraná antártica de 2litros", img: "img/combo maior.jpg" },
+    { id: 34, cat: 'combos', name: "Combo Egg", price: 45.00, desc: "2 EGG BURGER+guaraná antártica de 1litro ", img: "img/lanche com batata.jpg" },
+    { id: 35, cat: 'combos', name: "Combo Egg Família", price: 100.00, desc: "4 EGG BURGER+batata+guaraná antártica de 2litros ", img: "img/combo maior.jpg" },
 
 ];
 
