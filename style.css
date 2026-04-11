@@ -32,10 +32,19 @@ html, body {
 
 /* Seções e Backgrounds */
 .hero-gradient {
-    background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0.4) 100%),
-                url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2071');
-    background-size: cover;
+    /* MUDANÇA 1: Deixei o gradiente mais pesado (de 0.4 para 0.8) para escurecer a imagem */
+    background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 0.85) 100%),
+                url('img/WhatsApp\ Image\ 2026-04-11\ at\ 10.57.23.jpeg');
+
+    /* MUDANÇA 2: Em vez de 'cover', usei um valor em % para dar o efeito de distância */
+    /* 120% faz ela parecer mais perto, 80% faz parecer mais longe. Teste o que prefere: */
+    background-size: 100%; 
+    
     background-position: center;
+    background-repeat: no-repeat;
+    
+    /* MUDANÇA 3: Filtro de brilho para garantir que a imagem fique 'apagada' no fundo */
+    filter: brightness(1.0); 
 }
 
 .glass {
@@ -164,4 +173,8 @@ h1 {
 }
 .btn-glow:hover {
     box-shadow: 0 0 30px rgba(234, 88, 12, 0.8);
+}
+
+.logo-final-bg {
+
 }
