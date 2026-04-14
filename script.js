@@ -9,7 +9,7 @@ const products = [
     { id: 7, cat: 'burgers', name: "Egg Burger", price: 23.00, desc: "EggBurger: pão selado na manteiga, burger grelhado de 140g, ovo, alface, tomate e molho especial.", img: "img/EggBurger.jpg"},
     { id: 8, cat: 'burgers', name: "Monster Burger", price: 45.00, desc: "Monster Burger: pão grande selado na manteiga, Burger grelhado de 200g, 2x mussarela, 2x presunto, 2 ovos, salsicha, calabresa, bacon, alface, tomate e molho especial .", img: "img/Monster Burger.jpg" },
     { id: 9, cat: 'burgers', name: "Nordestino", price: 37.00, desc: "Nordestino: pão selado na manteiga, burger grelhado de 140g, carne seca, creme de queijo e banana da terra .", img: "img/Nordestino.jpg"  },
-    { id: 10, cat: 'burgers', name: "Tropical", price: 36.00, desc: "Tropical: pão selado na manteiga, burger grelhado de 140g, mussarela, abacaxi caramelizada no mel e alface", img: "img/tropical.jpg" },
+    { id: 10, cat: 'burgers', name: "Tropical", price: 36.00, desc: "Tropical: pão selado na manteiga, burger grelhado de 140g, mussarela, abacaxi caramelizada no mel e alface", img: "img/tropicalfotonova.jpg" },
 // ok
 
     // PORÇÕES
