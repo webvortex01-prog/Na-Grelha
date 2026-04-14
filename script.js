@@ -16,7 +16,7 @@ const products = [
     { id: 21, cat: 'porcoes', name: "Batata Simples", price: 24.00, desc: "Porção de batata frita tradicional crocante.", img: "image/batatasimples.jpg" },
     { id: 22, cat: 'porcoes', name: "Batata com Calabresa", price: 28.00, desc: "Batata frita acompanhada de calabresa acebolada.", img: "image/Batatafrita-acompanhada-calabresa-acebolada.jpg" },
     { id: 23, cat: 'porcoes', name: "Batata Cheddar e Bacon", price: 30.00, desc: "Batata com muito cheddar e bacon crocante.", img: "image/Batata chedar e vacon.png" },
-    { id: 24, cat: 'porcoes', name: "Batata com Queijo e Bacon", price: 32.00, desc: "A combinação perfeita de queijo e bacon crocante.", img: "image/Batata-com-Queijo-Bacon.jpg" },
+    { id: 24, cat: 'porcoes', name: "Batata com Queijo e Bacon", price: 32.00, desc: "A combinação perfeita de queijo e bacon crocante.", img: "img/imgbatatanova.jpg" },
     { id: 25, cat: 'porcoes', name: "Batata com Queijo e Calabresa", price: 32.00, desc: "Batata frita com queijo e porção de calabresa.", img: "image/Batata-Queijo-Calabresa.jpg" },
     { id: 26, cat: 'porcoes', name: "Batata Completa", price: 34.00, desc: "Cheddar, creme de queijo, bacon e calabresa.", img: "image/Cheddar, creme de queijo, bacon e calabresa. BATATA COMPLETA.jpg" },
     { id: 27, cat: 'porcoes', name: "Batata Cheddar/Bacon/Calabresa", price: 32.00, desc: "Combo completo de Batatas.", img: "image/Batata-Cheddar-Calabresa-Bacon.jpg" },
@@ -50,10 +50,13 @@ function filterMenu(category) {
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.innerText.toLowerCase() === category) btn.classList.add('active');
-        if (category === 'todos' && btn.innerText.toLowerCase() === 'todos') btn.classList.add('active');
+if (category === 'todos' && btn.innerText.toLowerCase() === 'todos') btn.classList.add('active');
     });
-
-    const container = document.getElementById('menu-container');
+// Acha o botão que tem o onclick com a categoria exata e taca o laranja nele
+const activeBtn = document.querySelector(`button[onclick="filterMenu('${category}')"]`);
+if (activeBtn) activeBtn.classList.add('active');
+    
+const container = document.getElementById('menu-container');
     let finalHtml = "";
 
     // Se for 'todos', vamos agrupar por categoria com títulos
@@ -165,16 +168,19 @@ function change(idx, delta) {
 function sendToWhatsApp() {
     const name = document.getElementById('cust-name').value;
     const addr = document.getElementById('cust-addr').value;
+    const obs = document.getElementById('cust-phone').value;
     if (!name || !addr) {
         alert("Por favor, preencha nome e endereço!");
         return;
     }
-    let msg = `*🤴 NOVO PEDIDO - NA GRELHA*%0A%0A`;
+    let msg = `* NOVO PEDIDO - NA GRELHA  `;
+    if (obs) {
+    msg += `*Obs:* ${obs}%0A`;}
     msg += `*Cliente:* ${name}%0A*Endereço:* ${addr}%0A%0A`;
     cart.forEach(i => msg += `• ${i.qty}x ${i.name} (R$ ${(i.price * i.qty).toFixed(2)})%0A`);
     const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
     msg += `%0A*TOTAL: R$ ${total.toFixed(2)}*`;
-    window.open(`https://wa.me/5566999373778?text=${msg}`, '_blank');
+    window.open(`https://wa.me/556696565616?text=${msg}`, '_blank');
 }
 
 // Inicializa o cardápio
