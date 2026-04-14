@@ -231,13 +231,62 @@
             <p class="text-zinc-400 text-xs font-bold tracking-widest">
                 © 2026 NA GRELHA - Todos os direitos reservados
             </p>
-            <p>webvortex01@gmail.com</p>
+            
         </div>
     </footer>
 </section>
 
 <script src="script.js"></script>
 
+<footer class="w-full py-12 bg-zinc-950 border-t border-zinc-800 flex justify-center items-center">
+    <div class="flex flex-col items-center gap-3">
+        
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=webvortex01@gmail.com&su=Interesse%20em%20Projeto%20Digital&body=Olá,%20Web%20Vortex!%20Tenho%20interesse%20em%20desenvolver%20um%20projeto%20com%20vocês." 
+           target="_blank" 
+           class="group flex flex-col items-center">
+            
+            <span class="text-zinc-500 text-[10px] uppercase tracking-[0.3em] mb-1">
+                Created by
+            </span>
+            
+            <span class="text-2xl font-black italic uppercase text-zinc-200 transition-all duration-500 group-hover:text-white group-hover:drop-shadow-[0_0_12px_rgba(249,146,22,0.7)] flex items-center">
+                Web Vortex&nbsp;
+                <span class="text-orange-500 font-mono typewriter-vortex">
+                    &lt;01&gt;
+                </span>
+            </span>
 
+            <span class="mt-4 text-zinc-600 text-[11px] font-mono group-hover:text-orange-500 transition-colors tracking-tight">
+                webvortex01@gmail.com
+            </span>
+        </a>
+
+    </div>
+</footer>
+
+<style>
+/* A animação zika que você escolheu */
+.typewriter-vortex {
+  display: inline-flex;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #f97316;
+  width: 0;
+  animation: 
+    typing-vortex 4s steps(4) infinite, 
+    cursor-blink 0.7s step-end infinite;
+}
+
+@keyframes typing-vortex {
+  0%, 10% { width: 0; }
+  30%, 90% { width: 4.2ch; } 
+  100% { width: 0; }
+}
+
+@keyframes cursor-blink {
+  from, to { border-color: transparent; }
+  50% { border-color: #f97316; }
+}
+</style>
 </body>
 </html>
