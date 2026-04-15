@@ -26,22 +26,22 @@ const products = [
 //ok
 
     // BEBIDAS
-    { id: 41, cat: 'bebidas', name: "Coca-Cola Lata", price: 7.00, desc: "Lata geladíssima.", img: "image/cocalata.jpg" },
-    { id: 42, cat: 'bebidas', name: "Coca Cola zero Lata", price: 7.00, desc: "Lata geladíssima.", img: "image/cocazerolata.jpg" },
-    { id: 43, cat: 'bebidas', name: "Fanta Lata ", price: 7.00, desc: "Lata geladíssima.", img: "image/fantalata.jpg" },
-    { id: 44, cat: 'bebidas', name: "Guaraná antártica Lata ", price: 7.00, desc: "Lata geladíssima.", img: "image/guaranalata.jpg" },
-    { id: 45, cat: 'bebidas', name: "Coca Cola 1,5L", price: 13.00, desc: "Geladíssima.", img: "image/coca1,5.jpg" },
-    { id: 46, cat: 'bebidas', name: "Coca Cola 2L", price: 15.00, desc: "Geladíssima.", img: "image/coca2l.jpg" },
-    { id: 47, cat: 'bebidas', name: "Guaraná antártica 1L", price: 10.00, desc: "Geladíssimo.", img: "image/guarana1l.jpg" },
-    { id: 48, cat: 'bebidas', name: "Guaraná antártica 2L", price: 15.00, desc: "Lata geladíssima.", img: "image/guarana2l.jpg" },
+    { id: 41, cat: 'bebidas', name: "Coca-Cola Lata", price: 7.00, desc: "", img: "image/cocalata.jpg" },
+    { id: 42, cat: 'bebidas', name: "Coca Cola zero Lata", price: 7.00, desc: "", img: "image/cocazerolata.jpg" },
+    { id: 43, cat: 'bebidas', name: "Fanta Lata ", price: 7.00, desc: " ", img: "image/fantalata.jpg" },
+    { id: 44, cat: 'bebidas', name: "Guaraná antártica Lata ", price: 7.00, desc: " ", img: "image/guaranalata.jpg" },
+    { id: 45, cat: 'bebidas', name: "Coca Cola 1,5L", price: 13.00, desc: "", img: "image/coca1,5.jpg" },
+    { id: 46, cat: 'bebidas', name: "Coca Cola 2L", price: 15.00, desc: ".", img: "image/coca2l.jpg" },
+    { id: 47, cat: 'bebidas', name: "Guaraná antártica 1L", price: 10.00, desc: "", img: "image/guarana1l.jpg" },
+    { id: 48, cat: 'bebidas', name: "Guaraná antártica 2L", price: 15.00, desc: "", img: "image/guarana2l.jpg" },
 
     // COMBOS
-    { id: 19, cat: 'combos', name: "Combo duplo Clássico", price: 40.00, desc: "2 clássicos da casa + guaraná antártica de 1litro", img: "img/lanche com batata.jpg" },
+    { id: 19, cat: 'combos', name: "Combo duplo Clássico", price: 40.00, desc: "2 clássicos da casa + guaraná antártica de 1litro", img: "img/comboduplo.jpg" },
     { id: 31, cat: 'combos', name: "Combo Família Clássico", price: 90.00, desc: "4 clássicos da casa + batata + guaraná antártica de 2 litros", img: "img/combo maior.jpg" },
-    { id: 32, cat: 'combos', name: "Combo BBQ Duplo", price: 60.00, desc: "2 BBQ Bacon + guaraná antártica de 1litro ", img: "img/lanche com batata.jpg" },
+    { id: 32, cat: 'combos', name: "Combo BBQ Duplo", price: 60.00, desc: "2 BBQ Bacon + guaraná antártica de 1litro ", img: "img/comboduplo.jpg" },
     { id: 33, cat: 'combos', name: "Combo BBQ Família", price: 120.00, desc: "4 BBQ Bacon + batata + guaraná antártica de 2litros", img: "img/combo maior.jpg" },
-    { id: 34, cat: 'combos', name: "Combo Egg Duplo", price: 45.00, desc: "2 EGG BURGER+guaraná antártica de 1litro ", img: "img/lanche com batata.jpg" },
-    { id: 35, cat: 'combos', name: "Combo Egg Família", price: 100.00, desc: "4 EGG BURGER+batata+guaraná antártica de 2litros ", img: "img/combo maior.jpg" },
+    { id: 34, cat: 'combos', name: "Combo Egg Duplo", price: 45.00, desc: "2 EGG BURGER + guaraná antártica de 1litro ", img: "img/comboduplo.jpg" },
+    { id: 35, cat: 'combos', name: "Combo Egg Família", price: 100.00, desc: "4 EGG BURGER + batata + guaraná antártica de 2litros ", img: "img/combo maior.jpg" },
 ];
 //ok
 let cart = [];
