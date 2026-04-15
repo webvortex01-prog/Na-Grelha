@@ -14,7 +14,7 @@ const products = [
 
     // PORÇÕES
     { id: 21, cat: 'porcoes', name: "Batata Simples", price: 24.00, desc: "Porção de batata frita tradicional crocante.", img: "image/batatasimples.jpg" },
-    { id: 22, cat: 'porcoes', name: "Batata com Calabresa", price: 28.00, desc: "Batata frita acompanhada de calabresa acebolada.", img: "image/Batatafrita-acompanhada-calabresa-acebolada.jpg" },
+    { id: 22, cat: 'porcoes', name: "Batata com Calabresa", price: 28.00, desc: "Batata frita acompanhada de calabresa .", img: "img/batatacomcal.jpg" },
     { id: 23, cat: 'porcoes', name: "Batata Cheddar e Bacon", price: 30.00, desc: "Batata com muito cheddar e bacon crocante.", img: "image/Batata chedar e vacon.png" },
     { id: 24, cat: 'porcoes', name: "Batata com Queijo e Bacon", price: 32.00, desc: "A combinação perfeita de queijo e bacon crocante.", img: "img/imgbatatanova.jpg" },
     { id: 25, cat: 'porcoes', name: "Batata com Queijo e Calabresa", price: 32.00, desc: "Batata frita com queijo e porção de calabresa.", img: "image/Batata-Queijo-Calabresa.jpg" },
