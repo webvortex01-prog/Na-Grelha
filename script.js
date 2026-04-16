@@ -39,9 +39,9 @@ const products = [
     { id: 19, cat: 'combos', name: "Combo duplo Clássico", price: 40.00, desc: "2 clássicos da casa + guaraná antártica de 1litro", img: "img/comboduplocerto.jpg" },
     { id: 31, cat: 'combos', name: "Combo Família Clássico", price: 90.00, desc: "4 clássicos da casa + batata + guaraná antártica de 2 litros", img: "img/combo maior.jpg" },
     { id: 32, cat: 'combos', name: "Combo BBQ Duplo", price: 60.00, desc: "2 BBQ Bacon + guaraná antártica de 1litro ", img: "img/comboduplocerto.jpg" },
-    { id: 33, cat: 'combos', name: "Combo BBQ Família", price: 120.00, desc: "4 BBQ Bacon + batata + guaraná antártica de 2litros", img: "img/comboduplocerto.jpg" },
+    { id: 33, cat: 'combos', name: "Combo BBQ Família", price: 120.00, desc: "4 BBQ Bacon + batata + guaraná antártica de 2litros", img: "img/combo maior.jpg" },
     { id: 34, cat: 'combos', name: "Combo Egg Duplo", price: 45.00, desc: "2 EGG BURGER + guaraná antártica de 1litro ", img: "img/comboduplo.jpg" },
-    { id: 35, cat: 'combos', name: "Combo Egg Família", price: 100.00, desc: "4 EGG BURGER + batata + guaraná antártica de 2litros ", img: "img/comboduplocerto.jpg" },
+    { id: 35, cat: 'combos', name: "Combo Egg Família", price: 100.00, desc: "4 EGG BURGER + batata + guaraná antártica de 2litros ", img: "img/combo maior.jpg" },
 ];
 //ok
 let cart = [];
