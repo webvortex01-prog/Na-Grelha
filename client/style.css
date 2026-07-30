@@ -1,0 +1,199 @@
+/* Configurações Gerais e Fontes Premium */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;500;700;900&family=Outfit:wght@400;700;900&display=swap');
+
+:root {
+    --primary: #ea580c; /* Tailwind orange-600 */
+    --primary-light: #f97316; /* Tailwind orange-500 */
+    --dark: #09090b; /* Zinc 950 */
+    --dark-surface: #18181b; /* Zinc 900 */
+    --accent: #eab308; /* Yellow 500 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    background-color: var(--dark);
+    color: #f4f4f5;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* Scrollbar Premium */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--dark);
+}
+::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Tipografia */
+.font-header {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 2px;
+}
+.font-outfit {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Seções e Backgrounds */
+.hero-gradient {
+    background: radial-gradient(circle at center, rgba(234, 88, 12, 0.15) 0%, rgba(9, 9, 11, 1) 70%),
+                linear-gradient(0deg, rgba(9, 9, 11, 1) 0%, rgba(9, 9, 11, 0.8) 100%),
+                url('img/WhatsApp\ Image\ 2026-04-11\ at\ 10.57.23.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* Glassmorphism Pro */
+.glass-pro {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-card {
+    background: linear-gradient(145deg, rgba(39, 39, 42, 0.4) 0%, rgba(24, 24, 27, 0.8) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-top: 1px solid rgba(234, 88, 12, 0.4);
+    box-shadow: 0 30px 60px rgba(234, 88, 12, 0.15);
+}
+
+/* Componentes */
+.logo-rodape {
+    width: 500px;
+    margin: 0 auto;
+    display: block;
+}
+
+.btn-glow {
+    position: relative;
+    box-shadow: 0 0 20px rgba(234, 88, 12, 0.3);
+    overflow: hidden;
+}
+
+.btn-glow::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+.btn-glow:hover::after {
+    left: 150%;
+}
+
+.btn-glow:hover {
+    box-shadow: 0 0 30px rgba(234, 88, 12, 0.6);
+    transform: translateY(-2px);
+}
+
+.filter-btn {
+    background: transparent;
+    color: #a1a1aa; /* zinc-400 */
+    border: 1px solid #3f3f46; /* zinc-700 */
+}
+
+.filter-btn:hover {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+.filter-btn.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(234, 88, 12, 0.3);
+}
+
+/* Animações Premium */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Efeito de Letra Brilhante (Incandescente) */
+.txt-fogo {
+    color: #ffcc00; 
+    text-transform: uppercase;
+    text-shadow: 
+        0 0 10px rgba(234, 88, 12, 0.8), 
+        0 0 20px rgba(234, 88, 12, 0.6), 
+        0 0 30px rgba(220, 38, 38, 0.4);
+    animation: pulsarBrilho 3s infinite alternate ease-in-out;
+}
+
+@keyframes pulsarBrilho {
+    0% { text-shadow: 0 0 10px rgba(234, 88, 12, 0.8), 0 0 20px rgba(234, 88, 12, 0.6), 0 0 30px rgba(220, 38, 38, 0.4); }
+    100% { text-shadow: 0 0 15px rgba(234, 88, 12, 1), 0 0 30px rgba(234, 88, 12, 0.8), 0 0 45px rgba(220, 38, 38, 0.6); }
+}
+
+@keyframes floatIcon {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.float-anim {
+    animation: floatIcon 4s ease-in-out infinite;
+}
+
+/* Partículas de fogo sutis */
+.fire-particles {
+    background-image: radial-gradient(circle, rgba(234,88,12,0.15) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: fireMove 15s linear infinite;
+}
+
+@keyframes fireMove {
+    0% { background-position: 0 0; opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { background-position: -150px -600px; opacity: 0; }
+}
+
+/* Responsividade Base */
+@media screen and (max-width: 768px) {
+    .logo-rodape {
+        width: 80% !important;
+    }
+}
