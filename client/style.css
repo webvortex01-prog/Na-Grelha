@@ -78,6 +78,8 @@ html, body {
     border-left: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
 }
 
 .glass-card:hover {
@@ -161,6 +163,8 @@ html, body {
         0 0 20px rgba(234, 88, 12, 0.6), 
         0 0 30px rgba(220, 38, 38, 0.4);
     animation: pulsarBrilho 3s infinite alternate ease-in-out;
+    will-change: filter;
+    transform: translateZ(0);
 }
 
 @keyframes pulsarBrilho {
@@ -176,6 +180,8 @@ html, body {
 
 .float-anim {
     animation: floatIcon 4s ease-in-out infinite;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 /* Partículas de fogo sutis */
@@ -183,6 +189,8 @@ html, body {
     background-image: radial-gradient(circle, rgba(234,88,12,0.15) 1px, transparent 1px);
     background-size: 60px 60px;
     animation: fireMove 15s linear infinite;
+    will-change: background-position, opacity;
+    transform: translateZ(0);
 }
 
 @keyframes fireMove {
@@ -206,6 +214,8 @@ html, body {
 }
 .animate-spark {
     animation: spark 5s ease-in infinite;
+    will-change: transform, opacity;
+    transform: translateZ(0);
 }
 .animation-delay-1000 { animation-delay: 1s; }
 .animation-delay-2000 { animation-delay: 2s; }
@@ -224,6 +234,8 @@ html, body {
     gap: 2rem;
     width: max-content;
     animation: scrollCarousel 40s linear infinite;
+    will-change: transform;
+    transform: translateZ(0);
 }
 .carousel-track:hover {
     animation-play-state: paused;
