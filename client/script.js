@@ -7,7 +7,7 @@ const products = [
     { id: 6, cat: 'burgers', name: "Duplo Cheese", price: 40.00, desc: "Duplo Cheese: pão selado na manteiga, 2 burgers de 140g, 2x cheddar, 2x mussarela, alface, tomate e molho especial .", img: "img/Duplo Cheese.jpg" },
     { id: 7, cat: 'burgers', name: "Egg Burger", price: 23.00, desc: "EggBurger: pão selado na manteiga, burger grelhado de 140g, ovo, alface, tomate e molho especial.", img: "img/EggBurger.jpg" },
     { id: 8, cat: 'burgers', name: "Monster Burger", price: 45.00, desc: "Monster Burger: pão grande selado na manteiga, Burger grelhado de 200g, 2x mussarela, 2x presunto, 2 ovos, salsicha, calabresa, bacon, alface, tomate e molho especial .", img: "img/Monster Burger.jpg" },
-    { id: 10, cat: 'burgers', name: "Tropical", price: 35.00, desc: "Tropical: pão selado na manteiga, burger grelhado de 140g, mussarela, abacaxi caramelizada no mel e alface", img: "img/tropicalfotonova.jpg" },
+    { id: 10, cat: 'burgers', name: "Tropical", price: 35.00, desc: "Tropical: pão selado na manteiga, burger grelhado de 140g, mussarela, abacaxi caramelizada no mel, alface e tomate", img: "img/tropicalfotonova.jpg" },
     // ok
 
     // PORÇÕES
