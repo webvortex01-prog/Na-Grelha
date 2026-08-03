@@ -7,20 +7,14 @@ const products = [
     { id: 6, cat: 'burgers', name: "Duplo Cheese", price: 40.00, desc: "Duplo Cheese: pão selado na manteiga, 2 burgers de 140g, 2x cheddar, 2x mussarela, alface, tomate e molho especial .", img: "img/Duplo Cheese.jpg" },
     { id: 7, cat: 'burgers', name: "Egg Burger", price: 23.00, desc: "EggBurger: pão selado na manteiga, burger grelhado de 140g, ovo, alface, tomate e molho especial.", img: "img/EggBurger.jpg" },
     { id: 8, cat: 'burgers', name: "Monster Burger", price: 45.00, desc: "Monster Burger: pão grande selado na manteiga, Burger grelhado de 200g, 2x mussarela, 2x presunto, 2 ovos, salsicha, calabresa, bacon, alface, tomate e molho especial .", img: "img/Monster Burger.jpg" },
-    { id: 10, cat: 'burgers', name: "Tropical", price: 36.00, desc: "Tropical: pão selado na manteiga, burger grelhado de 140g, mussarela, abacaxi caramelizada no mel e alface", img: "img/tropicalfotonova.jpg" },
+    { id: 10, cat: 'burgers', name: "Tropical", price: 35.00, desc: "Tropical: pão selado na manteiga, burger grelhado de 140g, mussarela, abacaxi caramelizada no mel e alface", img: "img/tropicalfotonova.jpg" },
     // ok
 
     // PORÇÕES
     { id: 21, cat: 'porcoes', name: "Batata Simples", price: 24.00, desc: "Porção de batata frita tradicional crocante.", img: "image/batatasimples.jpg" },
-    { id: 22, cat: 'porcoes', name: "Batata com Calabresa", price: 28.00, desc: "Batata frita acompanhada de calabresa .", img: "img/batatacomcal.jpg" },
-    { id: 23, cat: 'porcoes', name: "Batata Cheddar e Bacon", price: 30.00, desc: "Batata com muito cheddar e bacon crocante.", img: "image/Batata chedar e vacon.png" },
-    { id: 24, cat: 'porcoes', name: "Batata com Queijo e Bacon", price: 32.00, desc: "A combinação perfeita de queijo e bacon crocante.", img: "img/imgbatatanova.jpg" },
-    { id: 25, cat: 'porcoes', name: "Batata com Queijo e Calabresa", price: 32.00, desc: "Batata frita com queijo e porção de calabresa.", img: "image/Batata-Queijo-Calabresa.jpg" },
-    { id: 26, cat: 'porcoes', name: "Batata Completa", price: 34.00, desc: "Cheddar, creme de queijo, bacon e calabresa.", img: "image/Cheddar, creme de queijo, bacon e calabresa. BATATA COMPLETA.jpg" },
-    { id: 27, cat: 'porcoes', name: "Batata Cheddar/Bacon/Calabresa", price: 32.00, desc: "Combo completo de Batatas.", img: "image/Batata-Cheddar-Calabresa-Bacon.jpg" },
-    { id: 28, cat: 'porcoes', name: "Batata com Cheddar", price: 26.00, desc: "Batata frita coberta com molho cheddar.", img: "image/batata-com-cheadar.jpg" },
-    { id: 29, cat: 'porcoes', name: "Batata com Queijo ", price: 26.00, desc: "Batata frita coberta com queijo derretido.", img: "image/Batatafrita-cobertacom-queijo-derretido.jpg" },
-    { id: 30, cat: 'porcoes', name: "Batata com Bacon", price: 28.00, desc: "Batata crocante com bacon frito.", img: "image/Batatafrita-crocante-com-cubosbacon.jpg" },
+    { id: 23, cat: 'porcoes', name: "Batata Cheddar e Bacon", price: 32.00, desc: "Batata com muito cheddar e bacon crocante.", img: "image/Batata chedar e vacon.png" },
+    { id: 24, cat: 'porcoes', name: "Batata com Queijo e Bacon", price: 32.00, desc: "A combinação perfeita de creme de queijo e bacon crocante.", img: "img/imgbatatanova.jpg" },
+    { id: 26, cat: 'porcoes', name: "Batata Mista", price: 35.00, desc: "Cheddar, creme de queijo, bacon e calabresa.", img: "image/Cheddar, creme de queijo, bacon e calabresa. BATATA COMPLETA.jpg" },
     //ok
 
     // BEBIDAS
@@ -28,10 +22,11 @@ const products = [
     { id: 42, cat: 'bebidas', name: "Coca Cola zero Lata", price: 7.00, desc: "", img: "image/cocazerolata.jpg" },
     { id: 43, cat: 'bebidas', name: "Fanta Lata ", price: 7.00, desc: " ", img: "image/fantalata.jpg" },
     { id: 44, cat: 'bebidas', name: "Guaraná antártica Lata ", price: 7.00, desc: " ", img: "image/guaranalata.jpg" },
-    { id: 45, cat: 'bebidas', name: "Coca Cola 1,5L", price: 13.00, desc: "", img: "image/coca1,5.jpg" },
-    { id: 46, cat: 'bebidas', name: "Coca Cola 2L", price: 15.00, desc: ".", img: "image/coca2l.jpg" },
+    { id: 45, cat: 'bebidas', name: "Coca Cola 1L", price: 10.00, desc: "", img: "image/coca1,5.jpg" },
+    { id: 46, cat: 'bebidas', name: "Coca Cola 2L", price: 16.00, desc: ".", img: "image/coca2l.jpg" },
     { id: 47, cat: 'bebidas', name: "Guaraná antártica 1L", price: 10.00, desc: "", img: "image/guarana1l.jpg" },
-    { id: 48, cat: 'bebidas', name: "Guaraná antártica 2L", price: 15.00, desc: "", img: "image/guarana2l.jpg" },
+    { id: 48, cat: 'bebidas', name: "Guaraná antártica 2L", price: 16.00, desc: "", img: "image/guarana2l.jpg" },
+    { id: 49, cat: 'bebidas', name: "Fanta 2L", price: 16.00, desc: "", img: "image/fanta2l.png" },
 
     // COMBOS
     { id: 19, cat: 'combos', name: "Combo duplo Clássico", price: 40.00, desc: "2 clássicos da casa + guaraná antártica de 1litro", img: "img/comboduplocerto.jpg" },
@@ -42,11 +37,10 @@ const products = [
     { id: 35, cat: 'combos', name: "Combo Egg Família", price: 100.00, desc: "4 EGG BURGER + batata + guaraná antártica de 2litros ", img: "img/combo maior.jpg" },
 
     // ESPETINHOS
-    { id: 50, cat: 'espetinhos', name: "Espetinho Simples", price: 10.00, desc: "Carne selecionada, assada na brasa.", img: "img/espetinho.jpg" },
-    { id: 51, cat: 'espetinhos', name: "Espetinho Completo", price: 14.00, desc: "Espetinho acompanhado de farofa e vinagrete.", img: "img/espetinho.jpg" },
-
-    // ADICIONAIS
-    { id: 60, cat: 'adicionais', name: "Piscina de Cheddar", price: 5.00, desc: "A famosa piscina de cheddar extra pra você mergulhar seu lanche.", img: "img/cheddar.jpg" },
+    { id: 501, cat: 'espetinhos', name: "Espeto Simples", price: 15.00, desc: "1 Espeto de sua preferência (Carne, Frango, Toscana, etc), acompanhado de mandioca cozida e molho da casa. (Informe o sabor!)", img: "img/espetosimples.jpg.jpeg" },
+    { id: 502, cat: 'espetinhos', name: "Espeto Completo", price: 25.00, desc: "1 Espeto de sua preferência, acompanhado de: Arroz, Farofa de couve com calabresa e bacon, Mandioca cozida, Vinagrete, Molho da casa. (Informe o sabor!)", img: "img/espetocompleto.jpg.jpeg" },
+    { id: 503, cat: 'espetinhos', name: "Completo com 2 Espetos", price: 35.00, desc: "2 Espetos de sua preferência, acompanhados de: Arroz, Farofa de couve com calabresa e bacon, Mandioca cozida, Vinagrete, Molho da casa. (Informe os sabores!)", img: "img/espetocompleto.jpg.jpeg" },
+    { id: 504, cat: 'espetinhos', name: "Espeto no Pão de Alho", price: 28.00, desc: "Pão francês grelhado no creme de alho, 2 espetos de sua preferência, vinagrete, mussarela derretida e molho verde da casa. (Informe os sabores!)", img: "img/paodealho.jpg.jpeg" }
 ];
 //ok
 let cart = [];
@@ -70,7 +64,6 @@ function filterMenu(category) {
             { id: 'burgers', title: '🍔 Hambúrgueres' },
             { id: 'espetinhos', title: '🍢 Espetinhos' }, // Nova categoria
             { id: 'porcoes', title: '🍟 Porções' },
-            { id: 'adicionais', title: '🧀 Adicionais' }, // Nova categoria
             { id: 'bebidas', title: '🥤 Bebidas' },
             { id: 'combos', title: '🎁 Combos' }
         ];
@@ -123,11 +116,60 @@ function generateProductCard(p) {
     `;
 }
 
+let pendingEspetoId = null;
+
 function add(id) {
     const product = products.find(p => p.id === id);
-    const exists = cart.find(i => i.id === id);
-    if (exists) exists.qty++;
-    else cart.push({ ...product, qty: 1 });
+    if (product.cat === 'espetinhos') {
+        pendingEspetoId = id;
+        document.getElementById('espeto-modal-title').innerText = product.name;
+        // id 503 (Completo 2 espetos) ou 504 (Pão de alho 2 espetos) mostram o sabor 2
+        if (id === 503 || id === 504) {
+            document.getElementById('espeto-sabor-2-container').classList.remove('hidden');
+        } else {
+            document.getElementById('espeto-sabor-2-container').classList.add('hidden');
+        }
+        document.getElementById('espeto-modal').classList.remove('hidden');
+        return;
+    }
+    addToCart(product);
+}
+
+function confirmEspeto() {
+    if (!pendingEspetoId) return;
+    const product = products.find(p => p.id === pendingEspetoId);
+    let flavor1 = document.getElementById('espeto-sabor-1').value;
+    let flavorStr = flavor1;
+    
+    if (pendingEspetoId === 503 || pendingEspetoId === 504) {
+        let flavor2 = document.getElementById('espeto-sabor-2').value;
+        flavorStr = `${flavor1} e ${flavor2}`;
+    }
+    
+    const cartItem = { 
+        ...product, 
+        cartId: `${product.id}-${flavorStr}`,
+        name: `${product.name} (${flavorStr})`
+    };
+    
+    addToCart(cartItem, true);
+    closeEspetoModal();
+}
+
+function closeEspetoModal() {
+    document.getElementById('espeto-modal').classList.add('hidden');
+    pendingEspetoId = null;
+}
+
+function addToCart(product, isCustom = false) {
+    const identifier = isCustom ? product.cartId : product.id;
+    const exists = cart.find(i => (i.cartId ? i.cartId === identifier : i.id === identifier));
+    
+    if (exists) {
+        exists.qty++;
+    } else {
+        cart.push({ ...product, qty: 1 });
+    }
     updateUI();
     document.getElementById('cart-bar').classList.remove('hidden');
 }

@@ -197,3 +197,48 @@ html, body {
         width: 80% !important;
     }
 }
+
+/* Brasas animadas (Sparks) */
+@keyframes spark {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-300px) scale(0); opacity: 0; }
+}
+.animate-spark {
+    animation: spark 5s ease-in infinite;
+}
+.animation-delay-1000 { animation-delay: 1s; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-3000 { animation-delay: 3s; }
+.animation-delay-4000 { animation-delay: 4s; }
+
+/* Carrossel de Depoimentos */
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+.carousel-track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    animation: scrollCarousel 40s linear infinite;
+}
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+@keyframes scrollCarousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.carousel-item {
+    width: 400px;
+    flex-shrink: 0;
+    white-space: normal;
+}
+@media screen and (max-width: 768px) {
+    .carousel-item {
+        width: 320px;
+    }
+}

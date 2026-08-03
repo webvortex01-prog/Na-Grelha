@@ -57,8 +57,10 @@ const defaultProducts = [
     { id: 35, cat: 'combos', name: "Combo Egg Família", price: 100.00, desc: "4 EGG BURGER + batata + guaraná antártica de 2litros ", img: "img/combo maior.jpg" },
 
     // ESPETINHOS
-    { id: 50, cat: 'espetinhos', name: "Espetinho Simples", price: 10.00, desc: "Carne selecionada, assada na brasa.", img: "img/espetinho.jpg" },
-    { id: 51, cat: 'espetinhos', name: "Espetinho Completo", price: 14.00, desc: "Espetinho acompanhado de farofa e vinagrete.", img: "img/espetinho.jpg" },
+    { id: 501, cat: 'espetinhos', name: "Espeto Simples", price: 15.00, desc: "1 Espeto de sua preferência (Carne, Frango, Toscana, etc), acompanhado de mandioca cozida e molho da casa. (Informe o sabor!)", img: "img/espetinho.jpg" },
+    { id: 502, cat: 'espetinhos', name: "Espeto Completo", price: 25.00, desc: "1 Espeto de sua preferência, acompanhado de: Arroz, Farofa de couve com calabresa e bacon, Mandioca cozida, Vinagrete, Molho da casa. (Informe o sabor!)", img: "img/espetinho.jpg" },
+    { id: 503, cat: 'espetinhos', name: "Completo com 2 Espetos", price: 35.00, desc: "2 Espetos de sua preferência, acompanhados de: Arroz, Farofa de couve com calabresa e bacon, Mandioca cozida, Vinagrete, Molho da casa. (Informe os sabores!)", img: "img/espetinho.jpg" },
+    { id: 504, cat: 'espetinhos', name: "Espeto no Pão de Alho", price: 28.00, desc: "Pão francês grelhado no creme de alho, 2 espetos de sua preferência, vinagrete, mussarela derretida e molho verde da casa. (Informe os sabores!)", img: "img/espetinho.jpg" },
 
     // ADICIONAIS
     { id: 60, cat: 'adicionais', name: "Piscina de Cheddar", price: 5.00, desc: "A famosa piscina de cheddar extra pra você mergulhar seu lanche.", img: "img/picsina.png" },

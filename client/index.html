@@ -91,23 +91,16 @@
                         NOVIDADES DA CASA <span class="inline-block float-anim">🔥</span>
                     </h2>
                     <p class="text-zinc-400 text-lg leading-relaxed">
-                        Experimente nossos espetinhos artesanais feitos na brasa ou dê um mergulho no seu lanche com a nossa famosa Piscina de Cheddar.
+                        Experimente nossos novos espetinhos artesanais feitos na brasa, do simples ao completo, a verdadeira explosão de sabor!
                     </p>
                 </div>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full md:w-1/2">
-                    <div class="glass-card p-6 rounded-3xl flex flex-col items-start gap-4">
-                        <div class="w-12 h-12 rounded-2xl bg-orange-500/20 flex items-center justify-center text-2xl float-anim">🍢</div>
+                <div class="grid grid-cols-1 gap-4 w-full md:w-1/2">
+                    <div class="glass-card p-6 rounded-3xl flex flex-row items-center gap-6">
+                        <div class="w-16 h-16 rounded-2xl bg-orange-500/20 flex items-center justify-center text-3xl float-anim shrink-0">🍢</div>
                         <div>
-                            <h3 class="font-bold text-xl uppercase text-white font-outfit">Espetinhos</h3>
-                            <p class="text-xs text-zinc-500 mt-1">Do simples ao completo, na brasa.</p>
-                        </div>
-                    </div>
-                    <div class="glass-card p-6 rounded-3xl flex flex-col items-start gap-4">
-                        <div class="w-12 h-12 rounded-2xl bg-yellow-500/20 flex items-center justify-center text-2xl float-anim" style="animation-delay: 1.5s;">🧀</div>
-                        <div>
-                            <h3 class="font-bold text-xl uppercase text-white font-outfit">Piscina Cheddar</h3>
-                            <p class="text-xs text-zinc-500 mt-1">Mergulho de puro sabor extra.</p>
+                            <h3 class="font-bold text-2xl uppercase text-white font-outfit">Espetinhos na Brasa</h3>
+                            <p class="text-sm text-zinc-400 mt-2">Escolha entre Espeto Simples, Completo, Pão de Alho e muito mais.</p>
                         </div>
                     </div>
                 </div>
@@ -140,9 +133,6 @@
                 <button
                     class="filter-btn px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all"
                     onclick="filterMenu('espetinhos')">Espetinhos</button>
-                <button
-                    class="filter-btn px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all"
-                    onclick="filterMenu('adicionais')">Adicionais</button>
             </div>
         </div>
 
@@ -155,6 +145,14 @@
             <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950"></div>
             <!-- Glow background sutil -->
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+            
+            <!-- Partículas e Brasas -->
+            <div class="fire-particles absolute inset-0 z-10 pointer-events-none opacity-40"></div>
+            <div class="absolute bottom-0 left-[15%] w-2 h-2 bg-orange-500 rounded-full shadow-[0_0_10px_#f97316] animate-spark"></div>
+            <div class="absolute bottom-0 left-[45%] w-3 h-3 bg-yellow-500 rounded-full shadow-[0_0_10px_#eab308] animate-spark animation-delay-2000"></div>
+            <div class="absolute bottom-0 left-[75%] w-2 h-2 bg-orange-400 rounded-full shadow-[0_0_10px_#fb923c] animate-spark animation-delay-1000"></div>
+            <div class="absolute bottom-0 left-[85%] w-1.5 h-1.5 bg-red-500 rounded-full shadow-[0_0_10px_#ef4444] animate-spark animation-delay-3000"></div>
+            <div class="absolute bottom-0 left-[30%] w-2.5 h-2.5 bg-orange-600 rounded-full shadow-[0_0_10px_#ea580c] animate-spark animation-delay-4000"></div>
         </div>
 
         <div class="container mx-auto px-4 relative z-20 text-center">
@@ -215,48 +213,240 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-3xl relative">
-                    <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
-                    <div class="flex text-orange-500 mb-6 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"O melhor hambúrguer que já comi na vida! A carne é super suculenta e o pão derrete na boca. Entrega rápida."</p>
-                    <div class="flex items-center gap-4 mt-auto">
-                        <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">M</div>
-                        <div>
-                            <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Marcos Silva</h4>
-                            <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Guia Local</p>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- FEEDBACK 1 -->
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"O melhor hambúrguer que já comi na vida! A carne é super suculenta e o pão derrete na boca. Entrega rápida."</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">M</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Marcos Silva</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="glass-card p-8 rounded-3xl relative md:-translate-y-6">
-                    <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
-                    <div class="flex text-orange-500 mb-6 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"A Piscina de Cheddar é um caminho sem volta. Todo final de semana a gente pede o combo família aqui em casa."</p>
-                    <div class="flex items-center gap-4 mt-auto">
-                        <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">A</div>
-                        <div>
-                            <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Ana Paula</h4>
-                            <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente VIP</p>
+                    <!-- FEEDBACK 2 -->
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Os espetinhos artesanais são maravilhosos! A farofa de couve com bacon então, nem se fala. Todo final de semana a gente pede."</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">A</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Ana Paula</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="glass-card p-8 rounded-3xl relative">
-                    <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
-                    <div class="flex text-orange-500 mb-6 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <!-- FEEDBACK 3 -->
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Sensacional. Pedi o Monster Burger achando que era exagero, mas comi tudo de tão bom que tava. Surreal!"</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">R</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Rafael Costa</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Sensacional. Pedi o Monster Burger achando que era exagero, mas comi tudo de tão bom que tava. Surreal!"</p>
-                    <div class="flex items-center gap-4 mt-auto">
-                        <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">R</div>
-                        <div>
-                            <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Rafael Costa</h4>
-                            <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                    <!-- FEEDBACK 4 -->
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Carne top demais, no ponto perfeito! Virei cliente logo no primeiro pedido. Recomendo pra todo mundo."</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">J</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">João Pedro</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FEEDBACK 5 -->
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"O pão de alho é um absurdo de bom. Viciei real. Podem pedir sem medo porque o sabor domina!"</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">L</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Letícia Martins</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FEEDBACK 6 -->
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Melhor hambúrguer da cidade sem dúvidas. Entrega super rápida e lanche quentinho."</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">L</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Lucas Fernandes</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FEEDBACK 7 -->
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Os espetinhos salvaram meu sábado. Farofa perfeita e a carne desmancha na boca. Muito bom!"</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">C</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Camila Souza</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FEEDBACK 8 -->
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"A batata mista é gigante, dá pra dividir de boa. Muito queijo e bacon, virei fã número um!"</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">B</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Bruno Henrique</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DUPLICATAS PARA O LOOP INFINITO -->
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"O melhor hambúrguer que já comi na vida! A carne é super suculenta e o pão derrete na boca. Entrega rápida."</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">M</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Marcos Silva</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Os espetinhos artesanais são maravilhosos! A farofa de couve com bacon então, nem se fala. Todo final de semana a gente pede."</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">A</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Ana Paula</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Sensacional. Pedi o Monster Burger achando que era exagero, mas comi tudo de tão bom que tava. Surreal!"</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">R</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Rafael Costa</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Carne top demais, no ponto perfeito! Virei cliente logo no primeiro pedido. Recomendo pra todo mundo."</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">J</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">João Pedro</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"O pão de alho é um absurdo de bom. Viciei real. Podem pedir sem medo porque o sabor domina!"</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">L</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Letícia Martins</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Melhor hambúrguer da cidade sem dúvidas. Entrega super rápida e lanche quentinho."</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">L</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Lucas Fernandes</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Os espetinhos salvaram meu sábado. Farofa perfeita e a carne desmancha na boca. Muito bom!"</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">C</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Camila Souza</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item glass-card p-8 rounded-3xl relative">
+                        <i class="fa-solid fa-quote-left text-5xl text-orange-500/10 absolute top-8 right-8"></i>
+                        <div class="flex text-orange-500 mb-6 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"A batata mista é gigante, dá pra dividir de boa. Muito queijo e bacon, virei fã número um!"</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">B</div>
+                            <div>
+                                <h4 class="font-bold text-white font-outfit uppercase tracking-wide">Bruno Henrique</h4>
+                                <p class="text-xs text-orange-500 uppercase tracking-wider font-bold mt-1">Cliente Frequente</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -305,6 +495,49 @@
                 <button onclick="sendToWhatsApp()"
                     class="w-full bg-green-600 hover:bg-green-500 py-5 rounded-2xl font-black uppercase text-sm flex items-center justify-center gap-3 transition-all active:scale-95 shadow-lg shadow-green-600/10">
                     <i class="fa-brands fa-whatsapp text-2xl"></i> CONVOCAR ENTREGA
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Opções de Espetinho -->
+    <div id="espeto-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-zinc-950 w-full max-w-md rounded-[2rem] border border-orange-500/50 overflow-hidden shadow-[0_0_50px_rgba(234,88,12,0.2)] text-left">
+            <div class="p-6 border-b border-white/5 flex justify-between items-center">
+                <h3 class="font-outfit font-black text-2xl uppercase text-white" id="espeto-modal-title">Escolha o Sabor</h3>
+                <button onclick="closeEspetoModal()" class="text-zinc-500 hover:text-white transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            </div>
+            <div class="p-6">
+                <div id="espeto-sabor-1-container" class="mb-4">
+                    <label class="block text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">Sabor 1</label>
+                    <select id="espeto-sabor-1" class="w-full bg-zinc-900 border border-white/5 rounded-xl p-4 text-sm text-white outline-none focus:border-orange-500">
+                        <option value="Carne">Carne</option>
+                        <option value="Meio da Asa">Meio da Asa</option>
+                        <option value="Filé de Frango">Filé de Frango</option>
+                        <option value="Medalhão de Frango">Medalhão de Frango</option>
+                        <option value="Coração de Frango">Coração de Frango</option>
+                        <option value="Linguiça Toscana">Linguiça Toscana</option>
+                        <option value="Linguiça Apimentada">Linguiça Apimentada</option>
+                        <option value="Kafta">Kafta</option>
+                    </select>
+                </div>
+                <div id="espeto-sabor-2-container" class="hidden mb-4">
+                    <label class="block text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">Sabor 2</label>
+                    <select id="espeto-sabor-2" class="w-full bg-zinc-900 border border-white/5 rounded-xl p-4 text-sm text-white outline-none focus:border-orange-500">
+                        <option value="Carne">Carne</option>
+                        <option value="Meio da Asa">Meio da Asa</option>
+                        <option value="Filé de Frango">Filé de Frango</option>
+                        <option value="Medalhão de Frango">Medalhão de Frango</option>
+                        <option value="Coração de Frango">Coração de Frango</option>
+                        <option value="Linguiça Toscana">Linguiça Toscana</option>
+                        <option value="Linguiça Apimentada">Linguiça Apimentada</option>
+                        <option value="Kafta">Kafta</option>
+                    </select>
+                </div>
+            </div>
+            <div class="p-6 bg-black/50">
+                <button onclick="confirmEspeto()" class="w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-xl font-black uppercase text-sm transition-all shadow-lg shadow-orange-600/20 active:scale-95 text-white">
+                    Confirmar e Adicionar
                 </button>
             </div>
         </div>

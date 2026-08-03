@@ -112,17 +112,71 @@ window.filterMenu = function(category) {
 window.add = function(id) {
     const allProducts = getPatchedProducts();
     const product = allProducts.find(p => p.id.toString() === id.toString());
-    const exists = cart.find(i => i.id.toString() === id.toString());
-    if (exists) {
-        exists.qty++;
+    
+    if (product.cat === 'espetinhos') {
+        window.pendingEspetoId = product.id;
+        document.getElementById('espeto-modal-title').innerText = product.name;
+        if (product.id.toString() === '503' || product.id.toString() === '504') {
+            document.getElementById('espeto-sabor-2-container').classList.remove('hidden');
+        } else {
+            document.getElementById('espeto-sabor-2-container').classList.add('hidden');
+        }
+        document.getElementById('espeto-modal').classList.remove('hidden');
+        return;
+    }
+    
+    // Lógica normal 
+    if (typeof window.addToCart === 'function') {
+        window.addToCart(product, false);
     } else {
-        cart.push({ ...product, qty: 1 });
+        const exists = cart.find(i => i.id.toString() === id.toString());
+        if (exists) {
+            exists.qty++;
+        } else {
+            cart.push({ ...product, qty: 1 });
+        }
+        updateUI(); // Função original do script.js
+        const cartBar = document.getElementById('cart-bar');
+        if (cartBar) {
+            cartBar.classList.remove('hidden');
+        }
     }
-    updateUI(); // Função original do script.js
-    const cartBar = document.getElementById('cart-bar');
-    if (cartBar) {
-        cartBar.classList.remove('hidden');
+}
+
+// Sobrescrevendo a função de confirmação para ler do patchedProducts
+window.confirmEspeto = function() {
+    if (!window.pendingEspetoId) return;
+    const allProducts = getPatchedProducts();
+    const product = allProducts.find(p => p.id.toString() === window.pendingEspetoId.toString());
+    
+    let flavor1 = document.getElementById('espeto-sabor-1').value;
+    let flavorStr = flavor1;
+    
+    if (product.id.toString() === '503' || product.id.toString() === '504') {
+        let flavor2 = document.getElementById('espeto-sabor-2').value;
+        flavorStr = `${flavor1} e ${flavor2}`;
     }
+    
+    const cartItem = { 
+        ...product, 
+        cartId: `${product.id}-${flavorStr}`,
+        name: `${product.name} (${flavorStr})`
+    };
+    
+    if (typeof window.addToCart === 'function') {
+        window.addToCart(cartItem, true);
+    } else {
+        const exists = cart.find(i => i.cartId === cartItem.cartId);
+        if (exists) {
+            exists.qty++;
+        } else {
+            cart.push({ ...cartItem, qty: 1 });
+        }
+        updateUI();
+        document.getElementById('cart-bar').classList.remove('hidden');
+    }
+    
+    window.closeEspetoModal();
 }
 
 // Ouvinte para auto-refresh caso o CEO edite enquanto a aba do cliente está aberta
