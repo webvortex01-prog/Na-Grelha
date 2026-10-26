@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Painel Administrativo | Na Grelha</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;500;600;700;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #ea580c;
+            --primary-light: #f97316;
+            --dark: #09090b;
+            --dark-card: #121216;
+            --dark-border: #27272a;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: #f4f4f5;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .font-outfit {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .font-header {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+        }
+
+        /* Glassmorphism Pro */
+        .glass-panel {
+            background: linear-gradient(145deg, rgba(24, 24, 27, 0.85) 0%, rgba(15, 15, 18, 0.98) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: #141418;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.25s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(234, 88, 12, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(234, 88, 12, 0.2);
+        }
+
+        /* Custom Scrollbar & No-scrollbar utility */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ea580c;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Glowing text & fire */
+        .txt-fogo {
+            color: #ffb703;
+            text-shadow: 0 0 15px rgba(234, 88, 12, 0.6), 0 0 30px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Switch toggle anim */
+        .switch-checkbox:checked + .switch-label {
+            background-color: #ea580c;
+        }
+        .switch-checkbox:checked + .switch-label .switch-dot {
+            transform: translateX(100%);
+        }
+
+        /* Toast animation */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .toast-anim {
+            animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Shake animation for invalid login */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        /* Mobile touch improvements */
+        input, select, textarea, button {
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-[#09090b] text-zinc-100 antialiased selection:bg-orange-500 selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- TELA DE LOGIN (PROTEÇÃO POR SENHA) -->
+    <!-- ========================================== -->
+    <div id="login-view" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950 overflow-y-auto">
+        <!-- Glows de fundo cinematográficos -->
+        <div class="absolute top-1/4 -left-20 w-80 h-80 bg-orange-600/15 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-red-600/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div id="login-box" class="glass-panel w-full max-w-sm sm:max-w-md p-6 sm:p-10 rounded-3xl shadow-2xl relative z-10 border border-white/10 my-auto">
+            <!-- Cabeçalho do Login -->
+            <div class="text-center mb-6 sm:mb-8">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 p-[2px] shadow-[0_0_30px_rgba(234,88,12,0.4)]">
+                    <div class="w-full h-full bg-zinc-950 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-fire-burner text-2xl sm:text-3xl text-orange-500 animate-pulse"></i>
+                    </div>
+                </div>
+                <h1 class="font-outfit text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+                    NA GRELHA
+                </h1>
+                <p class="text-[11px] sm:text-xs uppercase tracking-widest text-orange-500 font-bold mt-1">
+                    Painel Administrativo
+                </p>
+                <p class="text-zinc-400 text-xs mt-1.5 sm:mt-2">
+                    Acesso exclusivo para gerenciar cardápio e promoções.
+                </p>
+            </div>
+
+            <!-- Formulário de Acesso -->
+            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4 sm:space-y-5">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1.5 sm:mb-2">
+                        Usuário
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-500">
+                            <i class="fa-solid fa-user text-sm"></i>
+                        </span>
+                        <input type="text" id="login-user" required autocomplete="username"
+                            placeholder="Digite o usuário"
+                            class="w-full bg-zinc-900/90 border border-zinc-700/70 rounded-xl pl-11 pr-4 py-3 sm:py-3.5 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1.5 sm:mb-2">
+                        Senha
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-500">
+                            <i class="fa-solid fa-lock text-sm"></i>
+                        </span>
+                        <input type="password" id="login-pass" required autocomplete="current-password"
+                            placeholder="Digite a senha"
+                            class="w-full bg-zinc-900/90 border border-zinc-700/70 rounded-xl pl-11 pr-11 py-3 sm:py-3.5 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all">
+                        <button type="button" onclick="togglePassVisibility()" class="absolute inset-y-0 right-0 flex items-center pr-4 text-zinc-500 hover:text-white transition">
+                            <i id="eye-icon" class="fa-solid fa-eye text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mensagem de Erro -->
+                <div id="login-error" class="hidden p-3 rounded-xl bg-red-950/60 border border-red-500/50 text-red-300 text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-circle-exclamation text-red-400 shrink-0"></i>
+                    <span>Usuário ou senha incorretos! Verifique e tente novamente.</span>
+                </div>
+
+                <div class="flex items-center justify-between text-xs text-zinc-400 pt-1">
+                    <label class="flex items-center gap-2 cursor-pointer select-none">
+                        <input type="checkbox" id="remember-me" checked class="w-4 h-4 rounded border-zinc-700 text-orange-600 focus:ring-orange-500 bg-zinc-900">
+                        <span class="text-xs">Lembrar acesso</span>
+                    </label>
+                    <span class="text-zinc-500 text-[11px]">v2.6 Na Grelha</span>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white font-black uppercase text-xs sm:text-sm py-3.5 sm:py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(234,88,12,0.4)] hover:shadow-[0_0_30px_rgba(234,88,12,0.7)] active:scale-95 flex items-center justify-center gap-2">
+                    <span>Entrar no Painel</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PAINEL ADMINISTRATIVO PRINCIPAL -->
+    <!-- ========================================== -->
+    <div id="admin-view" class="hidden min-h-screen flex flex-col">
+        
+        <!-- NAVBAR SUPERIOR -->
+        <header class="sticky top-0 z-40 bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-800">
+            <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+                
+                <!-- Logo & Identidade -->
+                <div class="flex items-center gap-3">
+                    <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 group">
+                        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-orange-600 flex items-center justify-center text-white shadow-lg shadow-orange-600/30 group-hover:scale-105 transition shrink-0">
+                            <i class="fa-solid fa-fire text-lg sm:text-xl"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-1.5 sm:gap-2">
+                                <span class="font-outfit text-base sm:text-xl font-black uppercase text-white tracking-tight">NA GRELHA</span>
+                                <span class="bg-orange-500/10 text-orange-500 border border-orange-500/20 text-[9px] sm:text-[10px] font-black uppercase px-1.5 sm:px-2 py-0.5 rounded-full">
+                                    ADMIN
+                                </span>
+                            </div>
+                            <p class="text-[10px] sm:text-[11px] text-zinc-400 leading-none">Painel de Controle</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Status & Botões de Ação -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div id="navbar-promo-status" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-semibold">
+                        <span id="navbar-promo-dot" class="w-2.5 h-2.5 rounded-full bg-zinc-600"></span>
+                        <span id="navbar-promo-text" class="text-zinc-400 text-[11px]">Promoção do Dia: Inativa</span>
+                    </div>
+
+                    <a href="index.html" target="_blank"
+                        class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/60 text-zinc-200 hover:text-white px-3 sm:px-4 py-2 rounded-xl text-xs font-bold uppercase transition flex items-center gap-1.5"
+                        title="Abrir o cardápio em uma nova aba">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-orange-500 text-xs"></i>
+                        <span class="hidden sm:inline">Ver Site</span>
+                    </a>
+
+                    <button onclick="handleLogout()"
+                        class="bg-red-950/40 hover:bg-red-900/50 border border-red-800/40 text-red-300 hover:text-red-100 px-3 sm:px-3.5 py-2 rounded-xl text-xs font-bold uppercase transition flex items-center gap-1.5"
+                        title="Sair do painel">
+                        <i class="fa-solid fa-right-from-bracket text-xs"></i>
+                        <span class="hidden sm:inline">Sair</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TABS DE NAVEGAÇÃO RESPONSIVAS -->
+            <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 border-t border-zinc-800/60 flex space-x-1 sm:space-x-4 overflow-x-auto no-scrollbar">
+                <button onclick="switchTab('promo')" id="tab-btn-promo"
+                    class="tab-btn active py-2.5 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm font-black uppercase tracking-wider text-orange-500 border-b-2 border-orange-500 flex items-center gap-1.5 sm:gap-2 transition whitespace-nowrap">
+                    <i class="fa-solid fa-bullhorn text-orange-500 text-xs sm:text-sm"></i>
+                    <span>Promoção do Dia</span>
+                    <span id="tab-badge-promo" class="hidden ml-1 px-1.5 py-0.2 rounded-full text-[9px] bg-red-600 text-white font-black animate-pulse">ON</span>
+                </button>
+
+                <button onclick="switchTab('products')" id="tab-btn-products"
+                    class="tab-btn py-2.5 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-400 hover:text-zinc-200 border-b-2 border-transparent flex items-center gap-1.5 sm:gap-2 transition whitespace-nowrap">
+                    <i class="fa-solid fa-burger text-xs sm:text-sm"></i>
+                    <span>Cardápio & Preços</span>
+                    <span id="tab-badge-count" class="px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] bg-zinc-800 text-zinc-300">0</span>
+                </button>
+
+                <button onclick="switchTab('settings')" id="tab-btn-settings"
+                    class="tab-btn py-2.5 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-400 hover:text-zinc-200 border-b-2 border-transparent flex items-center gap-1.5 sm:gap-2 transition whitespace-nowrap">
+                    <i class="fa-solid fa-sliders text-xs sm:text-sm"></i>
+                    <span>Configurações & Reset</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="flex-grow max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-8">
+
+            <!-- ======================================================== -->
+            <!-- ABA 1: PROMOÇÃO DO DIA (POP-UP GIGANTE) -->
+            <!-- ======================================================== -->
+            <div id="tab-promo" class="space-y-6 sm:space-y-8">
+                
+                <!-- Banner do Interruptor Principal -->
+                <div class="glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-orange-500/30 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-orange-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 relative z-10">
+                        <div class="max-w-xl">
+                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20 text-[10px] sm:text-xs font-black uppercase tracking-wider mb-2">
+                                <i class="fa-solid fa-fire text-orange-500"></i>
+                                Pop-up Gigante no Site
+                            </span>
+                            <h2 class="font-outfit text-xl sm:text-3xl font-black uppercase text-white leading-tight">
+                                Terá promoção do dia hoje?
+                            </h2>
+                            <p class="text-zinc-400 text-xs sm:text-sm mt-1 leading-relaxed">
+                                Ative para exibir instantaneamente um <strong>Pop-up Gigante</strong> no celular e computador de todos os clientes que entrarem no site.
+                            </p>
+                        </div>
+
+                        <!-- O Toggle Switch Principal -->
+                        <div class="flex items-center gap-4 bg-zinc-950/90 p-3 sm:p-4 rounded-2xl border border-zinc-800 w-full md:w-auto justify-between md:justify-start">
+                            <div class="text-left md:text-right">
+                                <span id="toggle-status-label" class="block font-outfit text-sm font-black uppercase text-zinc-400">
+                                    Desativada
+                                </span>
+                                <span class="text-[11px] text-zinc-500">Status no Site</span>
+                            </div>
+
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="promo-active-toggle" onchange="handlePromoToggle(this.checked)" class="sr-only switch-checkbox">
+                                <div class="switch-label w-16 h-9 bg-zinc-700 peer-focus:outline-none rounded-full peer transition-colors duration-300 relative">
+                                    <div class="switch-dot absolute left-1 top-1 bg-white w-7 h-7 rounded-full transition-transform duration-300 shadow-md flex items-center justify-center">
+                                        <i id="toggle-icon" class="fa-solid fa-xmark text-[11px] text-zinc-700"></i>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grade de Configuração da Promoção + Preview ao Vivo -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+                    
+                    <!-- Formulário de Edição da Promoção (7 Colunas) -->
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-zinc-800 space-y-4 sm:space-y-5">
+                            
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-zinc-800 gap-3">
+                                <h3 class="font-outfit text-base sm:text-lg font-black uppercase text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-pen-to-square text-orange-500"></i>
+                                    Configurar Oferta do Dia
+                                </h3>
+                                
+                                <!-- Seletor Rápido de Produto Base -->
+                                <div class="w-full sm:w-60">
+                                    <select id="quick-product-select" onchange="loadProductIntoPromo(this.value)"
+                                        class="w-full bg-zinc-900 border border-zinc-700 text-zinc-300 text-xs rounded-xl px-3 py-2.5 focus:border-orange-500 focus:outline-none cursor-pointer">
+                                        <option value="">⚡ Usar produto existente...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Título da Promoção -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
+                                    Título da Promoção
+                                </label>
+                                <input type="text" id="promo-title" oninput="updatePromoLivePreview()"
+                                    placeholder="Ex: COMBO CASAL NA GRELHA 🔥"
+                                    class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500">
+                            </div>
+
+                            <!-- Linha de Preços (De / Por) -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1.5">
+                                        Preço Normal / De (R$)
+                                    </label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-zinc-500 text-sm">R$</span>
+                                        <input type="number" step="0.50" id="promo-price-old" oninput="updatePromoLivePreview()"
+                                            placeholder="70.00"
+                                            class="w-full bg-zinc-900 border border-zinc-700 rounded-xl pl-10 pr-4 py-3 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-orange-400 mb-1.5 flex items-center justify-between">
+                                        <span>Preço Promoção / Por (R$)</span>
+                                        <span id="promo-calc-badge" class="text-[10px] text-green-400 font-black"></span>
+                                    </label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-orange-500 font-bold text-sm">R$</span>
+                                        <input type="number" step="0.50" id="promo-price-new" oninput="updatePromoLivePreview()"
+                                            placeholder="49.90"
+                                            class="w-full bg-zinc-900 border border-orange-500/50 rounded-xl pl-10 pr-4 py-3 text-base sm:text-sm font-bold text-orange-400 placeholder-zinc-500 focus:outline-none focus:border-orange-500">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Selo / Badge Superior -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
+                                    Selo em Destaque (Badge)
+                                </label>
+                                <input type="text" id="promo-badge" oninput="updatePromoLivePreview()"
+                                    placeholder="Ex: 🔥 OFERTA DO DIA EXCLUSIVA"
+                                    class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500">
+                            </div>
+
+                            <!-- Descrição da Promoção -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
+                                    Descrição Completa dos Itens
+                                </label>
+                                <textarea id="promo-desc" rows="3" oninput="updatePromoLivePreview()"
+                                    placeholder="Ex: 2 Burgers Clássicos da Casa + 1 Porção de Batata Mista com Cheddar & Bacon + 1 Guaraná 2L trincando de gelado!"
+                                    class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500 resize-none"></textarea>
+                            </div>
+
+                            <!-- Imagem da Promoção -->
+                            <div>
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <label class="text-xs font-bold uppercase tracking-wider text-zinc-300">
+                                        Imagem da Promoção
+                                    </label>
+                                    <span class="text-[10px] sm:text-[11px] text-zinc-500">Toque em uma foto abaixo</span>
+                                </div>
+
+                                <input type="text" id="promo-img" oninput="updatePromoLivePreview()"
+                                    placeholder="img/comboduplocerto.jpg"
+                                    class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500 mb-2.5">
+
+                                <!-- Galeria Rápida de Fotos -->
+                                <div class="p-3 bg-zinc-950/90 rounded-2xl border border-zinc-800">
+                                    <p class="text-[10px] uppercase font-bold text-zinc-500 mb-2">Fotos da Loja (Toque para selecionar):</p>
+                                    <div class="grid grid-cols-4 sm:grid-cols-6 gap-2" id="promo-img-gallery">
+                                        <!-- Preenchido dinamicamente via JS -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Texto do Botão de Ação -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1.5">
+                                    Texto do Botão no Pop-up
+                                </label>
+                                <input type="text" id="promo-btn-text" oninput="updatePromoLivePreview()"
+                                    placeholder="GARANTIR ESSA OFERTA AGORA! 🔥"
+                                    class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500">
+                            </div>
+
+                            <!-- Botão Salvar -->
+                            <div class="pt-2 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
+                                <button type="button" onclick="saveDailyPromo()"
+                                    class="flex-1 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white font-black uppercase text-xs sm:text-sm py-3.5 sm:py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(234,88,12,0.4)] active:scale-95 flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-floppy-disk text-base"></i>
+                                    <span>Salvar Promoção do Dia</span>
+                                </button>
+                                
+                                <button type="button" onclick="previewOnSiteModal()"
+                                    class="bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-bold uppercase text-xs px-4 py-3.5 sm:py-4 rounded-xl transition flex items-center justify-center gap-2 active:scale-95">
+                                    <i class="fa-solid fa-eye text-orange-500"></i>
+                                    <span>Ver no Site</span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Coluna da Direita: Preview ao Vivo (5 Colunas) -->
+                    <div class="lg:col-span-5 lg:sticky lg:top-28 space-y-4">
+                        <div class="flex items-center justify-between px-1">
+                            <span class="text-xs font-bold uppercase tracking-widest text-zinc-400 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+                                Prévia do Pop-up Gigante
+                            </span>
+                            <span class="text-[11px] text-orange-500 font-semibold">Visual ao Vivo</span>
+                        </div>
+
+                        <!-- Card Mockup do Pop-up Gigante -->
+                        <div class="glass-panel rounded-2xl sm:rounded-[2rem] p-4 sm:p-6 border-2 border-orange-500/40 shadow-[0_0_50px_rgba(234,88,12,0.25)] relative overflow-hidden bg-zinc-950">
+                            
+                            <!-- Botão Fechar Simulado -->
+                            <div class="absolute top-3 right-3 sm:top-4 sm:right-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 flex items-center justify-center text-zinc-400 text-xs">
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+
+                            <!-- Badge Topo -->
+                            <div class="text-center mb-3 sm:mb-4">
+                                <span id="preview-badge" class="inline-block bg-gradient-to-r from-orange-600 to-red-600 text-white text-[9px] sm:text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-lg shadow-orange-600/30">
+                                    🔥 OFERTA DO DIA EXCLUSIVA
+                                </span>
+                            </div>
+
+                            <!-- Imagem Mockup -->
+                            <div class="w-full h-40 sm:h-52 rounded-xl sm:rounded-2xl overflow-hidden mb-3 sm:mb-4 relative bg-zinc-900 border border-white/5">
+                                <img id="preview-img" src="img/comboduplocerto.jpg" alt="Preview da Promoção" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                
+                                <div id="preview-discount-tag" class="absolute bottom-2.5 left-2.5 bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded-lg uppercase tracking-wider">
+                                    -30% OFF
+                                </div>
+                            </div>
+
+                            <!-- Conteúdo Textual -->
+                            <div class="text-left space-y-1.5 sm:space-y-2">
+                                <h4 id="preview-title" class="font-outfit text-lg sm:text-2xl font-black uppercase text-white leading-tight">
+                                    COMBO CASAL NA GRELHA 🔥
+                                </h4>
+                                <p id="preview-desc" class="text-zinc-400 text-xs leading-relaxed line-clamp-3">
+                                    2 Burgers Clássicos da Casa + Batata Mista com Cheddar e Bacon + Refrigerante de 2L geladinho!
+                                </p>
+                            </div>
+
+                            <!-- Preços no Mockup -->
+                            <div class="my-4 p-3 rounded-xl sm:rounded-2xl bg-zinc-900/90 border border-zinc-800 flex items-center justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-[9px] sm:text-[10px] uppercase text-zinc-500 font-bold">De</span>
+                                    <span id="preview-old-price" class="text-xs text-zinc-400 line-through">R$ 70,00</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[9px] sm:text-[10px] uppercase text-orange-500 font-bold tracking-wider">Por Apenas</span>
+                                    <div id="preview-new-price" class="font-outfit text-xl sm:text-2xl font-black text-orange-500 txt-fogo">
+                                        R$ 49,90
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botão CTA Mockup -->
+                            <button id="preview-btn-text" class="w-full bg-gradient-to-r from-orange-600 to-orange-500 text-white font-black uppercase text-xs py-3 sm:py-3.5 rounded-xl shadow-[0_0_20px_rgba(234,88,12,0.4)]">
+                                GARANTIR ESSA OFERTA AGORA! 🔥
+                            </button>
+
+                            <p class="text-center text-[9px] sm:text-[10px] text-zinc-500 uppercase tracking-widest mt-2 sm:mt-3">
+                                Válido hoje ou enquanto durar o estoque
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- ABA 2: CARDÁPIO & PREÇOS (EDIÇÃO COMPLETA) -->
+            <!-- ======================================================== -->
+            <div id="tab-products" class="hidden space-y-5">
+                
+                <!-- Barra Superior de Controle e Filtros -->
+                <div class="glass-panel p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-zinc-800 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4">
+                    
+                    <!-- Busca por Nome -->
+                    <div class="relative flex-1">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-zinc-500">
+                            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                        </span>
+                        <input type="text" id="search-product-input" oninput="renderAdminProducts()"
+                            placeholder="Buscar produto por nome..."
+                            class="w-full bg-zinc-900 border border-zinc-700/80 rounded-xl sm:rounded-2xl pl-10 pr-4 py-2.5 sm:py-3 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500">
+                    </div>
+
+                    <!-- Filtro por Categoria & Novo Produto -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                        <select id="filter-cat-select" onchange="renderAdminProducts()"
+                            class="bg-zinc-900 border border-zinc-700 text-zinc-200 text-xs font-bold rounded-xl sm:rounded-2xl px-4 py-3 focus:border-orange-500 focus:outline-none cursor-pointer">
+                            <option value="all">Todas as Categorias</option>
+                            <option value="burgers">🍔 Burgers</option>
+                            <option value="porcoes">🍟 Porções</option>
+                            <option value="combos">🎁 Combos</option>
+                            <option value="bebidas">🥤 Bebidas</option>
+                            <option value="espetinhos">🍢 Espetinhos</option>
+                            <option value="adicionais">🧀 Adicionais</option>
+                        </select>
+
+                        <!-- Botão Adicionar Novo Produto -->
+                        <button onclick="openProductModal()"
+                            class="bg-orange-600 hover:bg-orange-500 text-white font-black uppercase text-xs px-4 py-3 rounded-xl sm:rounded-2xl transition shadow-lg shadow-orange-600/30 flex items-center justify-center gap-2 whitespace-nowrap active:scale-95">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Novo Produto</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Lista de Produtos Grid -->
+                <div id="products-admin-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Cards de produtos preenchidos via JS -->
+                </div>
+
+                <!-- Mensagem de Nenhum Produto Encontrado -->
+                <div id="no-products-msg" class="hidden text-center py-16 text-zinc-500">
+                    <i class="fa-solid fa-burger text-4xl sm:text-5xl mb-3 opacity-40"></i>
+                    <p class="text-xs sm:text-sm font-semibold">Nenhum produto encontrado com este filtro ou busca.</p>
+                </div>
+
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- ABA 3: CONFIGURAÇÕES & RESET -->
+            <!-- ======================================================== -->
+            <div id="tab-settings" class="hidden space-y-5 sm:space-y-6">
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Estatística 1 -->
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-zinc-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] sm:text-xs uppercase font-bold text-zinc-400">Total no Cardápio</span>
+                            <i class="fa-solid fa-burger text-orange-500"></i>
+                        </div>
+                        <h4 id="stat-total-products" class="font-outfit text-3xl sm:text-4xl font-black text-white">0</h4>
+                        <p class="text-[11px] text-zinc-500 mt-1">Produtos ativos no site</p>
+                    </div>
+
+                    <!-- Estatística 2 -->
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-zinc-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] sm:text-xs uppercase font-bold text-zinc-400">Itens em Promoção</span>
+                            <i class="fa-solid fa-tags text-red-500"></i>
+                        </div>
+                        <h4 id="stat-promo-products" class="font-outfit text-3xl sm:text-4xl font-black text-red-400">0</h4>
+                        <p class="text-[11px] text-zinc-500 mt-1">Com desconto individual ativo</p>
+                    </div>
+
+                    <!-- Estatística 3 -->
+                    <div class="glass-panel p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-zinc-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] sm:text-xs uppercase font-bold text-zinc-400">Promoção do Dia</span>
+                            <i class="fa-solid fa-bullhorn text-amber-500"></i>
+                        </div>
+                        <h4 id="stat-daily-status" class="font-outfit text-xl sm:text-2xl font-black text-amber-400">INATIVA</h4>
+                        <p class="text-[11px] text-zinc-500 mt-1">Pop-up na tela inicial</p>
+                    </div>
+                </div>
+
+                <!-- Painel de Gerenciamento & Reset Seguro -->
+                <div class="glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-zinc-800 space-y-5 sm:space-y-6">
+                    <div>
+                        <h3 class="font-outfit text-xl sm:text-2xl font-black uppercase text-white flex items-center gap-2.5">
+                            <i class="fa-solid fa-shield-halved text-orange-500"></i>
+                            Restauração & Segurança
+                        </h3>
+                        <p class="text-zinc-400 text-xs sm:text-sm mt-1">
+                            Todas as modificações de preços e promoções são salvas localmente no navegador.
+                        </p>
+                    </div>
+
+                    <div class="p-4 sm:p-6 rounded-2xl bg-red-950/20 border border-red-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div>
+                            <h4 class="font-outfit text-base sm:text-lg font-bold text-red-300">Restaurar Cardápio de Fábrica</h4>
+                            <p class="text-xs text-zinc-400 mt-0.5">
+                                Reverte todos os preços e lanches para o cardápio original do Na Grelha.
+                            </p>
+                        </div>
+                        <button onclick="confirmResetAll()"
+                            class="w-full sm:w-auto bg-red-600 hover:bg-red-500 text-white font-black uppercase text-xs px-5 py-3.5 rounded-xl transition shadow-lg shadow-red-600/30 active:scale-95 text-center">
+                            <i class="fa-solid fa-rotate-left mr-1.5"></i>
+                            Restaurar Originais
+                        </button>
+                    </div>
+
+                    <!-- Dicas Estratégicas para o Na Grelha -->
+                    <div class="p-4 sm:p-6 rounded-2xl bg-zinc-900 border border-zinc-800 space-y-2.5">
+                        <h4 class="font-outfit text-sm sm:text-base font-bold text-orange-400 flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-amber-400"></i>
+                            Dicas de Vendas (RD & Zero):
+                        </h4>
+                        <ul class="text-xs text-zinc-400 space-y-2 list-disc list-inside leading-relaxed">
+                            <li><strong class="text-zinc-200">Promoção do Dia nos dias calmos:</strong> Terça a quinta são ideais para ligar o pop-up com um combo atrativo.</li>
+                            <li><strong class="text-zinc-200">Preços no WhatsApp:</strong> O pedido cai direto no WhatsApp com os preços promocionais calculados de forma 100% automática.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL DE EDIÇÃO / CRIAÇÃO DE PRODUTO -->
+    <!-- ========================================== -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+        <div class="glass-panel w-full max-w-xl p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-orange-500/30 shadow-2xl relative my-auto max-h-[92vh] overflow-y-auto">
+            
+            <div class="flex items-center justify-between pb-3 sm:pb-4 border-b border-zinc-800 mb-4 sm:mb-6">
+                <h3 id="modal-product-heading" class="font-outfit text-lg sm:text-xl font-black uppercase text-white flex items-center gap-2">
+                    <i class="fa-solid fa-burger text-orange-500"></i>
+                    Editar Produto
+                </h3>
+                <button onclick="closeProductModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-zinc-400 hover:text-white transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="product-form" onsubmit="handleProductSave(event)" class="space-y-3.5 sm:space-y-4">
+                <input type="hidden" id="modal-product-id">
+
+                <!-- Nome do Produto -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1">
+                        Nome do Produto
+                    </label>
+                    <input type="text" id="modal-product-name" required
+                        placeholder="Ex: Clássico da Casa"
+                        class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2.5 sm:py-3 text-base sm:text-sm text-white focus:outline-none focus:border-orange-500">
+                </div>
+
+                <!-- Categoria & Preço Regular -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1">
+                            Categoria
+                        </label>
+                        <select id="modal-product-cat" required
+                            class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2.5 sm:py-3 text-base sm:text-sm text-white focus:outline-none focus:border-orange-500 cursor-pointer">
+                            <option value="burgers">🍔 Burgers</option>
+                            <option value="porcoes">🍟 Porções</option>
+                            <option value="combos">🎁 Combos</option>
+                            <option value="bebidas">🥤 Bebidas</option>
+                            <option value="espetinhos">🍢 Espetinhos</option>
+                            <option value="adicionais">🧀 Adicionais</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1">
+                            Preço Regular (R$)
+                        </label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-zinc-500 text-sm">R$</span>
+                            <input type="number" step="0.50" id="modal-product-price" required
+                                placeholder="25.00"
+                                class="w-full bg-zinc-900 border border-zinc-700 rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-base sm:text-sm text-white focus:outline-none focus:border-orange-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caixa de Promoção Individual no Produto -->
+                <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-zinc-900/90 border border-zinc-800 space-y-2 sm:space-y-3">
+                    <div class="flex items-center justify-between">
+                        <label class="text-xs font-bold uppercase tracking-wider text-orange-400 flex items-center gap-2">
+                            <i class="fa-solid fa-tag text-orange-500"></i>
+                            Preço Promocional neste Produto?
+                        </label>
+                        <input type="checkbox" id="modal-product-ispromo" onchange="togglePromoField(this.checked)"
+                            class="w-4 h-4 rounded text-orange-600 bg-zinc-800 border-zinc-700 focus:ring-orange-500">
+                    </div>
+
+                    <div id="modal-promo-fields" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1">
+                        <div>
+                            <label class="block text-[10px] sm:text-[11px] font-bold uppercase text-zinc-400 mb-1">Preço com Desconto (R$)</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-orange-500 text-xs">R$</span>
+                                <input type="number" step="0.50" id="modal-product-promoprice"
+                                    placeholder="20.00"
+                                    class="w-full bg-zinc-950 border border-orange-500/50 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-orange-400 focus:outline-none focus:border-orange-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] sm:text-[11px] font-bold uppercase text-zinc-400 mb-1">Selo / Tag no Cardápio</label>
+                            <input type="text" id="modal-product-badge"
+                                placeholder="Ex: 🔥 PROMOÇÃO"
+                                class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-base sm:text-sm text-white focus:outline-none focus:border-orange-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Descrição -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1">
+                        Descrição / Ingredientes
+                    </label>
+                    <textarea id="modal-product-desc" rows="2"
+                        placeholder="Pão brioche selado na manteiga, blend 140g, queijo mussarela..."
+                        class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2.5 sm:py-3 text-base sm:text-sm text-white focus:outline-none focus:border-orange-500 resize-none"></textarea>
+                </div>
+
+                <!-- Imagem -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-1">
+                        Foto do Produto
+                    </label>
+                    <input type="text" id="modal-product-img" required
+                        placeholder="img/classicodacasa.jpg"
+                        class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-orange-500 mb-2">
+
+                    <!-- Mini galeria rápida no modal -->
+                    <div class="p-2 bg-zinc-950 rounded-xl border border-zinc-800">
+                        <p class="text-[10px] uppercase font-bold text-zinc-500 mb-1.5">Toque para escolher uma foto:</p>
+                        <div class="grid grid-cols-4 sm:grid-cols-6 gap-1.5" id="modal-img-picker">
+                            <!-- Preenchido via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões Salvar / Cancelar -->
+                <div class="pt-2 flex gap-2 sm:gap-3">
+                    <button type="button" onclick="closeProductModal()"
+                        class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-bold uppercase text-xs py-3 rounded-xl transition">
+                        Cancelar
+                    </button>
+                    <button type="submit"
+                        class="flex-1 bg-orange-600 hover:bg-orange-500 text-white font-black uppercase text-xs py-3 rounded-xl transition shadow-lg shadow-orange-600/30">
+                        Salvar Produto
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TOAST DE NOTIFICAÇÃO FLUTUANTE -->
+    <!-- ========================================== -->
+    <div id="toast-container" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col gap-2 pointer-events-none max-w-[90vw]"></div>
+
+    <!-- ========================================== -->
+    <!-- SCRIPTS DO PAINEL ADMIN -->
+    <!-- ========================================== -->
+    <script src="script.js"></script>
+    <script>
+        // ==========================================
+        // CREDENCIAIS DE ACESSO DEFINIDAS POR RD
+        // ==========================================
+        const AUTH_USER = "NAGRELHA";
+        const AUTH_PASS = "NAGRELHA2026";
+        const SESSION_KEY = "nagrelha_admin_logged";
+
+        // Galeria de Imagens Disponíveis no Projeto
+        const STORE_IMAGES = [
+            { label: "Combo Duplo", url: "img/comboduplocerto.jpg" },
+            { label: "Combo Maior", url: "img/combo maior.jpg" },
+            { label: "Clássico da Casa", url: "img/classicodacasa.jpg" },
+            { label: "BBQ Bacon", url: "img/BBQ BACON.jpg" },
+            { label: "Duplo Cheese", url: "img/Duplo Cheese.jpg" },
+            { label: "Monster Burger", url: "img/Monster Burger.jpg" },
+            { label: "Egg Burger", url: "img/EggBurger.jpg" },
+            { label: "Burger Picante", url: "img/Burger picante.jpg" },
+            { label: "Tropical", url: "img/tropicalfotonova.jpg" },
+            { label: "Mineirinho", url: "img/mineirinho.jpg" },
+            { label: "Bagunça da Casa", url: "img/Bagunça da casa.jpg" },
+            { label: "Espeto Simples", url: "img/espetosimples.jpg.jpeg" },
+            { label: "Espeto Completo", url: "img/espetocompleto.jpg.jpeg" },
+            { label: "Pão de Alho Espeto", url: "img/paodealho.jpg.jpeg" },
+            { label: "Batata Simples", url: "image/batatasimples.jpg" },
+            { label: "Batata Cheddar/Bacon", url: "image/Batata chedar e vacon.png" },
+            { label: "Batata com Calabresa", url: "img/batatacomcal.jpg" },
+            { label: "Batata Completa", url: "image/Cheddar, creme de queijo, bacon e calabresa. BATATA COMPLETA.jpg" },
+            { label: "Coca 2L", url: "image/coca2l.jpg" },
+            { label: "Guaraná 2L", url: "image/guarana2l.jpg" }
+        ];
+
+        // ==========================================
+        // AUTENTICAÇÃO E SESSÃO
+        // ==========================================
+        function checkAuth() {
+            const isLoggedSession = sessionStorage.getItem(SESSION_KEY) === 'true';
+            const isLoggedLocal = localStorage.getItem(SESSION_KEY) === 'true';
+
+            if (isLoggedSession || isLoggedLocal) {
+                document.getElementById('login-view').classList.add('hidden');
+                document.getElementById('admin-view').classList.remove('hidden');
+                initDashboard();
+            } else {
+                document.getElementById('login-view').classList.remove('hidden');
+                document.getElementById('admin-view').classList.add('hidden');
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const userInput = document.getElementById('login-user').value.trim();
+            const passInput = document.getElementById('login-pass').value.trim();
+            const rememberMe = document.getElementById('remember-me').checked;
+            const errorEl = document.getElementById('login-error');
+            const loginBox = document.getElementById('login-box');
+
+            if (userInput.toUpperCase() === AUTH_USER && passInput === AUTH_PASS) {
+                errorEl.classList.add('hidden');
+                if (rememberMe) {
+                    localStorage.setItem(SESSION_KEY, 'true');
+                } else {
+                    sessionStorage.setItem(SESSION_KEY, 'true');
+                }
+                showToast("Acesso autorizado! Bem-vindo, RD.", "success");
+                checkAuth();
+            } else {
+                errorEl.classList.remove('hidden');
+                loginBox.classList.add('shake');
+                setTimeout(() => loginBox.classList.remove('shake'), 400);
+            }
+        }
+
+        function handleLogout() {
+            if (confirm("Deseja sair do Painel Administrativo?")) {
+                sessionStorage.removeItem(SESSION_KEY);
+                localStorage.removeItem(SESSION_KEY);
+                checkAuth();
+                showToast("Sessão finalizada.", "info");
+            }
+        }
+
+        function togglePassVisibility() {
+            const passInput = document.getElementById('login-pass');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passInput.type = 'password';
+                eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        // ==========================================
+        // NAVEGAÇÃO POR ABAS
+        // ==========================================
+        function switchTab(tabName) {
+            const tabs = ['promo', 'products', 'settings'];
+            tabs.forEach(t => {
+                const tabEl = document.getElementById(`tab-${t}`);
+                const btnEl = document.getElementById(`tab-btn-${t}`);
+                if (t === tabName) {
+                    tabEl.classList.remove('hidden');
+                    btnEl.classList.add('text-orange-500', 'border-orange-500', 'active');
+                    btnEl.classList.remove('text-zinc-400', 'border-transparent');
+                } else {
+                    tabEl.classList.add('hidden');
+                    btnEl.classList.remove('text-orange-500', 'border-orange-500', 'active');
+                    btnEl.classList.add('text-zinc-400', 'border-transparent');
+                }
+            });
+
+            if (tabName === 'products') {
+                renderAdminProducts();
+            } else if (tabName === 'settings') {
+                updateSettingsStats();
+            }
+        }
+
+        // ==========================================
+        // GESTÃO DA PROMOÇÃO DO DIA
+        // ==========================================
+        const DEFAULT_PROMO = {
+            active: true,
+            title: "COMBO CASAL NA GRELHA 🔥",
+            desc: "2 Clássicos da Casa (blend 140g no fogo com queijo derretido) + 1 Batata Cheddar e Bacon crocante + 1 Guaraná Antártica 1L trincando de gelado!",
+            originalPrice: 72.00,
+            promoPrice: 49.90,
+            badge: "🔥 OFERTA DO DIA EXCLUSIVA",
+            img: "img/comboduplocerto.jpg",
+            buttonText: "GARANTIR ESSA OFERTA AGORA! 🔥",
+            productId: 19
+        };
+
+        function getDailyPromo() {
+            const stored = localStorage.getItem('daily_promo');
+            if (!stored) {
+                localStorage.setItem('daily_promo', JSON.stringify(DEFAULT_PROMO));
+                return DEFAULT_PROMO;
+            }
+            try {
+                return JSON.parse(stored);
+            } catch (err) {
+                return DEFAULT_PROMO;
+            }
+        }
+
+        function initPromoForm() {
+            const promo = getDailyPromo();
+            
+            // Toggle
+            const toggle = document.getElementById('promo-active-toggle');
+            toggle.checked = !!promo.active;
+            updateToggleVisuals(toggle.checked);
+
+            // Form inputs
+            document.getElementById('promo-title').value = promo.title || "";
+            document.getElementById('promo-desc').value = promo.desc || "";
+            document.getElementById('promo-price-old').value = promo.originalPrice || "";
+            document.getElementById('promo-price-new').value = promo.promoPrice || "";
+            document.getElementById('promo-badge').value = promo.badge || "";
+            document.getElementById('promo-img').value = promo.img || "img/comboduplocerto.jpg";
+            document.getElementById('promo-btn-text').value = promo.buttonText || "GARANTIR ESSA OFERTA AGORA! 🔥";
+
+            // Render galeria de imagens
+            renderPromoGalleries();
+
+            // Popular seletor de produtos
+            populateQuickSelectProducts();
+
+            // Atualiza preview ao vivo
+            updatePromoLivePreview();
+        }
+
+        function updateToggleVisuals(isActive) {
+            const label = document.getElementById('toggle-status-label');
+            const icon = document.getElementById('toggle-icon');
+            const navStatusText = document.getElementById('navbar-promo-text');
+            const navStatusDot = document.getElementById('navbar-promo-dot');
+            const tabBadge = document.getElementById('tab-badge-promo');
+
+            if (isActive) {
+                label.innerText = "Ativada no Site";
+                label.classList.add('text-green-400');
+                label.classList.remove('text-zinc-400');
+                icon.className = "fa-solid fa-check text-[11px] text-orange-600";
+                
+                navStatusText.innerText = "Promoção do Dia: ATIVA";
+                navStatusDot.className = "w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse";
+                tabBadge.classList.remove('hidden');
+            } else {
+                label.innerText = "Desativada";
+                label.classList.remove('text-green-400');
+                label.classList.add('text-zinc-400');
+                icon.className = "fa-solid fa-xmark text-[11px] text-zinc-700";
+
+                navStatusText.innerText = "Promoção do Dia: Inativa";
+                navStatusDot.className = "w-2.5 h-2.5 rounded-full bg-zinc-600";
+                tabBadge.classList.add('hidden');
+            }
+        }
+
+        function handlePromoToggle(checked) {
+            const promo = getDailyPromo();
+            promo.active = checked;
+            localStorage.setItem('daily_promo', JSON.stringify(promo));
+            updateToggleVisuals(checked);
+            
+            // Notifica abas do site em tempo real
+            window.dispatchEvent(new Event('storage'));
+
+            if (checked) {
+                showToast("Promoção do Dia ATIVADA com sucesso!", "success");
+            } else {
+                showToast("Promoção do Dia desativada.", "info");
+            }
+        }
+
+        function updatePromoLivePreview() {
+            const title = document.getElementById('promo-title').value.trim() || "COMBO DO DIA";
+            const desc = document.getElementById('promo-desc').value.trim() || "Descrição da promoção...";
+            const oldPrice = parseFloat(document.getElementById('promo-price-old').value) || 0;
+            const newPrice = parseFloat(document.getElementById('promo-price-new').value) || 0;
+            const badge = document.getElementById('promo-badge').value.trim() || "🔥 OFERTA DO DIA";
+            const img = document.getElementById('promo-img').value.trim() || "img/comboduplocerto.jpg";
+            const btnText = document.getElementById('promo-btn-text').value.trim() || "GARANTIR OFERTA";
+
+            // Update Mockup elements
+            document.getElementById('preview-title').innerText = title;
+            document.getElementById('preview-desc').innerText = desc;
+            document.getElementById('preview-badge').innerText = badge;
+            document.getElementById('preview-img').src = img;
+            document.getElementById('preview-btn-text').innerText = btnText;
+
+            // Formatação de Preços
+            if (oldPrice > 0) {
+                document.getElementById('preview-old-price').innerText = `R$ ${oldPrice.toFixed(2).replace('.', ',')}`;
+                document.getElementById('preview-old-price').parentElement.classList.remove('hidden');
+            } else {
+                document.getElementById('preview-old-price').parentElement.classList.add('hidden');
+            }
+
+            document.getElementById('preview-new-price').innerText = `R$ ${newPrice.toFixed(2).replace('.', ',')}`;
+
+            // Cálculo do Desconto
+            const discountTag = document.getElementById('preview-discount-tag');
+            const calcBadge = document.getElementById('promo-calc-badge');
+            if (oldPrice > newPrice && oldPrice > 0) {
+                const pct = Math.round(((oldPrice - newPrice) / oldPrice) * 100);
+                const diff = (oldPrice - newPrice).toFixed(2).replace('.', ',');
+                discountTag.innerText = `-${pct}% OFF`;
+                discountTag.classList.remove('hidden');
+                calcBadge.innerText = `Economia de R$ ${diff} (-${pct}%)`;
+            } else {
+                discountTag.classList.add('hidden');
+                calcBadge.innerText = "";
+            }
+        }
+
+        function saveDailyPromo() {
+            const title = document.getElementById('promo-title').value.trim();
+            const desc = document.getElementById('promo-desc').value.trim();
+            const oldPrice = parseFloat(document.getElementById('promo-price-old').value) || 0;
+            const newPrice = parseFloat(document.getElementById('promo-price-new').value) || 0;
+            const badge = document.getElementById('promo-badge').value.trim();
+            const img = document.getElementById('promo-img').value.trim() || "img/comboduplocerto.jpg";
+            const btnText = document.getElementById('promo-btn-text').value.trim();
+            const isActive = document.getElementById('promo-active-toggle').checked;
+
+            if (!title) {
+                alert("Por favor, preencha o título da promoção!");
+                return;
+            }
+            if (newPrice <= 0) {
+                alert("Por favor, informe um preço promocional válido!");
+                return;
+            }
+
+            const currentPromo = getDailyPromo();
+            const updatedPromo = {
+                ...currentPromo,
+                active: isActive,
+                title,
+                desc,
+                originalPrice: oldPrice,
+                promoPrice: newPrice,
+                badge: badge || "🔥 OFERTA DO DIA",
+                img,
+                buttonText: btnText || "GARANTIR ESSA OFERTA AGORA! 🔥",
+                updatedAt: new Date().toISOString()
+            };
+
+            localStorage.setItem('daily_promo', JSON.stringify(updatedPromo));
+            window.dispatchEvent(new Event('storage'));
+
+            showToast("Promoção do Dia salva e publicada!", "success");
+        }
+
+        function renderPromoGalleries() {
+            const promoGallery = document.getElementById('promo-img-gallery');
+            const modalGallery = document.getElementById('modal-img-picker');
+
+            const makeItem = (item, targetInputId) => `
+                <div onclick="selectImage('${item.url}', '${targetInputId}')"
+                    class="h-11 sm:h-12 rounded-lg overflow-hidden border border-zinc-700 hover:border-orange-500 cursor-pointer transition relative group" title="${item.label}">
+                    <img src="${item.url}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                </div>
+            `;
+
+            promoGallery.innerHTML = STORE_IMAGES.map(i => makeItem(i, 'promo-img')).join('');
+            modalGallery.innerHTML = STORE_IMAGES.map(i => makeItem(i, 'modal-product-img')).join('');
+        }
+
+        function selectImage(url, inputId) {
+            document.getElementById(inputId).value = url;
+            if (inputId === 'promo-img') {
+                updatePromoLivePreview();
+            }
+            showToast("Foto selecionada!", "info");
+        }
+
+        function populateQuickSelectProducts() {
+            const select = document.getElementById('quick-product-select');
+            const all = getAllAdminProducts();
+            
+            let html = '<option value="">⚡ Usar produto existente...</option>';
+            all.forEach(p => {
+                html += `<option value="${p.id}">${p.name} - R$ ${Number(p.price).toFixed(2)}</option>`;
+            });
+            select.innerHTML = html;
+        }
+
+        function loadProductIntoPromo(productId) {
+            if (!productId) return;
+            const all = getAllAdminProducts();
+            const p = all.find(item => item.id.toString() === productId.toString());
+            if (!p) return;
+
+            document.getElementById('promo-title').value = `OFERTA: ${p.name.toUpperCase()} 🔥`;
+            document.getElementById('promo-desc').value = p.desc || "";
+            document.getElementById('promo-price-old').value = (Number(p.price) * 1.25).toFixed(2);
+            document.getElementById('promo-price-new').value = Number(p.price).toFixed(2);
+            document.getElementById('promo-img').value = p.img || "";
+            document.getElementById('promo-badge').value = "🔥 OFERTA DO DIA";
+
+            const promo = getDailyPromo();
+            promo.productId = p.id;
+            localStorage.setItem('daily_promo', JSON.stringify(promo));
+
+            updatePromoLivePreview();
+            showToast(`Dados de "${p.name}" carregados para a Promoção!`, "success");
+        }
+
+        function previewOnSiteModal() {
+            window.open('index.html', '_blank');
+        }
+
+        // ==========================================
+        // GESTÃO COMPLETA DE PRODUTOS & PREÇOS
+        // ==========================================
+        function getAllAdminProducts() {
+            const edited = JSON.parse(localStorage.getItem('edited_products') || '{}');
+            const added = JSON.parse(localStorage.getItem('added_products') || '[]');
+            const deleted = JSON.parse(localStorage.getItem('deleted_products') || '[]');
+
+            let list = (typeof products !== 'undefined' ? products : []).map(p => {
+                if (edited[p.id]) {
+                    return { ...p, ...edited[p.id] };
+                }
+                return p;
+            }).filter(p => !deleted.includes(p.id.toString()));
+
+            list = [...list, ...added];
+            return list;
+        }
+
+        function renderAdminProducts() {
+            const list = getAllAdminProducts();
+            const searchVal = document.getElementById('search-product-input').value.toLowerCase().trim();
+            const catVal = document.getElementById('filter-cat-select').value;
+            const container = document.getElementById('products-admin-list');
+            const emptyMsg = document.getElementById('no-products-msg');
+            const countBadge = document.getElementById('tab-badge-count');
+
+            countBadge.innerText = list.length;
+
+            const filtered = list.filter(p => {
+                const matchName = p.name.toLowerCase().includes(searchVal) || (p.desc && p.desc.toLowerCase().includes(searchVal));
+                const matchCat = catVal === 'all' || p.cat === catVal;
+                return matchName && matchCat;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = "";
+                emptyMsg.classList.remove('hidden');
+                return;
+            }
+
+            emptyMsg.classList.add('hidden');
+
+            const categoryLabels = {
+                burgers: "🍔 Burgers",
+                porcoes: "🍟 Porções",
+                combos: "🎁 Combos",
+                bebidas: "🥤 Bebidas",
+                espetinhos: "🍢 Espetinhos",
+                adicionais: "🧀 Adicionais"
+            };
+
+            container.innerHTML = filtered.map(p => {
+                const priceNum = Number(p.price) || 0;
+                const formattedPrice = priceNum.toFixed(2);
+                const hasPromo = p.isPromo && p.promoPrice && Number(p.promoPrice) > 0;
+                const promoPriceNum = Number(p.promoPrice) || 0;
+
+                return `
+                    <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-5 flex flex-col justify-between border border-zinc-800 relative group overflow-hidden">
+                        
+                        <!-- Topo do Card: Foto, Categoria e Badge -->
+                        <div class="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-700/60 shrink-0 relative">
+                                <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover">
+                                ${hasPromo ? '<span class="absolute bottom-0 inset-x-0 bg-red-600 text-white text-[9px] font-black text-center uppercase py-0.5">PROMO</span>' : ''}
+                            </div>
+                            
+                            <div class="flex-grow min-w-0">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="text-[9px] sm:text-[10px] uppercase font-bold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded-md border border-orange-500/20">
+                                        ${categoryLabels[p.cat] || p.cat}
+                                    </span>
+                                    <span class="text-[10px] text-zinc-500 font-mono">#${p.id}</span>
+                                </div>
+                                <h4 class="font-outfit font-bold text-white text-sm sm:text-base leading-tight truncate" title="${p.name}">
+                                    ${p.name}
+                                </h4>
+                                <p class="text-zinc-400 text-xs line-clamp-2 mt-1 leading-relaxed">
+                                    ${p.desc || "Sem descrição informada."}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Área de Preço & Edição Rápida Touch-Friendly -->
+                        <div class="bg-zinc-950/90 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-zinc-800/80 mb-3 sm:mb-4 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] sm:text-[11px] uppercase font-bold text-zinc-400">Preço Atual:</span>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-xs text-orange-500 font-bold">R$</span>
+                                    <input type="number" step="0.50" value="${formattedPrice}"
+                                        id="quick-price-${p.id}"
+                                        onchange="quickUpdatePrice('${p.id}', this.value)"
+                                        class="w-20 sm:w-22 bg-zinc-900 border border-zinc-700 text-white text-sm sm:text-xs font-bold rounded-lg px-2 py-1 text-right focus:border-orange-500 focus:outline-none">
+                                    <button onclick="quickUpdatePrice('${p.id}', document.getElementById('quick-price-${p.id}').value)"
+                                        class="w-7 h-7 rounded-lg bg-orange-600/30 hover:bg-orange-600 text-orange-400 hover:text-white flex items-center justify-center text-xs transition"
+                                        title="Salvar novo preço">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            ${hasPromo ? `
+                                <div class="flex items-center justify-between text-xs pt-1 border-t border-zinc-800">
+                                    <span class="text-[10px] uppercase font-bold text-red-400">Preço Promoção:</span>
+                                    <span class="font-bold text-red-400 text-xs">R$ ${promoPriceNum.toFixed(2).replace('.', ',')}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <!-- Botões de Ação do Card -->
+                        <div class="flex items-center gap-2 pt-2 border-t border-zinc-800">
+                            <button onclick="editProductModal('${p.id}')"
+                                class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white py-2.5 rounded-xl text-xs font-bold uppercase transition flex items-center justify-center gap-1.5 active:scale-95">
+                                <i class="fa-solid fa-pen text-[10px] text-orange-500"></i>
+                                <span>Editar</span>
+                            </button>
+
+                            <button onclick="deleteProduct('${p.id}')"
+                                class="w-10 h-9 rounded-xl bg-red-950/30 hover:bg-red-900/50 text-red-400 border border-red-800/30 flex items-center justify-center transition active:scale-95"
+                                title="Excluir do cardápio">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function quickUpdatePrice(id, newPrice) {
+            const price = parseFloat(newPrice);
+            if (isNaN(price) || price < 0) {
+                alert("Por favor, digite um preço válido!");
+                renderAdminProducts();
+                return;
+            }
+
+            const edited = JSON.parse(localStorage.getItem('edited_products') || '{}');
+            const added = JSON.parse(localStorage.getItem('added_products') || '[]');
+
+            const addedIdx = added.findIndex(p => p.id.toString() === id.toString());
+            if (addedIdx !== -1) {
+                added[addedIdx].price = price;
+                localStorage.setItem('added_products', JSON.stringify(added));
+            } else {
+                edited[id] = { ...(edited[id] || {}), price: price };
+                localStorage.setItem('edited_products', JSON.stringify(edited));
+            }
+
+            window.dispatchEvent(new Event('storage'));
+            showToast(`Preço atualizado para R$ ${price.toFixed(2).replace('.', ',')}!`, "success");
+            renderAdminProducts();
+        }
+
+        // ==========================================
+        // MODAL DE PRODUTO (CRIAR / EDITAR)
+        // ==========================================
+        function openProductModal(isNew = true) {
+            document.getElementById('product-form').reset();
+            document.getElementById('modal-product-id').value = "";
+            document.getElementById('modal-promo-fields').classList.add('hidden');
+            document.getElementById('modal-product-ispromo').checked = false;
+
+            if (isNew) {
+                document.getElementById('modal-product-heading').innerHTML = `
+                    <i class="fa-solid fa-plus text-orange-500"></i> Adicionar Produto
+                `;
+            }
+            document.getElementById('product-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function togglePromoField(checked) {
+            const fields = document.getElementById('modal-promo-fields');
+            if (checked) {
+                fields.classList.remove('hidden');
+            } else {
+                fields.classList.add('hidden');
+            }
+        }
+
+        function editProductModal(id) {
+            const all = getAllAdminProducts();
+            const product = all.find(p => p.id.toString() === id.toString());
+            if (!product) return;
+
+            document.getElementById('modal-product-id').value = product.id;
+            document.getElementById('modal-product-name').value = product.name || "";
+            document.getElementById('modal-product-cat').value = product.cat || "burgers";
+            document.getElementById('modal-product-price').value = product.price || "";
+            document.getElementById('modal-product-desc').value = product.desc || "";
+            document.getElementById('modal-product-img').value = product.img || "";
+
+            const isPromo = !!(product.isPromo && product.promoPrice);
+            document.getElementById('modal-product-ispromo').checked = isPromo;
+            togglePromoField(isPromo);
+            document.getElementById('modal-product-promoprice').value = product.promoPrice || "";
+            document.getElementById('modal-product-badge').value = product.badge || "";
+
+            document.getElementById('modal-product-heading').innerHTML = `
+                <i class="fa-solid fa-pen-to-square text-orange-500"></i> Editar: ${product.name}
+            `;
+
+            document.getElementById('product-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function handleProductSave(e) {
+            e.preventDefault();
+            const id = document.getElementById('modal-product-id').value;
+            const name = document.getElementById('modal-product-name').value.trim();
+            const cat = document.getElementById('modal-product-cat').value;
+            const price = parseFloat(document.getElementById('modal-product-price').value);
+            const desc = document.getElementById('modal-product-desc').value.trim();
+            const img = document.getElementById('modal-product-img').value.trim();
+
+            const isPromo = document.getElementById('modal-product-ispromo').checked;
+            const promoPrice = isPromo ? parseFloat(document.getElementById('modal-product-promoprice').value) : null;
+            const badge = isPromo ? document.getElementById('modal-product-badge').value.trim() : "";
+
+            if (!name || isNaN(price)) {
+                alert("Preencha o nome e o preço corretamente!");
+                return;
+            }
+
+            const edited = JSON.parse(localStorage.getItem('edited_products') || '{}');
+            const added = JSON.parse(localStorage.getItem('added_products') || '[]');
+
+            if (id) {
+                const addedIdx = added.findIndex(p => p.id.toString() === id.toString());
+                if (addedIdx !== -1) {
+                    added[addedIdx] = {
+                        ...added[addedIdx],
+                        name, cat, price, desc, img, isPromo, promoPrice, badge
+                    };
+                    localStorage.setItem('added_products', JSON.stringify(added));
+                } else {
+                    edited[id] = {
+                        ...(edited[id] || {}),
+                        name, cat, price, desc, img, isPromo, promoPrice, badge
+                    };
+                    localStorage.setItem('edited_products', JSON.stringify(edited));
+                }
+                showToast(`"${name}" atualizado!`, "success");
+            } else {
+                const newId = 'custom_' + Date.now();
+                const newProduct = {
+                    id: newId,
+                    name,
+                    cat,
+                    price,
+                    desc,
+                    img: img || 'img/classicodacasa.jpg',
+                    isPromo,
+                    promoPrice,
+                    badge
+                };
+                added.push(newProduct);
+                localStorage.setItem('added_products', JSON.stringify(added));
+                showToast(`"${name}" cadastrado!`, "success");
+            }
+
+            window.dispatchEvent(new Event('storage'));
+            closeProductModal();
+            renderAdminProducts();
+            populateQuickSelectProducts();
+        }
+
+        function deleteProduct(id) {
+            const all = getAllAdminProducts();
+            const p = all.find(item => item.id.toString() === id.toString());
+            const name = p ? p.name : "este produto";
+
+            if (confirm(`Tem certeza que deseja excluir "${name}" do cardápio?`)) {
+                let added = JSON.parse(localStorage.getItem('added_products') || '[]');
+                const addedIdx = added.findIndex(item => item.id.toString() === id.toString());
+
+                if (addedIdx !== -1) {
+                    added.splice(addedIdx, 1);
+                    localStorage.setItem('added_products', JSON.stringify(added));
+                } else {
+                    const deleted = JSON.parse(localStorage.getItem('deleted_products') || '[]');
+                    if (!deleted.includes(id.toString())) {
+                        deleted.push(id.toString());
+                        localStorage.setItem('deleted_products', JSON.stringify(deleted));
+                    }
+                }
+
+                window.dispatchEvent(new Event('storage'));
+                showToast(`"${name}" removido.`, "info");
+                renderAdminProducts();
+                populateQuickSelectProducts();
+            }
+        }
+
+        // ==========================================
+        // RESET DE FÁBRICA & ESTATÍSTICAS
+        // ==========================================
+        function updateSettingsStats() {
+            const all = getAllAdminProducts();
+            const promoCount = all.filter(p => p.isPromo && p.promoPrice).length;
+            const dailyPromo = getDailyPromo();
+
+            document.getElementById('stat-total-products').innerText = all.length;
+            document.getElementById('stat-promo-products').innerText = promoCount;
+
+            const statDaily = document.getElementById('stat-daily-status');
+            if (dailyPromo && dailyPromo.active) {
+                statDaily.innerText = "ATIVA NO SITE";
+                statDaily.className = "font-outfit text-xl sm:text-2xl font-black text-green-400";
+            } else {
+                statDaily.innerText = "INATIVA";
+                statDaily.className = "font-outfit text-xl sm:text-2xl font-black text-zinc-500";
+            }
+        }
+
+        function confirmResetAll() {
+            const text = "Deseja REALMENTE restaurar o cardápio original de fábrica?\n\nIsso removerá todas as alterações locais e trará os produtos originais de volta.";
+            if (confirm(text)) {
+                localStorage.removeItem('edited_products');
+                localStorage.removeItem('added_products');
+                localStorage.removeItem('deleted_products');
+                localStorage.removeItem('daily_promo');
+                window.dispatchEvent(new Event('storage'));
+                
+                showToast("Cardápio restaurado para o padrão original!", "success");
+                initPromoForm();
+                renderAdminProducts();
+                updateSettingsStats();
+            }
+        }
+
+        // ==========================================
+        // SISTEMA DE TOASTS
+        // ==========================================
+        function showToast(message, type = "info") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+
+            const bgClass = type === 'success' 
+                ? 'bg-zinc-900 border-green-500/50 text-green-300' 
+                : (type === 'error' ? 'bg-zinc-900 border-red-500/50 text-red-300' : 'bg-zinc-900 border-orange-500/50 text-zinc-200');
+
+            const iconClass = type === 'success' ? 'fa-circle-check text-green-400' : (type === 'error' ? 'fa-circle-exclamation text-red-400' : 'fa-bell text-orange-400');
+
+            toast.className = `glass-panel pointer-events-auto border p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-2xl flex items-center gap-2.5 sm:gap-3 text-xs font-bold max-w-sm toast-anim ${bgClass}`;
+            toast.innerHTML = `
+                <i class="fa-solid ${iconClass} text-sm sm:text-base shrink-0"></i>
+                <span class="flex-grow">${message}</span>
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // ==========================================
+        // INICIALIZAÇÃO DO DASHBOARD
+        // ==========================================
+        function initDashboard() {
+            initPromoForm();
+            renderAdminProducts();
+            updateSettingsStats();
+        }
+
+        // Executar verificação de autenticação ao carregar
+        window.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+        });
+    </script>
+</body>
+
+</html>
