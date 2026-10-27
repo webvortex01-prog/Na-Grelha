@@ -556,3 +556,83 @@ window.sendToWhatsApp = function() {
         window.open(`https://wa.me/556696565616?text=${msg}`, '_blank');
     };
 };
+
+// ========================================================
+// SISTEMA DE UPGRADE NO ROLÊ (COMBO BURGER + BATATA + REFRI LATA POR + R$ 15)
+// ========================================================
+window.openUpgradeComboModal = function() {
+    const modal = document.getElementById('upgrade-combo-modal');
+    if (!modal) return;
+    
+    const burgerSelect = document.getElementById('upgrade-burger-select');
+    if (burgerSelect) {
+        const allProducts = typeof getPatchedProducts === 'function' ? getPatchedProducts() : products;
+        const burgers = allProducts.filter(p => p.cat === 'burgers');
+        
+        burgerSelect.innerHTML = burgers.map(b => {
+            const price = Number(b.isPromo && b.promoPrice ? b.promoPrice : b.price);
+            return `<option value="${b.id}" data-price="${price}" data-name="${b.name}" data-img="${b.img}">${b.name} (R$ ${price.toFixed(2).replace('.', ',')})</option>`;
+        }).join('');
+    }
+    
+    updateUpgradeTotal();
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+};
+
+window.closeUpgradeComboModal = function() {
+    const modal = document.getElementById('upgrade-combo-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+};
+
+window.updateUpgradeTotal = function() {
+    const burgerSelect = document.getElementById('upgrade-burger-select');
+    const totalEl = document.getElementById('upgrade-combo-total');
+    if (!burgerSelect || !totalEl) return;
+    
+    const selectedOption = burgerSelect.options[burgerSelect.selectedIndex];
+    const burgerPrice = selectedOption ? parseFloat(selectedOption.getAttribute('data-price') || '0') : 0;
+    const total = burgerPrice + 15.00;
+    
+    totalEl.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+};
+
+window.confirmUpgradeCombo = function() {
+    const burgerSelect = document.getElementById('upgrade-burger-select');
+    const refriSelect = document.getElementById('upgrade-refri-select');
+    if (!burgerSelect || !refriSelect) return;
+    
+    const selectedOption = burgerSelect.options[burgerSelect.selectedIndex];
+    if (!selectedOption) return;
+    
+    const burgerId = selectedOption.value;
+    const burgerName = selectedOption.getAttribute('data-name');
+    const burgerPrice = parseFloat(selectedOption.getAttribute('data-price') || '0');
+    const burgerImg = selectedOption.getAttribute('data-img') || 'img/classicodacasa.jpg';
+    const refri = refriSelect.value;
+    
+    const comboPrice = burgerPrice + 15.00;
+    const comboItem = {
+        id: `upgrade_${burgerId}_${Date.now()}`,
+        name: `Combo Upgrade: ${burgerName} + Batata + ${refri}`,
+        price: comboPrice,
+        desc: `${burgerName} acompanhado de Batata Frita individual crocante e ${refri}`,
+        img: burgerImg,
+        qty: 1
+    };
+    
+    if (typeof addToCart === 'function') {
+        addToCart(comboItem, true);
+    }
+    
+    closeUpgradeComboModal();
+    
+    // Abre a visualização do carrinho para o cliente conferir
+    if (typeof openModal === 'function') {
+        openModal();
+    }
+};
+
