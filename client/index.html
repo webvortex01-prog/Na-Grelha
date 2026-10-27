@@ -82,34 +82,96 @@
     </section>
 
     <!-- Seção Novidades da Casa (Premium) -->
+    <!-- Destaque Especial: A Arte da Grelha (Vitrine Premium com Hambúrguer Flutuando) -->
     <section class="max-w-7xl mx-auto px-4 mt-[-60px] relative z-30 mb-20">
-        <div class="glass-pro p-8 md:p-12 rounded-[3rem] border-t border-orange-500/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="text-left md:w-1/2">
-                    <span class="text-orange-500 font-bold tracking-widest uppercase text-xs mb-2 block">LANÇAMENTOS</span>
-                    <h2 class="text-4xl md:text-5xl font-outfit font-black uppercase text-white mb-4 leading-tight drop-shadow-lg">
-                        NOVIDADES DA CASA <span class="inline-block float-anim">🔥</span>
+        <div class="glass-pro p-8 md:p-14 rounded-[3.5rem] border border-orange-500/30 shadow-[0_25px_60px_rgba(234,88,12,0.18)] relative overflow-hidden">
+            <!-- Glows e efeitos de fundo -->
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-orange-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-red-600/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-12 relative z-10">
+                <!-- Lado Esquerdo: Textos & Selos -->
+                <div class="text-left lg:w-1/2">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-black uppercase tracking-widest mb-4">
+                        <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
+                        O Padrão que Domina a Cidade
+                    </div>
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-outfit font-black uppercase text-white mb-6 leading-[0.95] drop-shadow-2xl">
+                        A VERDADEIRA <br>
+                        <span class="txt-fogo">EXPERIÊNCIA NA GRELHA</span>
                     </h2>
-                    <p class="text-zinc-400 text-lg leading-relaxed">
-                        Experimente nossos novos espetinhos artesanais feitos na brasa, do simples ao completo, a verdadeira explosão de sabor!
+                    <p class="text-zinc-300 text-base sm:text-lg leading-relaxed mb-8 font-light">
+                        Esqueça carne prensada e sem vida. Aqui cada burger de <strong class="text-orange-400 font-bold">140g</strong> é tostado em brasa viva, selado no ponto com queijo derretido de verdade e pão brioche dourado na manteiga.
                     </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-zinc-900/80 border border-white/5 p-4 rounded-2xl flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-500 text-lg">
+                                <i class="fa-solid fa-fire"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-xs sm:text-sm uppercase font-outfit">Fogo Alto</h4>
+                                <p class="text-zinc-500 text-[11px]">Crosta crocante</p>
+                            </div>
+                        </div>
+                        <div class="bg-zinc-900/80 border border-white/5 p-4 rounded-2xl flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-yellow-500/20 flex items-center justify-center text-yellow-500 text-lg">
+                                <i class="fa-solid fa-gem"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-xs sm:text-sm uppercase font-outfit">Blend Premium</h4>
+                                <p class="text-zinc-500 text-[11px]">100% Carne Fresca</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="#cardapio" class="inline-flex items-center gap-3 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white font-black py-4 px-8 rounded-full uppercase text-sm tracking-wider transition-all hover:scale-105 active:scale-95 shadow-lg shadow-orange-600/30">
+                            Pedir Meu Burger <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <span class="text-zinc-400 text-xs font-semibold flex items-center gap-1.5">
+                            <i class="fa-solid fa-motorcycle text-orange-500"></i> Entrega Rápida na Cidade
+                        </span>
+                    </div>
                 </div>
-                
-                <div class="grid grid-cols-1 gap-4 w-full md:w-1/2">
-                    <div class="glass-card p-6 rounded-3xl flex flex-row items-center gap-6">
-                        <div class="w-16 h-16 rounded-2xl bg-orange-500/20 flex items-center justify-center text-3xl float-anim shrink-0">🍢</div>
-                        <div>
-                            <h3 class="font-bold text-2xl uppercase text-white font-outfit">Espetinhos na Brasa</h3>
-                            <p class="text-sm text-zinc-400 mt-2">Escolha entre Espeto Simples, Completo, Pão de Alho e muito mais.</p>
+
+                <!-- Lado Direito: Hambúrguer Flutuando com Animações -->
+                <div class="lg:w-1/2 w-full flex items-center justify-center relative">
+                    <div class="relative w-72 sm:w-96 h-72 sm:h-96 flex items-center justify-center">
+                        <!-- Círculos de Brasa e Glow Girando -->
+                        <div class="absolute inset-0 rounded-full border-2 border-dashed border-orange-500/20 animate-spin-slow pointer-events-none"></div>
+                        <div class="absolute inset-4 rounded-full bg-gradient-to-tr from-orange-600/30 via-red-600/20 to-yellow-500/20 blur-3xl animate-pulse"></div>
+
+                        <!-- Card Flutuante com a Imagem do Burger -->
+                        <div class="relative z-10 w-64 sm:w-80 h-64 sm:h-80 rounded-[2.5rem] p-3 glass-pro border-2 border-orange-500/40 shadow-[0_20px_50px_rgba(234,88,12,0.35)] float-burger-anim group cursor-pointer overflow-hidden">
+                            <img src="img/Monster Burger.jpg" alt="Burger Artesanal Na Grelha" class="w-full h-full object-cover rounded-[2rem] group-hover:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent rounded-[2rem] flex items-end p-5">
+                                <div>
+                                    <span class="bg-orange-600 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-full tracking-widest">Monster Burger</span>
+                                    <p class="text-white font-outfit font-black text-lg mt-1">O Favorito da Galera</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Badge Flutuante 1 (Top Left) -->
+                        <div class="absolute -top-4 -left-4 sm:left-0 z-20 glass-pro px-4 py-2.5 rounded-2xl border border-orange-500/40 shadow-xl float-badge-1 flex items-center gap-2">
+                            <span class="text-xl">🍔</span>
+                            <div class="text-left">
+                                <p class="text-[9px] uppercase tracking-widest text-zinc-400 font-bold">Pão Brioche</p>
+                                <p class="text-xs font-black text-white">Selado na Manteiga</p>
+                            </div>
+                        </div>
+
+                        <!-- Mini Badge Flutuante 2 (Bottom Right) -->
+                        <div class="absolute -bottom-4 -right-4 sm:right-0 z-20 glass-pro px-4 py-2.5 rounded-2xl border border-yellow-500/40 shadow-xl float-badge-2 flex items-center gap-2">
+                            <span class="text-xl">🧀</span>
+                            <div class="text-left">
+                                <p class="text-[9px] uppercase tracking-widest text-zinc-400 font-bold">Mussarela Dupla</p>
+                                <p class="text-xs font-black text-yellow-400">Derretida na Hora</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="mt-10 text-center">
-                <a href="#menu-container" class="inline-flex items-center gap-3 bg-white text-black font-black py-4 px-10 rounded-full uppercase transition-all hover:bg-orange-500 hover:text-white hover:scale-105">
-                    Ver no Cardápio <i class="fa-solid fa-arrow-down"></i>
-                </a>
             </div>
         </div>
     </section>
@@ -130,9 +192,6 @@
                     class="filter-btn px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all">Combos</button>
                 <button onclick="filterMenu('bebidas')"
                     class="filter-btn px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all">Bebidas</button>
-                <button
-                    class="filter-btn px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all"
-                    onclick="filterMenu('espetinhos')">Espetinhos</button>
             </div>
         </div>
 
@@ -236,7 +295,7 @@
                         <div class="flex text-orange-500 mb-6 text-sm">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Os espetinhos artesanais são maravilhosos! A farofa de couve com bacon então, nem se fala. Todo final de semana a gente pede."</p>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"O BBQ Bacon é sacanagem de tão bom! A carne é super suculenta, queijo derretendo e o molho especial fecha com chave de ouro. Não troco por nada!"</p>
                         <div class="flex items-center gap-4 mt-auto">
                             <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">A</div>
                             <div>
@@ -311,7 +370,7 @@
                         <div class="flex text-orange-500 mb-6 text-sm">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Os espetinhos salvaram meu sábado. Farofa perfeita e a carne desmancha na boca. Muito bom!"</p>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"O Combo Família salvou a resenha aqui em casa! Chegou super rápido, bem quentinho e todo mundo elogiou o sabor da carne na brasa. Nota 10!"</p>
                         <div class="flex items-center gap-4 mt-auto">
                             <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">C</div>
                             <div>
@@ -356,7 +415,7 @@
                         <div class="flex text-orange-500 mb-6 text-sm">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Os espetinhos artesanais são maravilhosos! A farofa de couve com bacon então, nem se fala. Todo final de semana a gente pede."</p>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"O BBQ Bacon é sacanagem de tão bom! A carne é super suculenta, queijo derretendo e o molho especial fecha com chave de ouro. Não troco por nada!"</p>
                         <div class="flex items-center gap-4 mt-auto">
                             <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">A</div>
                             <div>
@@ -426,7 +485,7 @@
                         <div class="flex text-orange-500 mb-6 text-sm">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"Os espetinhos salvaram meu sábado. Farofa perfeita e a carne desmancha na boca. Muito bom!"</p>
+                        <p class="text-zinc-300 mb-8 leading-relaxed text-lg">"O Combo Família salvou a resenha aqui em casa! Chegou super rápido, bem quentinho e todo mundo elogiou o sabor da carne na brasa. Nota 10!"</p>
                         <div class="flex items-center gap-4 mt-auto">
                             <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center font-bold text-xl text-zinc-400">C</div>
                             <div>
@@ -500,49 +559,6 @@
         </div>
     </div>
 
-    <!-- Modal Opções de Espetinho -->
-    <div id="espeto-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-        <div class="bg-zinc-950 w-full max-w-md rounded-[2rem] border border-orange-500/50 overflow-hidden shadow-[0_0_50px_rgba(234,88,12,0.2)] text-left">
-            <div class="p-6 border-b border-white/5 flex justify-between items-center">
-                <h3 class="font-outfit font-black text-2xl uppercase text-white" id="espeto-modal-title">Escolha o Sabor</h3>
-                <button onclick="closeEspetoModal()" class="text-zinc-500 hover:text-white transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
-            </div>
-            <div class="p-6">
-                <div id="espeto-sabor-1-container" class="mb-4">
-                    <label class="block text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">Sabor 1</label>
-                    <select id="espeto-sabor-1" class="w-full bg-zinc-900 border border-white/5 rounded-xl p-4 text-sm text-white outline-none focus:border-orange-500">
-                        <option value="Carne">Carne</option>
-                        <option value="Meio da Asa">Meio da Asa</option>
-                        <option value="Filé de Frango">Filé de Frango</option>
-                        <option value="Medalhão de Frango">Medalhão de Frango</option>
-                        <option value="Coração de Frango">Coração de Frango</option>
-                        <option value="Linguiça Toscana">Linguiça Toscana</option>
-                        <option value="Linguiça Apimentada">Linguiça Apimentada</option>
-                        <option value="Kafta">Kafta</option>
-                    </select>
-                </div>
-                <div id="espeto-sabor-2-container" class="hidden mb-4">
-                    <label class="block text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">Sabor 2</label>
-                    <select id="espeto-sabor-2" class="w-full bg-zinc-900 border border-white/5 rounded-xl p-4 text-sm text-white outline-none focus:border-orange-500">
-                        <option value="Carne">Carne</option>
-                        <option value="Meio da Asa">Meio da Asa</option>
-                        <option value="Filé de Frango">Filé de Frango</option>
-                        <option value="Medalhão de Frango">Medalhão de Frango</option>
-                        <option value="Coração de Frango">Coração de Frango</option>
-                        <option value="Linguiça Toscana">Linguiça Toscana</option>
-                        <option value="Linguiça Apimentada">Linguiça Apimentada</option>
-                        <option value="Kafta">Kafta</option>
-                    </select>
-                </div>
-            </div>
-            <div class="p-6 bg-black/50">
-                <button onclick="confirmEspeto()" class="w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-xl font-black uppercase text-sm transition-all shadow-lg shadow-orange-600/20 active:scale-95 text-white">
-                    Confirmar e Adicionar
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal de Aviso do WhatsApp -->
     <div id="whatsapp-warning-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
         <div class="bg-zinc-950 w-full max-w-md rounded-[2rem] border border-orange-500/50 overflow-hidden shadow-[0_0_50px_rgba(234,88,12,0.2)] text-center p-8">
@@ -577,11 +593,46 @@
         </div>
     </footer>
 
-    <!-- Scripts sempre no final do body -->
+    <!-- Firebase SDK (Google Cloud Firestore) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="firebase.js"></script>
+
+    <!-- Scripts da Aplicação -->
     <script src="script.js"></script>
     <script src="patch.js"></script>
 
     <style>
+        /* Animações da Vitrine de Burger Flutuante */
+        @keyframes floatBurger {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-16px) rotate(2deg); }
+        }
+        @keyframes floatBadge1 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.04); }
+        }
+        @keyframes floatBadge2 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(8px) scale(1.04); }
+        }
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .float-burger-anim {
+            animation: floatBurger 5s ease-in-out infinite;
+        }
+        .float-badge-1 {
+            animation: floatBadge1 3.8s ease-in-out infinite;
+        }
+        .float-badge-2 {
+            animation: floatBadge2 4.2s ease-in-out infinite 0.5s;
+        }
+        .animate-spin-slow {
+            animation: spinSlow 25s linear infinite;
+        }
+
         /* A animação zika que você escolheu */
         .typewriter-vortex {
             display: inline-flex;
@@ -595,7 +646,6 @@
         }
 
         @keyframes typing-vortex {
-
             0%,
             10% {
                 width: 0;
@@ -612,7 +662,6 @@
         }
 
         @keyframes cursor-blink {
-
             from,
             to {
                 border-color: transparent;

@@ -435,8 +435,47 @@ window.acceptDailyPromo = function() {
 };
 
 // ========================================================
-// SINCRONIZAÇÃO EM TEMPO REAL & EVENTOS
+// SINCRONIZAÇÃO EM TEMPO REAL & EVENTOS COM FIREBASE FIRESTORE
 // ========================================================
+function syncFromFirestore() {
+    if (!window.firestoreDb) {
+        setTimeout(syncFromFirestore, 100);
+        return;
+    }
+
+    // 1. Ouvir a Promoção do Dia em tempo real na nuvem
+    window.firestoreDb.collection('config').doc('daily_promo').onSnapshot((doc) => {
+        if (doc.exists) {
+            const promo = doc.data();
+            localStorage.setItem('daily_promo', JSON.stringify(promo));
+            initDailyPromo();
+        }
+    }, (err) => console.warn('Aviso Firebase Promoção:', err));
+
+    // 2. Ouvir alterações de cardápio e preços em tempo real na nuvem
+    window.firestoreDb.collection('config').doc('products').onSnapshot((doc) => {
+        if (doc.exists) {
+            const data = doc.data();
+            if (data.edited) localStorage.setItem('edited_products', JSON.stringify(data.edited));
+            if (data.added) localStorage.setItem('added_products', JSON.stringify(data.added));
+            if (data.deleted) localStorage.setItem('deleted_products', JSON.stringify(data.deleted));
+
+            const activeBtn = document.querySelector('.filter-btn.active');
+            if (activeBtn) {
+                const onclickAttr = activeBtn.getAttribute('onclick');
+                const match = onclickAttr ? onclickAttr.match(/'([^']+)'/) : null;
+                if (match) filterMenu(match[1]);
+                else filterMenu('todos');
+            } else {
+                filterMenu('todos');
+            }
+        }
+    }, (err) => console.warn('Aviso Firebase Produtos:', err));
+}
+
+// Inicializa escuta em nuvem
+syncFromFirestore();
+
 window.addEventListener('storage', () => {
     const activeBtn = document.querySelector('.filter-btn.active');
     if (activeBtn) {
@@ -458,7 +497,7 @@ setTimeout(() => {
     initDailyPromo();
 }, 60);
 
-// Envio para WhatsApp
+// Envio para WhatsApp + Registro na Nuvem
 window.sendToWhatsApp = function() {
     const name = document.getElementById('cust-name').value;
     const addr = document.getElementById('cust-addr').value;
@@ -477,7 +516,7 @@ window.sendToWhatsApp = function() {
         productId: i.id 
     }));
 
-    // Salvar pedido no localStorage
+    // Salvar pedido no localStorage e na Nuvem Firestore
     const orders = JSON.parse(localStorage.getItem('nagrelha_orders') || '[]');
     const newOrder = {
         id: 'ord_' + Math.random().toString(36).substr(2, 9),
@@ -489,6 +528,10 @@ window.sendToWhatsApp = function() {
     };
     orders.push(newOrder);
     localStorage.setItem('nagrelha_orders', JSON.stringify(orders));
+
+    if (window.firestoreDb) {
+        window.firestoreDb.collection('orders').add(newOrder).catch(e => console.warn('Erro ao salvar pedido na nuvem:', e));
+    }
     
     window.dispatchEvent(new Event('storage'));
 

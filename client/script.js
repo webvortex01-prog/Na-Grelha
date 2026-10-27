@@ -36,11 +36,6 @@ const products = [
     { id: 34, cat: 'combos', name: "Combo Egg Duplo", price: 45.00, desc: "2 EGG BURGER + guaraná antártica de 1litro ", img: "img/comboduplocerto.jpg" },
     { id: 35, cat: 'combos', name: "Combo Egg Família", price: 100.00, desc: "4 EGG BURGER + batata + guaraná antártica de 2litros ", img: "img/combo maior.jpg" },
 
-    // ESPETINHOS
-    { id: 501, cat: 'espetinhos', name: "Espeto Simples", price: 15.00, desc: "1 Espeto de sua preferência (Carne, Frango, Toscana, etc), acompanhado de mandioca cozida e molho da casa. (Informe o sabor!)", img: "img/espetosimples.jpg.jpeg" },
-    { id: 502, cat: 'espetinhos', name: "Espeto Completo", price: 25.00, desc: "1 Espeto de sua preferência, acompanhado de: Arroz, Farofa de couve com calabresa e bacon, Mandioca cozida, Vinagrete, Molho da casa. (Informe o sabor!)", img: "img/espetocompleto.jpg.jpeg" },
-    { id: 503, cat: 'espetinhos', name: "Completo com 2 Espetos", price: 35.00, desc: "2 Espetos de sua preferência, acompanhados de: Arroz, Farofa de couve com calabresa e bacon, Mandioca cozida, Vinagrete, Molho da casa. (Informe os sabores!)", img: "img/espetocompleto.jpg.jpeg" },
-    { id: 504, cat: 'espetinhos', name: "Espeto no Pão de Alho", price: 28.00, desc: "Pão francês grelhado no creme de alho, 2 espetos de sua preferência, vinagrete, mussarela derretida e molho verde da casa. (Informe os sabores!)", img: "img/paodealho.jpg.jpeg" }
 ];
 //ok
 let cart = [];
@@ -62,7 +57,6 @@ function filterMenu(category) {
     if (category === 'todos') {
         const sections = [
             { id: 'burgers', title: '🍔 Hambúrgueres' },
-            { id: 'espetinhos', title: '🍢 Espetinhos' }, // Nova categoria
             { id: 'porcoes', title: '🍟 Porções' },
             { id: 'bebidas', title: '🥤 Bebidas' },
             { id: 'combos', title: '🎁 Combos' }
@@ -116,49 +110,11 @@ function generateProductCard(p) {
     `;
 }
 
-let pendingEspetoId = null;
-
 function add(id) {
-    const product = products.find(p => p.id === id);
-    if (product.cat === 'espetinhos') {
-        pendingEspetoId = id;
-        document.getElementById('espeto-modal-title').innerText = product.name;
-        // id 503 (Completo 2 espetos) ou 504 (Pão de alho 2 espetos) mostram o sabor 2
-        if (id === 503 || id === 504) {
-            document.getElementById('espeto-sabor-2-container').classList.remove('hidden');
-        } else {
-            document.getElementById('espeto-sabor-2-container').classList.add('hidden');
-        }
-        document.getElementById('espeto-modal').classList.remove('hidden');
-        return;
+    const product = (typeof getPatchedProducts === 'function' ? getPatchedProducts() : products).find(p => p.id == id) || products.find(p => p.id == id);
+    if (product) {
+        addToCart(product);
     }
-    addToCart(product);
-}
-
-function confirmEspeto() {
-    if (!pendingEspetoId) return;
-    const product = products.find(p => p.id === pendingEspetoId);
-    let flavor1 = document.getElementById('espeto-sabor-1').value;
-    let flavorStr = flavor1;
-    
-    if (pendingEspetoId === 503 || pendingEspetoId === 504) {
-        let flavor2 = document.getElementById('espeto-sabor-2').value;
-        flavorStr = `${flavor1} e ${flavor2}`;
-    }
-    
-    const cartItem = { 
-        ...product, 
-        cartId: `${product.id}-${flavorStr}`,
-        name: `${product.name} (${flavorStr})`
-    };
-    
-    addToCart(cartItem, true);
-    closeEspetoModal();
-}
-
-function closeEspetoModal() {
-    document.getElementById('espeto-modal').classList.add('hidden');
-    pendingEspetoId = null;
 }
 
 function addToCart(product, isCustom = false) {

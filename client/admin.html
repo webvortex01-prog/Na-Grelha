@@ -9,10 +9,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;500;600;700;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Firebase SDK (Google Cloud Firestore) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="firebase.js"></script>
 
     <style>
         :root {
@@ -243,6 +243,13 @@
 
                 <!-- Status & Botões de Ação -->
                 <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- Status Nuvem Firebase -->
+                    <div id="navbar-cloud-status" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-950/40 border border-orange-500/30 text-xs font-bold text-orange-400">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="hidden sm:inline">Nuvem: Conectada</span>
+                        <span class="sm:hidden">Nuvem OK</span>
+                    </div>
+
                     <div id="navbar-promo-status" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-semibold">
                         <span id="navbar-promo-dot" class="w-2.5 h-2.5 rounded-full bg-zinc-600"></span>
                         <span id="navbar-promo-text" class="text-zinc-400 text-[11px]">Promoção do Dia: Inativa</span>
@@ -566,7 +573,6 @@
                             <option value="porcoes">🍟 Porções</option>
                             <option value="combos">🎁 Combos</option>
                             <option value="bebidas">🥤 Bebidas</option>
-                            <option value="espetinhos">🍢 Espetinhos</option>
                             <option value="adicionais">🧀 Adicionais</option>
                         </select>
 
@@ -715,7 +721,6 @@
                             <option value="porcoes">🍟 Porções</option>
                             <option value="combos">🎁 Combos</option>
                             <option value="bebidas">🥤 Bebidas</option>
-                            <option value="espetinhos">🍢 Espetinhos</option>
                             <option value="adicionais">🧀 Adicionais</option>
                         </select>
                     </div>
@@ -1026,13 +1031,19 @@
             localStorage.setItem('daily_promo', JSON.stringify(promo));
             updateToggleVisuals(checked);
             
+            // Salva na Nuvem Firebase para atualizar no celular de todos os clientes
+            if (window.firestoreDb) {
+                window.firestoreDb.collection('config').doc('daily_promo').set(promo, { merge: true })
+                    .catch(err => console.error("Erro nuvem promo toggle:", err));
+            }
+
             // Notifica abas do site em tempo real
             window.dispatchEvent(new Event('storage'));
 
             if (checked) {
-                showToast("Promoção do Dia ATIVADA com sucesso!", "success");
+                showToast("Promoção do Dia ATIVADA na Nuvem!", "success");
             } else {
-                showToast("Promoção do Dia desativada.", "info");
+                showToast("Promoção do Dia desativada na Nuvem.", "info");
             }
         }
 
@@ -1113,7 +1124,17 @@
             localStorage.setItem('daily_promo', JSON.stringify(updatedPromo));
             window.dispatchEvent(new Event('storage'));
 
-            showToast("Promoção do Dia salva e publicada!", "success");
+            // Publicar na Nuvem Firebase
+            if (window.firestoreDb) {
+                window.firestoreDb.collection('config').doc('daily_promo').set(updatedPromo)
+                    .then(() => showToast("Promoção do Dia publicada na Nuvem!", "success"))
+                    .catch(err => {
+                        console.error(err);
+                        showToast("Salvo localmente, erro na nuvem: " + err.message, "error");
+                    });
+            } else {
+                showToast("Promoção do Dia salva e publicada!", "success");
+            }
         }
 
         function renderPromoGalleries() {
@@ -1444,6 +1465,19 @@
             }
 
             window.dispatchEvent(new Event('storage'));
+
+            // Sincronizar todos os produtos na Nuvem Firebase
+            if (window.firestoreDb) {
+                window.firestoreDb.collection('config').doc('products').set({
+                    edited: JSON.parse(localStorage.getItem('edited_products') || '{}'),
+                    added: JSON.parse(localStorage.getItem('added_products') || '[]'),
+                    deleted: JSON.parse(localStorage.getItem('deleted_products') || '[]'),
+                    updatedAt: new Date().toISOString()
+                }, { merge: true })
+                .then(() => showToast("Cardápio sincronizado na Nuvem!", "success"))
+                .catch(err => console.error("Erro nuvem produtos:", err));
+            }
+
             closeProductModal();
             renderAdminProducts();
             populateQuickSelectProducts();
@@ -1470,6 +1504,17 @@
                 }
 
                 window.dispatchEvent(new Event('storage'));
+
+                // Sincronizar exclusão na Nuvem Firebase
+                if (window.firestoreDb) {
+                    window.firestoreDb.collection('config').doc('products').set({
+                        edited: JSON.parse(localStorage.getItem('edited_products') || '{}'),
+                        added: JSON.parse(localStorage.getItem('added_products') || '[]'),
+                        deleted: JSON.parse(localStorage.getItem('deleted_products') || '[]'),
+                        updatedAt: new Date().toISOString()
+                    }, { merge: true });
+                }
+
                 showToast(`"${name}" removido.`, "info");
                 renderAdminProducts();
                 populateQuickSelectProducts();
@@ -1545,6 +1590,27 @@
         // INICIALIZAÇÃO DO DASHBOARD
         // ==========================================
         function initDashboard() {
+            // Se tiver Firestore, carrega dados em nuvem primeiro
+            if (window.firestoreDb) {
+                window.firestoreDb.collection('config').doc('daily_promo').get().then(doc => {
+                    if (doc.exists) {
+                        localStorage.setItem('daily_promo', JSON.stringify(doc.data()));
+                        initPromoForm();
+                    }
+                }).catch(e => console.warn(e));
+
+                window.firestoreDb.collection('config').doc('products').get().then(doc => {
+                    if (doc.exists) {
+                        const data = doc.data();
+                        if (data.edited) localStorage.setItem('edited_products', JSON.stringify(data.edited));
+                        if (data.added) localStorage.setItem('added_products', JSON.stringify(data.added));
+                        if (data.deleted) localStorage.setItem('deleted_products', JSON.stringify(data.deleted));
+                        renderAdminProducts();
+                        populateQuickSelectProducts();
+                    }
+                }).catch(e => console.warn(e));
+            }
+
             initPromoForm();
             renderAdminProducts();
             updateSettingsStats();
