@@ -558,24 +558,75 @@ window.sendToWhatsApp = function() {
 };
 
 // ========================================================
-// SISTEMA DE UPGRADE NO ROLÊ (COMBO BURGER + BATATA + REFRI LATA POR + R$ 15)
+// SISTEMA DE UPGRADE NO ROLÊ (COMBO BATATA + REFRI LATA POR R$ 15,00)
 // ========================================================
+
+// Notificação visual toast flutuante no topo
+window.showUpgradeNotification = function(message) {
+    let toast = document.getElementById('upgrade-floating-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'upgrade-floating-toast';
+        toast.className = 'fixed top-6 left-1/2 -translate-x-1/2 z-[150] glass-panel bg-black/95 border border-yellow-500/70 shadow-[0_0_40px_rgba(234,179,8,0.45)] text-white px-6 py-4 rounded-2xl flex items-center gap-3 text-sm font-bold transition-all duration-300 pointer-events-none transform -translate-y-4 opacity-0 max-w-[92vw] text-center';
+        document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<span class="text-2xl">🍟🥤</span> <span class="leading-tight">${message}</span>`;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translate(-50%, 0)';
+    
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, -15px)';
+    }, 4000);
+};
+
+// Executa a adição do combo ao carrinho e direciona pro cardápio
+window.executeAddComboToCart = function(refriName) {
+    const selectedRefri = refriName || 'Coca-Cola Lata';
+    const refriKey = selectedRefri.toLowerCase().replace(/[^a-z0-9]/g, '_');
+    
+    const comboItem = {
+        id: `combo_upgrade_${refriKey}`,
+        cartId: `combo_upgrade_${refriKey}_${Date.now()}`,
+        name: `Combo Upgrade: Batata Frita + ${selectedRefri}`,
+        price: 15.00,
+        desc: `Acompanhamento individual: Batata Frita crocante + ${selectedRefri}`,
+        img: 'image/batatasimples.jpg',
+        qty: 1
+    };
+    
+    if (typeof addToCart === 'function') {
+        addToCart(comboItem, true);
+    } else if (typeof window.addToCart === 'function') {
+        window.addToCart(comboItem, true);
+    }
+    
+    // Notifica o cliente
+    showUpgradeNotification(`Combo adicionado por R$ 15,00! Escolha seu burger no cardápio abaixo 👇`);
+    
+    // Rola suave para o cardápio e filtra para burgers
+    setTimeout(() => {
+        if (typeof filterMenu === 'function') {
+            filterMenu('burgers');
+        }
+        const cardapioEl = document.getElementById('cardapio');
+        if (cardapioEl) {
+            cardapioEl.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 250);
+};
+
+// Adição direta via botão do banner (sem abrir modal)
+window.addUpgradeComboDirect = function() {
+    const bannerRefri = document.getElementById('upgrade-banner-refri');
+    const refri = bannerRefri ? bannerRefri.value : 'Coca-Cola Lata';
+    executeAddComboToCart(refri);
+};
+
+// Controle do Modal de detalhes do Upgrade
 window.openUpgradeComboModal = function() {
     const modal = document.getElementById('upgrade-combo-modal');
     if (!modal) return;
-    
-    const burgerSelect = document.getElementById('upgrade-burger-select');
-    if (burgerSelect) {
-        const allProducts = typeof getPatchedProducts === 'function' ? getPatchedProducts() : products;
-        const burgers = allProducts.filter(p => p.cat === 'burgers');
-        
-        burgerSelect.innerHTML = burgers.map(b => {
-            const price = Number(b.isPromo && b.promoPrice ? b.promoPrice : b.price);
-            return `<option value="${b.id}" data-price="${price}" data-name="${b.name}" data-img="${b.img}">${b.name} (R$ ${price.toFixed(2).replace('.', ',')})</option>`;
-        }).join('');
-    }
-    
-    updateUpgradeTotal();
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 };
@@ -588,51 +639,11 @@ window.closeUpgradeComboModal = function() {
     }
 };
 
-window.updateUpgradeTotal = function() {
-    const burgerSelect = document.getElementById('upgrade-burger-select');
-    const totalEl = document.getElementById('upgrade-combo-total');
-    if (!burgerSelect || !totalEl) return;
-    
-    const selectedOption = burgerSelect.options[burgerSelect.selectedIndex];
-    const burgerPrice = selectedOption ? parseFloat(selectedOption.getAttribute('data-price') || '0') : 0;
-    const total = burgerPrice + 15.00;
-    
-    totalEl.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
-};
-
 window.confirmUpgradeCombo = function() {
-    const burgerSelect = document.getElementById('upgrade-burger-select');
     const refriSelect = document.getElementById('upgrade-refri-select');
-    if (!burgerSelect || !refriSelect) return;
-    
-    const selectedOption = burgerSelect.options[burgerSelect.selectedIndex];
-    if (!selectedOption) return;
-    
-    const burgerId = selectedOption.value;
-    const burgerName = selectedOption.getAttribute('data-name');
-    const burgerPrice = parseFloat(selectedOption.getAttribute('data-price') || '0');
-    const burgerImg = selectedOption.getAttribute('data-img') || 'img/classicodacasa.jpg';
-    const refri = refriSelect.value;
-    
-    const comboPrice = burgerPrice + 15.00;
-    const comboItem = {
-        id: `upgrade_${burgerId}_${Date.now()}`,
-        name: `Combo Upgrade: ${burgerName} + Batata + ${refri}`,
-        price: comboPrice,
-        desc: `${burgerName} acompanhado de Batata Frita individual crocante e ${refri}`,
-        img: burgerImg,
-        qty: 1
-    };
-    
-    if (typeof addToCart === 'function') {
-        addToCart(comboItem, true);
-    }
+    const refri = refriSelect ? refriSelect.value : 'Coca-Cola Lata';
     
     closeUpgradeComboModal();
-    
-    // Abre a visualização do carrinho para o cliente conferir
-    if (typeof openModal === 'function') {
-        openModal();
-    }
+    executeAddComboToCart(refri);
 };
 
